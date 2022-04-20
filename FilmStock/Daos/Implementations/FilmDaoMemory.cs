@@ -2,7 +2,7 @@
 
 namespace FilmStock.Daos.Implementations
 {
-    public class FilmDaoMemory
+    public class FilmDaoMemory : IFilmDao
     {
         private readonly List<FilmModel> _data;
         private static FilmDaoMemory? _instance = null;
@@ -19,6 +19,26 @@ namespace FilmStock.Daos.Implementations
                 _instance = new FilmDaoMemory();
             }
             return _instance;
+        }
+
+        public void Add(FilmModel film)
+        {
+            
+        }
+
+        public void Remove(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetMovie(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetAllMovies()
+        {
+            throw new NotImplementedException();
         }
     }
 }
