@@ -8,19 +8,19 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\roola\\.nuget\\packages\\": {}
+    "C:\\Users\\horcs\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\roola\\Desktop\\Github\\el-proyecte-grande-sprint-1-csharp-ZsomborHorcsik\\FilmStock\\FilmStock.csproj",
+      "projectUniqueName": "C:\\Users\\horcs\\Source\\Repos\\el-proyecte-grande-sprint-1-csharp-ZsomborHorcsik\\FilmStock\\FilmStock.csproj",
       "projectName": "FilmStock",
-      "projectPath": "C:\\Users\\roola\\Desktop\\Github\\el-proyecte-grande-sprint-1-csharp-ZsomborHorcsik\\FilmStock\\FilmStock.csproj",
-      "packagesPath": "C:\\Users\\roola\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\roola\\Desktop\\Github\\el-proyecte-grande-sprint-1-csharp-ZsomborHorcsik\\FilmStock\\obj\\",
+      "projectPath": "C:\\Users\\horcs\\Source\\Repos\\el-proyecte-grande-sprint-1-csharp-ZsomborHorcsik\\FilmStock\\FilmStock.csproj",
+      "packagesPath": "C:\\Users\\horcs\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\horcs\\Source\\Repos\\el-proyecte-grande-sprint-1-csharp-ZsomborHorcsik\\FilmStock\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\roola\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\horcs\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
