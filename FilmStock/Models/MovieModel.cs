@@ -1,14 +1,6 @@
-﻿
-
-namespace FilmStock
+﻿namespace FilmStock.Models
 {
-    public class MovieListModel
-    {
-        public List<Movie>? Items { get; set; }
-        public string? ErrorMessage { get; set; }
-    }
-
-    public class Movie
+    public class MovieModel
     {
         public string? Id { get; set; }
         public string? Rank { get; set; }
