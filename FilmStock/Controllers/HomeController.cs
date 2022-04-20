@@ -13,8 +13,9 @@ namespace FilmStock.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
+            await ReturnTop250MoviesAsync();
             return View();
         }
 
@@ -28,5 +29,27 @@ namespace FilmStock.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public async Task ReturnTop250MoviesAsync()
+        {
+            var client = new HttpClient();
+            var request = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri("https://imdb-scraper.p.rapidapi.com/top250"),
+                Headers =
+            {
+                { "X-RapidAPI-Host", "imdb-scraper.p.rapidapi.com" },
+                { "X-RapidAPI-Key", "bd9c8c9af3msh65dc378a78eccb8p13c00fjsna740695e6950" },
+            },
+            };
+            using (var response = await client.SendAsync(request))
+            {
+                response.EnsureSuccessStatusCode();
+                var body = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(body);
+            }
+        }
+
     }
 }

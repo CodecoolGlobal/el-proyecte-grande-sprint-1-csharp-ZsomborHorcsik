@@ -1,4 +1,5 @@
-﻿namespace FilmStock
+﻿using FilmStock.Controllers;
+namespace FilmStock
 {
     public class Startup
     {
