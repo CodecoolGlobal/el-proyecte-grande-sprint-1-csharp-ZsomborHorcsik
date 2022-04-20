@@ -23,17 +23,18 @@ namespace FilmStock.Daos.Implementations
 
         public void Add(FilmModel film)
         {
-            
+            _data.Add(film);
         }
 
         public void Remove(int id)
         {
-            throw new NotImplementedException();
+            FilmModel film = _data.First(movie => movie.id == id);
+            _data.Remove(film);
         }
 
-        public void GetMovie(int id)
+        public FilmModel GetMovie(int id)
         {
-            throw new NotImplementedException();
+            return _data.First(movie => movie.id = id);
         }
 
         public void GetAllMovies()
