@@ -32,5 +32,9 @@ namespace FilmStock.Services
         {
             return _filmDao.GetTop100();
         }
+        public MovieModel GetMovie(string id)
+        {
+            return _filmDao.GetMovie(id);
+        }
     }
 }

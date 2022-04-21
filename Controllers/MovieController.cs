@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FilmStock.Services;
 using FilmStock.Models;
-using FilmStock.Daos.Implementations;
 
 namespace FilmStock.Controllers
 {
@@ -40,14 +39,16 @@ namespace FilmStock.Controllers
         [HttpPut]
         public IActionResult EditMovie([FromQuery] string id, [FromBody] string newTitle)
         {
-            return Ok("Not implemented yet");
+            var requestedMovie = _movieService.GetMovie(id);
+            requestedMovie.Title = newTitle;
+            return Ok($"Movie with name {requestedMovie.Title} has been renamed to {newTitle}");
         }
 
         [HttpDelete]
-        [Route("/delete/{id}")]
-        public IActionResult DeleteMovie([FromQuery] string id)
+        //tt0111161
+        public IActionResult DeleteMovie(string Id)
         {
-            _movieService.Remove(id);
+            _movieService.Remove(Id);
             return Ok("Movie removed!");
         }
     }

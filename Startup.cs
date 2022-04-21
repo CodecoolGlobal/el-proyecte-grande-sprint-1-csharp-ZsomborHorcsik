@@ -9,7 +9,6 @@ namespace FilmStock
     public class Startup
     {
         private readonly WebApplicationBuilder _builder;
-        private object _filmDao;
 
         public Startup(WebApplicationBuilder builder)
         {
