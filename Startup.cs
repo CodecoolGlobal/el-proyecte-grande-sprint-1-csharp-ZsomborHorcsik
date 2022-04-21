@@ -61,8 +61,8 @@ namespace FilmStock
             var response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
             var body = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(body);
             var data = JsonConvert.DeserializeObject<MovieListModel>(body);
+
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
