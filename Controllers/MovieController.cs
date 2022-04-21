@@ -26,7 +26,7 @@ namespace FilmStock.Controllers
         }
 
         // GET api/top100-movies
-        [HttpGet("/all-movies")]
+        [HttpGet("/get-top-movies")]
         public IEnumerable<MovieModel> GetTop100()
         {
             return _movieService.GetTop100();
@@ -34,23 +34,26 @@ namespace FilmStock.Controllers
 
         // POST api/add-movie
         [HttpPost("/add-movie")]
-        public void AddMovie(string id, string rank, string title, string fulltitle, string year, string image, string crew, string imdbrating, string imdbratingcount)
+        public IActionResult AddMovie(string id, string rank, string title, string fulltitle, string year, string image, string crew, string imdbrating, string imdbratingcount)
         {
             MovieModel movie = new(id, rank, title, fulltitle, year, image, crew, imdbrating, imdbratingcount) { };
             _movieService.Add(movie);
+            return Ok($"Movie added, name : {movie.Title}");
         }
 
         // PUT title
         [HttpPut("update/{title}")]
-        public void Put(string title, [FromBody] string value)
+        public IActionResult Put(string title, [FromBody] string value)
         {
+            return Ok("Not implemented yet");
         }
 
         // DELETE delete/id
         [HttpDelete("{delete/{id}")]
-        public void Delete(string id)
+        public IActionResult Delete(string id)
         {
             _movieService.Remove(Convert.ToInt32(id));
+            return Ok("Movie removed!");
         }
     }
 }
