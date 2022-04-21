@@ -1,4 +1,7 @@
-﻿namespace FilmStock
+﻿using FilmStock.Daos;
+using FilmStock.Daos.Implementations;
+
+namespace FilmStock
 {
     public class Startup
     {
@@ -18,7 +21,7 @@
         private void ConfigureStartup()
         {
             _builder.Services.AddControllersWithViews();
-            //_builder.Services.AddScoped<interface, service>();
+            _builder.Services.AddSingleton<IFilmDao, FilmDaoMemory>();
 
             var app = _builder.Build();
 

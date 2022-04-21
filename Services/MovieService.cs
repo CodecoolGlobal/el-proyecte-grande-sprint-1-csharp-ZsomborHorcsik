@@ -1,35 +1,36 @@
-﻿using FilmStock.Daos.Implementations;
+﻿using FilmStock.Daos;
+using FilmStock.Daos.Implementations;
 using FilmStock.Models;
 
 namespace FilmStock.Services
 {
     public class MovieService
     {
-        private readonly FilmDaoMemory filmDao;
+        private readonly IFilmDao _filmMemory;
 
-        public MovieService(FilmDaoMemory filmDao?)
+        public MovieService(IFilmDao FilmDao)
         {
-            filmDao = filmDao;
+            _filmMemory = FilmDao;
         }
 
         public void Add(MovieModel movie)
         {
-            filmDao.Add(movie);
+            _filmMemory.Add(movie);
         }
 
         public void Remove(int id)
         {
-            filmDao.Remove(id);
+            _filmMemory.Remove(id);
         }
 
         public IEnumerable<MovieModel> GetAll()
         {
-            return filmDao.GetAll();
+            return _filmMemory.GetAll();
         }
 
         public IEnumerable<MovieModel> GetTop100()
         {
-            return filmDao.GetTop100();
+            return _filmMemory.GetTop100();
         }
 
 

@@ -3,7 +3,6 @@ using FilmStock.Services;
 using FilmStock.Models;
 using FilmStock.Daos.Implementations;
 using FilmStock.Daos;
-using 
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,13 +10,11 @@ namespace FilmStock.Controllers
 {
     public class MovieController : ControllerBase
     {
-        public MovieService MovieService { get; private set; }
+        private readonly MovieService _movieService;
 
-        public MovieController(FilmDaoMemory filmDao)
+        public MovieController(MovieService movieService)
         {
-            MovieService = new MovieService(
-                FilmDaoMemory.GetInstance()
-                );
+            _movieService = movieService;
         }
 
 
@@ -25,14 +22,14 @@ namespace FilmStock.Controllers
         [HttpGet("/all-movies")]
         public IEnumerable<MovieModel> GetALl()
         {
-            return MovieService.GetAll();
+            return _movieService.GetAll();
         }
 
         // GET api/top100-movies
         [HttpGet("/all-movies")]
         public IEnumerable<MovieModel> GetTop100()
         {
-            return MovieService.GetTop100();
+            return _movieService.GetTop100();
         }
 
         // POST api/add-movie
@@ -40,7 +37,7 @@ namespace FilmStock.Controllers
         public void AddMovie(string id, string rank, string title, string fulltitle, string year, string image, string crew, string imdbrating, string imdbratingcount)
         {
             MovieModel movie = new(id, rank, title, fulltitle, year, image, crew, imdbrating, imdbratingcount) { };
-            MovieService.Add(movie);
+            _movieService.Add(movie);
         }
 
         // PUT title
@@ -53,7 +50,7 @@ namespace FilmStock.Controllers
         [HttpDelete("{delete/{id}")]
         public void Delete(string id)
         {
-            MovieService.Remove(Convert.ToInt32(id));
+            _movieService.Remove(Convert.ToInt32(id));
         }
     }
 }
