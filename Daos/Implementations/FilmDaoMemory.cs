@@ -28,7 +28,7 @@ namespace FilmStock.Daos.Implementations
 
         public void Remove(int id)
         {
-            _data.Where(x => x.Id == id).First();
+            throw new NotImplementedException();
         }
 
         public void GetMovie(int id)

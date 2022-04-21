@@ -1,5 +1,4 @@
 ﻿using FilmStock.Models;
-using FilmStock.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Newtonsoft.Json;
@@ -15,7 +14,6 @@ namespace FilmStock.Controllers
             _logger = logger;
         }
 
-        [Route("/Home/Index")]
         public async Task<IActionResult> Index()
         {
             var client = new HttpClient();
