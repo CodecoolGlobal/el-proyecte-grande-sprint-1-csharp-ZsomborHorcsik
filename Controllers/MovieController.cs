@@ -27,21 +27,21 @@ namespace FilmStock.Controllers
         }
 
         [HttpPost("/add-movie")]
-        public IActionResult AddMovie(string id, string rank, string title, string fulltitle, string year, string image, string crew, string imdbrating, string imdbratingcount)
+        public IActionResult AddMovie([FromBody] string id, string rank, string title, string fulltitle, string year, string image, string crew, string imdbrating, string imdbratingcount)
         {
             MovieModel movie = new(id, rank, title, fulltitle, year, image, crew, imdbrating, imdbratingcount) { };
             _movieService.Add(movie);
             return Ok($"Movie added, name : {movie.Title}");
         }
 
-        [HttpPut("/update/{title}")]
-        public IActionResult Put(string title, [FromBody] string value)
+        [HttpPut("/update/{id}")]
+        public IActionResult Put([FromQuery] string id, [FromBody] string newTitle)
         {
             return Ok("Not implemented yet");
         }
 
         [HttpDelete("/delete/{id}")]
-        public IActionResult Delete(string id)
+        public IActionResult Delete([FromQuery] string id)
         {
             _movieService.Remove(id);
             return Ok("Movie removed!");
