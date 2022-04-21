@@ -4,12 +4,11 @@ namespace FilmStock.Daos.Implementations
 {
     public class FilmDaoMemory : IFilmDao
     {
-        private readonly List<MovieModel> _data;
+        private static readonly List<MovieModel> _data = new() { };
         private static FilmDaoMemory? _instance = null;
 
         public FilmDaoMemory()
         {
-            _data = new List<MovieModel>();
         }
 
         public static FilmDaoMemory GetInstance()
@@ -21,24 +20,30 @@ namespace FilmStock.Daos.Implementations
             return _instance;
         }
 
-        public void Add(MovieModel film)
+        public void Add(MovieModel movie)
         {
-            _data.Add(film);
+            _data.Add(movie);
         }
 
         public void Remove(int id)
         {
-            throw new NotImplementedException();
+            _data.Remove(this.GetMovie(id));
         }
 
-        public void GetMovie(int id)
+        public MovieModel GetMovie(int id)
         {
-            throw new NotImplementedException();
+            return _data.Find(movie => Convert.ToInt32(movie.Id) == id);
         }
 
-        public void GetAllMovies()
+        public IEnumerable<MovieModel> GetAll()
         {
-            throw new NotImplementedException();
+            return _data;
+        }
+
+        public IEnumerable<MovieModel> GetTop100()
+        {
+            return _data.OrderBy(movie => movie.Rank).Take(100);
         }
     }
 }
+ 

@@ -6,7 +6,8 @@ namespace FilmStock.Daos
     {
         void Add(MovieModel film);
         void Remove(int id);
-        void GetMovie(int id);
-        void GetAllMovies();
+        MovieModel GetMovie(int id);
+        IEnumerable<MovieModel> GetAll();
+        IEnumerable<MovieModel> GetTop100();
     }
 }
