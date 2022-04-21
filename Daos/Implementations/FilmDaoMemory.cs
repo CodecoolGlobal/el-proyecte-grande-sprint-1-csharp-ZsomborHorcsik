@@ -25,14 +25,14 @@ namespace FilmStock.Daos.Implementations
             _data.Add(movie);
         }
 
-        public void Remove(int id)
+        public void Remove(string id)
         {
             _data.Remove(this.GetMovie(id));
         }
 
-        public MovieModel GetMovie(int id)
+        public MovieModel GetMovie(string id)
         {
-            return _data.Find(movie => Convert.ToInt32(movie.Id) == id);
+            return _data.Find(movie => movie.Id == id);
         }
 
         public IEnumerable<MovieModel> GetAll()

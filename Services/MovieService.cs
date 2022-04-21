@@ -1,5 +1,4 @@
 ﻿using FilmStock.Daos;
-using FilmStock.Daos.Implementations;
 using FilmStock.Models;
 
 namespace FilmStock.Services
@@ -18,7 +17,7 @@ namespace FilmStock.Services
             _filmMemory.Add(movie);
         }
 
-        public void Remove(int id)
+        public void Remove(string id)
         {
             _filmMemory.Remove(id);
         }
