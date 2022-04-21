@@ -5,7 +5,7 @@ using FilmStock.Models;
 
 namespace FilmStock.Controllers
 {
-    public class MovieController : ControllerBase
+    public class MovieController : Controller
     {
         private readonly MovieService _movieService;
 
@@ -14,22 +14,18 @@ namespace FilmStock.Controllers
             _movieService = movieService;
         }
 
-
-        // GET api/all-movies
         [HttpGet("/all-movies")]
         public IEnumerable<MovieModel> GetALl()
         {
             return _movieService.GetAll();
         }
 
-        // GET api/top100-movies
         [HttpGet("/get-top-movies")]
         public IEnumerable<MovieModel> GetTop100()
         {
             return _movieService.GetTop100();
         }
 
-        // POST api/add-movie
         [HttpPost("/add-movie")]
         public IActionResult AddMovie(string id, string rank, string title, string fulltitle, string year, string image, string crew, string imdbrating, string imdbratingcount)
         {
@@ -38,18 +34,16 @@ namespace FilmStock.Controllers
             return Ok($"Movie added, name : {movie.Title}");
         }
 
-        // PUT title
-        [HttpPut("update/{title}")]
+        [HttpPut("/update/{title}")]
         public IActionResult Put(string title, [FromBody] string value)
         {
             return Ok("Not implemented yet");
         }
 
-        // DELETE delete/id
-        [HttpDelete("{delete/{id}")]
+        [HttpDelete("/delete/{id}")]
         public IActionResult Delete(string id)
         {
-            _movieService.Remove(Convert.ToInt32(id));
+            _movieService.Remove(id);
             return Ok("Movie removed!");
         }
     }

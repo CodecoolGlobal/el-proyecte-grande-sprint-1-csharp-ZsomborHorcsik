@@ -2,35 +2,24 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using Newtonsoft.Json;
+using FilmStock.Services;
 
 namespace FilmStock.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly MovieService _movieService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, MovieService service)
         {
             _logger = logger;
+            _movieService = service;
         }
 
         public async Task<IActionResult> Index()
         {
-            var client = new HttpClient();
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri("https://imdb-scraper.p.rapidapi.com/top250"),
-                Headers =
-                {
-                    { "X-RapidAPI-Host", "imdb-scraper.p.rapidapi.com" },
-                    { "X-RapidAPI-Key", "9116f684c8msh66dc01697128539p1485f7jsn12ff8745bba9" },
-                },
-            };
-            using var response = await client.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            var body = await response.Content.ReadAsStringAsync();
-            var movies = JsonConvert.DeserializeObject<MovieListModel>(body);
+            var movies = _movieService.GetAll();
             return View(movies);
         }
 
