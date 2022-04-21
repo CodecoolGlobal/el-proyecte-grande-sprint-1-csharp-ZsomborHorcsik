@@ -9,12 +9,10 @@ namespace FilmStock.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly Util _utilities;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _utilities = new Util();
         }
 
         [Route("/Home/Index")]
