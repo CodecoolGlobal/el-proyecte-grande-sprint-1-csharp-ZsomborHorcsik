@@ -37,11 +37,11 @@ namespace FilmStock.Controllers
             return Ok($"Movie added with name {newMovie.Title}");
         }
         [HttpPut]
-        public IActionResult EditMovie([FromQuery] string id, [FromBody] string newTitle)
+        public IActionResult EditMovie(string id, [FromBody] MovieModel movieData)
         {
             var requestedMovie = _movieService.GetMovie(id);
-            requestedMovie.Title = newTitle;
-            return Ok($"Movie with name {requestedMovie.Title} has been renamed to {newTitle}");
+            requestedMovie.Title = movieData.Title;
+            return Ok($"Movie has been renamed to {movieData.Title}");
         }
 
         [HttpDelete]
