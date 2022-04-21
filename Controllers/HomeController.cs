@@ -9,18 +9,16 @@ namespace FilmStock.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly MovieService _movieService;
 
-        public HomeController(ILogger<HomeController> logger, MovieService service)
+        public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
-            _movieService = service;
         }
 
         public async Task<IActionResult> Index()
         {
-            var movies = _movieService.GetAll();
-            return View(movies);
+            
+            return View();
         }
 
         public IActionResult Privacy()

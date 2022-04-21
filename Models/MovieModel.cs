@@ -1,32 +1,22 @@
-﻿namespace FilmStock.Models
+﻿using Newtonsoft.Json;
+
+namespace FilmStock.Models
 {
     public class MovieModel
     {
-        public MovieModel()
-        {
-        }
+        [JsonProperty("movieId")]
+        public string Id { get; set; }
 
-        public MovieModel(string? id, string? rank, string? title, string? fullTitle, string? year, string? image, string? crew, string? iMDbRating, string? iMDbRatingCount)
-        {
-            Id = id;
-            Rank = rank;
-            Title = title;
-            FullTitle = fullTitle;
-            Year = year;
-            Image = image;
-            Crew = crew;
-            IMDbRating = iMDbRating;
-            IMDbRatingCount = iMDbRatingCount;
-        }
+        [JsonProperty("rank")]
+        public string Rank { get; set; }
 
-        public string? Id { get; set; }
-        public string? Rank { get; set; }
-        public string? Title { set; get; }
-        public string? FullTitle { set; get; }
-        public string? Year { set; get; }
-        public string? Image { get; set; }
-        public string? Crew { get; set; }
-        public string? IMDbRating { get; set; }
-        public string? IMDbRatingCount { get; set; }
+        [JsonProperty("Title")]
+        public string Title { get; set; }
+
+        [JsonProperty("Year")]
+        public string Year { get; set; }
+
+        [JsonProperty("Rating")]
+        public string Rating { get; set; }
     }
 }

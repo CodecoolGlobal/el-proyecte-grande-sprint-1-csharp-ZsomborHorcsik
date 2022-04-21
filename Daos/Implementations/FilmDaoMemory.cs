@@ -4,20 +4,10 @@ namespace FilmStock.Daos.Implementations
 {
     public class FilmDaoMemory : IFilmDao
     {
-        private static readonly List<MovieModel> _data = new() { };
-        private static FilmDaoMemory? _instance = null;
+        private readonly List<MovieModel> _data = new() { };
 
         public FilmDaoMemory()
         {
-        }
-
-        public static FilmDaoMemory GetInstance()
-        {
-            if (_instance == null)
-            {
-                _instance = new FilmDaoMemory();
-            }
-            return _instance;
         }
 
         public void Add(MovieModel movie)
