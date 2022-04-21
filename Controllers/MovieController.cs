@@ -11,11 +11,13 @@ namespace FilmStock.Controllers
 {
     public class MovieController : ControllerBase
     {
-        private readonly IFilmDao filmDao;
+        public MovieService MovieService { get; private set; }
 
         public MovieController(FilmDaoMemory filmDao)
         {
-            this.filmDao = filmDao;
+            MovieService = new MovieService(
+                FilmDaoMemory.GetInstance()
+                );
         }
 
 
@@ -23,14 +25,14 @@ namespace FilmStock.Controllers
         [HttpGet("/all-movies")]
         public IEnumerable<MovieModel> GetALl()
         {
-            return this.filmDao.GetAll();
+            return MovieService.GetAll();
         }
 
         // GET api/top100-movies
         [HttpGet("/all-movies")]
         public IEnumerable<MovieModel> GetTop100()
         {
-            return this.filmDao.GetTop100();
+            return MovieService.GetTop100();
         }
 
         // POST api/add-movie
@@ -38,7 +40,7 @@ namespace FilmStock.Controllers
         public void AddMovie(string id, string rank, string title, string fulltitle, string year, string image, string crew, string imdbrating, string imdbratingcount)
         {
             MovieModel movie = new(id, rank, title, fulltitle, year, image, crew, imdbrating, imdbratingcount) { };
-            this.filmDao.Add(movie);
+            MovieService.Add(movie);
         }
 
         // PUT title
@@ -51,7 +53,7 @@ namespace FilmStock.Controllers
         [HttpDelete("{delete/{id}")]
         public void Delete(string id)
         {
-            this.filmDao.Remove(Convert.ToInt32(id));
+            MovieService.Remove(Convert.ToInt32(id));
         }
     }
 }
