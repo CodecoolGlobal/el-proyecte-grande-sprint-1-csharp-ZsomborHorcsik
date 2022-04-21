@@ -23,12 +23,12 @@ namespace FilmStock.Daos.Implementations
 
         public void Add(MovieModel film)
         {
-            throw new NotImplementedException();
+            _data.Add(film);
         }
 
         public void Remove(int id)
         {
-            throw new NotImplementedException();
+            _data.Where(x => x.Id == id).First();
         }
 
         public void GetMovie(int id)
