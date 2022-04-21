@@ -22,7 +22,7 @@ namespace FilmStock.Daos.Implementations
 
         public MovieModel GetMovie(string id)
         {
-            return _data.Find(movie => movie.Id == id);
+            return _data.Where(movie => movie.Id == id).First();
         }
 
         public IEnumerable<MovieModel> GetAll()
