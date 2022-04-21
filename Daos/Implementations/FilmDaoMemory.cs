@@ -21,24 +21,24 @@ namespace FilmStock.Daos.Implementations
             return _instance;
         }
 
-        public void Add(MovieModel film)
+        public void Add(MovieModel movie)
         {
-            throw new NotImplementedException();
+            _data.Add(movie);
         }
 
         public void Remove(int id)
         {
-            throw new NotImplementedException();
+            _data.Remove(this.GetMovie(id));
         }
 
-        public void GetMovie(int id)
+        public MovieModel GetMovie(int id)
         {
-            throw new NotImplementedException();
+                return _data.Find(movie => Convert.ToInt32(movie.Id) == id);
         }
 
-        public void GetAllMovies()
+        public IEnumerable<MovieModel> GetAll()
         {
-            throw new NotImplementedException();
+            return _data;
         }
     }
 }
