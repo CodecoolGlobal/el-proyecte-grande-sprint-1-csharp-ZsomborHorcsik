@@ -1,8 +1,12 @@
-﻿@{
+﻿@model FilmStock.Models.MovieListModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>@Model.movies.Count</p>
+    @foreach(var movie in Model.movies)
+    {
+        <p>@movie.Title</p>
+    }
 </div>

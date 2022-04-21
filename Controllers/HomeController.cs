@@ -27,13 +27,11 @@ namespace FilmStock.Controllers
                     { "X-RapidAPI-Key", "9116f684c8msh66dc01697128539p1485f7jsn12ff8745bba9" },
                 },
             };
-            using (var response = await client.SendAsync(request))
-            {
-                response.EnsureSuccessStatusCode();
-                var body = await response.Content.ReadAsStringAsync();
-                var movies = JsonConvert.DeserializeObject<MovieListModel>(body);
-            }
-            return View();
+            using var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            var body = await response.Content.ReadAsStringAsync();
+            var movies = JsonConvert.DeserializeObject<MovieListModel>(body);
+            return View(movies);
         }
 
         public IActionResult Privacy()
