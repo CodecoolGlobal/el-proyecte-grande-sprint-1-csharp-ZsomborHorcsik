@@ -5,7 +5,7 @@ namespace FilmStock
         public static void Main()
         {
             var builder = WebApplication.CreateBuilder();
-            Startup startup = new Startup(builder);
+            Startup startup = new(builder);
         }
     }
 }
