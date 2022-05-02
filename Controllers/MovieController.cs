@@ -28,7 +28,7 @@ namespace FilmStock.Controllers
         [HttpPost]
         public IActionResult AddMovie([FromBody] string id, string title, string rating, string rank, string year)
         {
-            MovieModel newMovie = new MovieModel();
+            MovieModel newMovie = new();
             newMovie.Id = id;
             newMovie.Title = title;
             newMovie.Rating = rating;
