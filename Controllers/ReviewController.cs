@@ -10,9 +10,10 @@ namespace FilmStock.Controllers
         // POST: ReviewController/Create
         [HttpPost]
 
-        public IActionResult AddReview(string MovieId, [FromBody]int? starReview, string? review)
+        public IActionResult AddReview(string MovieId, Guid userId, [FromBody]int? starReview, string? review)
         {
             ReviewModel newReview = new();
+            newReview.UserId = userId;
             newReview.ReviewId = Guid.NewGuid();
             newReview.MovieId = MovieId;
             newReview.StarRating = starReview;
