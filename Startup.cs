@@ -21,6 +21,7 @@ namespace FilmStock
             _builder.Services.AddControllersWithViews();
             _builder.Services.AddSingleton<IFilmDao, FilmDaoMemory>();
             _builder.Services.AddScoped<MovieService>();
+            _builder.Services.AddCors();
 
             var app = _builder.Build();
 
@@ -29,6 +30,14 @@ namespace FilmStock
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
+
+            app.UseCors(op =>
+            {
+                op.WithOrigins("http://localhost:3000")
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+            });
 
             app.UseHttpsRedirection();
             app.UseRouting();

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
+
 function useFetch(url){
   const [data, setData] = useState(null);
   const [error, setError] = useState(null);
@@ -22,9 +23,14 @@ function useFetch(url){
 }
 
 
+
 function App() {
-  const {data} = useFetch("/Movie/GetAll");
-  console.log(data[1]["title"]);
+  const {data} = useFetch("https://localhost:44398/Movie/GetAll");
+  console.log(data);
+  /*for (let index = 0; index < 100; index++) {
+    console.log(data[index]["title"]);
+  }*/
+  
   return (
     <div className="App">
       <header className="App-header">
