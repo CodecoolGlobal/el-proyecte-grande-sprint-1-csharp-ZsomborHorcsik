@@ -24,7 +24,7 @@ function useFetch(url){
 
 function App() {
   const {data} = useFetch("/Movie/GetAll");
-  console.log(data);
+  console.log(data[1]["title"]);
   return (
     <div className="App">
       <header className="App-header">

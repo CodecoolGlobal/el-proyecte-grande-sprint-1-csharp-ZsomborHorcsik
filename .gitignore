@@ -3,3 +3,4 @@ vs/
 bin/
 .vs/
 /FilmStock.csproj.user
+/.vscode
