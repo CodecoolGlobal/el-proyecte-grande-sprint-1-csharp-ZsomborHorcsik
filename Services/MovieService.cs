@@ -1,6 +1,5 @@
 ﻿using FilmStock.Daos;
 using FilmStock.Models;
-using Newtonsoft.Json;
 
 namespace FilmStock.Services
 {

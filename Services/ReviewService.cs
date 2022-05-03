@@ -1,5 +1,6 @@
 ﻿using FilmStock.Models;
 using FilmStock.Daos.Implementations;
+using FilmStock.Daos;
 
 namespace FilmStock.Services
 {
@@ -19,12 +20,12 @@ namespace FilmStock.Services
 
         public void Delete(Guid reviewId)
         {
-            _reviewDao.Remove(reviewId);
+            _reviewDao.Delete(reviewId);
         }
 
         public IEnumerable<ReviewModel> GetReviewsByUser(Guid id)
         {
-            var reviews = _reviewDao.Where(review => review.UserId == id);
+            var reviews = _reviewDao.GetReviewsByUser(id);
             return reviews;
         }
     }
