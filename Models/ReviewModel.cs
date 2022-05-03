@@ -1,0 +1,14 @@
+﻿namespace FilmStock.Models
+{
+    public class ReviewModel
+    {
+        public Guid ReviewId;
+
+        public double? StarRating;
+
+        public string? Review;
+
+        public string MovieId;
+
+    }
+}
