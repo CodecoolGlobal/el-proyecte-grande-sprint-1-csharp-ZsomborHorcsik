@@ -11,11 +11,11 @@ import NavLink from "@material-tailwind/react/NavLink";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
 import Icon from "@material-tailwind/react/Icon";
 
-export default function Navbar() {
+export default function Navmenu() {
   const [openNavbar, setOpenNavbar] = useState(false);
 
   return (
-    <Navbar color="lightBlue" navbar>
+    <Navbar color="blueGray" navbar>
         <NavbarContainer>
             <NavbarWrapper>
                 <NavbarBrand>Navbar</NavbarBrand>
