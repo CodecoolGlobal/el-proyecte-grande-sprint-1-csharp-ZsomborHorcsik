@@ -8,10 +8,6 @@
 
         public string LastName { get; set; }
 
-        public List<Review> Reviews { get; set; }
-
-        public List<Comment> Comments { get; set; }
-
         public UserLevel Level { get; set; }
     }
 

@@ -4,6 +4,7 @@ using FilmStock.Models;
 
 namespace FilmStock.Controllers
 {
+    [ApiController]
     public class MovieController : Controller
     {
         private readonly MovieService _movieService;
