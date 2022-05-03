@@ -20,9 +20,15 @@ namespace FilmStock.Daos.Implementations
             _data.Remove(_data.Single(review => review.ReviewId == id));
         }
 
-        public IEnumerable<ReviewModel> GetByUser(Guid id)
+        public IEnumerable<ReviewModel> GetReviewsByUser(Guid id)
         {
             var reviews = _data.Where(review => review.UserId == id);
+            return reviews;
+        }
+
+        public IEnumerable<ReviewModel> GetReviewsByMovie(string id)
+        {
+            var reviews = _data.Where(review => review.MovieId == id);
             return reviews;
         }
     }   

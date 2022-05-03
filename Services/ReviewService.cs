@@ -1,6 +1,5 @@
 ﻿using FilmStock.Models;
 using FilmStock.Daos.Implementations;
-using FilmStock.Daos;
 
 namespace FilmStock.Services
 {

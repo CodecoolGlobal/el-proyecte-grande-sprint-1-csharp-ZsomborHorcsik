@@ -7,5 +7,6 @@ namespace FilmStock.Daos.Implementations
         void Add(ReviewModel movie);
         void Delete(Guid reviewId);
         IEnumerable<ReviewModel> GetReviewsByUser(Guid id);
+        IEnumerable<ReviewModel> GetReviewsByMovie(string id);
     }
 }

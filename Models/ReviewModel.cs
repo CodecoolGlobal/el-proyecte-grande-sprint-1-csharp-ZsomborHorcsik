@@ -11,7 +11,5 @@
         public string? Review;
 
         public string MovieId;
-
-
     }
 }
