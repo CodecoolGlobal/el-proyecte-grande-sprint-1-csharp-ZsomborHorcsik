@@ -28,11 +28,11 @@ const Navmenu = () => {
 
             <NavbarCollapse open={openNavbar}>
                 <Nav leftSide>
-                    <NavItem active="light" ripple="light">
+                    <NavItem ripple="light">
                         <Icon name="collections" size="xl" />
                         Collections
                     </NavItem>
-                    <NavLink href="#navbar" ripple="light">
+                    <NavLink href="#navbar" active="light" ripple="light">
                         <Icon name="assistant" size="xl" />
                         Discover
                     </NavLink>
