@@ -1,5 +1,6 @@
 ﻿using FilmStock.Models;
 using FilmStock.Daos.Implementations;
+using System.Linq;
 
 namespace FilmStock.Services
 {
@@ -26,6 +27,11 @@ namespace FilmStock.Services
         {
             var reviews = _reviewDao.GetReviewsByUser(id);
             return reviews;
+        }
+
+        public ReviewModel GetReviewById(Guid id)
+        {
+            return _reviewDao.GetReviewById(id);
         }
     }
 }

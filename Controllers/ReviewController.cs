@@ -1,12 +1,21 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using FilmStock.Models;
+using FilmStock.Services;
 
 namespace FilmStock.Controllers
 {
     [ApiController]
     public class ReviewController : Controller
     {
+        private readonly ReviewService _reviewService;
+
+        public ReviewController(ReviewService reviewService)
+        {
+            _reviewService = reviewService;
+        }
+
+
         // POST: ReviewController/Create
         [HttpPost]
 
@@ -24,7 +33,7 @@ namespace FilmStock.Controllers
         // GET: ReviewController/Edit/5
         public IActionResult Edit(Guid Id, [FromBody]int? starReview, string? reviewcontent)
         {
-            ReviewModel review = _reviewService.GetReviewById(id);
+            ReviewModel review = _reviewService.GetReviewById(Id);
             review.StarRating = starReview;
             review.Review = reviewcontent;
             return View();
@@ -34,7 +43,7 @@ namespace FilmStock.Controllers
         //tt0111161
         public IActionResult DeleteReview(Guid Id)
         {
-            _movieService.Remove(Id);
+            _reviewService.Delete(Id);
             return Ok("Review removed!");
         }
     }

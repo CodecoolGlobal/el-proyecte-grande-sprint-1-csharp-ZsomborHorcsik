@@ -8,5 +8,6 @@ namespace FilmStock.Daos.Implementations
         void Delete(Guid reviewId);
         IEnumerable<ReviewModel> GetReviewsByUser(Guid id);
         IEnumerable<ReviewModel> GetReviewsByMovie(string id);
+        ReviewModel GetReviewById(Guid id);
     }
 }

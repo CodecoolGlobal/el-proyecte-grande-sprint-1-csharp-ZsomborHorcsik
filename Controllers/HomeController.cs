@@ -15,11 +15,6 @@ namespace FilmStock.Controllers
             _logger = logger;
         }
 
-        public async Task<IActionResult> Index()
-        {
-            return Ok();
-        }
-
         public IActionResult Privacy()
         {
             return Ok();
