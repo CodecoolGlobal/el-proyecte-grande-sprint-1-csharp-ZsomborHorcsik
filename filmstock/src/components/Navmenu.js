@@ -30,15 +30,15 @@ export default function Navmenu() {
                 <Nav leftSide>
                     <NavItem active="light" ripple="light">
                         <Icon name="language" size="xl" />
-                        Discover
+                        Collections
                     </NavItem>
                     <NavLink href="#navbar" ripple="light">
                         <Icon name="account_circle" size="xl" />
-                        Profile
+                        Discover
                     </NavLink>
                     <NavItem ripple="light">
                         <Icon name="settings" size="xl" />
-                        Settings
+                        TV Series
                     </NavItem>
                 </Nav>
                 <NavbarInput type="text" placeholder="Search here" />
