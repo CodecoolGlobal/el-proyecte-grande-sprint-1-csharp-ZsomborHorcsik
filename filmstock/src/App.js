@@ -1,13 +1,36 @@
 import './App.css';
-import useFetch from './hooks/useFetch'
 import Header from './components/Header';
+import FilmCard from './components/FilmCard';
 import "@material-tailwind/react/tailwind.css";
+import axios from 'axios';
+import {useState, useEffect} from "react";
 
 function App() {
-  const {data} = useFetch("https://localhost:44398/Movie/GetAll");
+    const [data, setData] = useState(null);
+    const url = "https://localhost:44398/Movie/GetAll"
+
+    useEffect(()=>{
+        axios
+        .get(url)
+        .then((response) =>{
+            setData(response.data);
+        })
+        .catch((err)=>{
+            console.log(err)
+        })
+    }, []);
+    
   return (
     <div className="App">
       <Header/>
+      <div className='md:container md:mx-auto flex card-box'>
+        <FilmCard/>
+        <FilmCard/>
+        <FilmCard/>
+        <FilmCard/>
+        <FilmCard/>
+      </div>
+      
     </div>
   );
 }
