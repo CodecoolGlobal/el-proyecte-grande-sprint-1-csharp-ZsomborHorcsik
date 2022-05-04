@@ -14,7 +14,7 @@ const Footer = () =>{
 
             <div className="text-center p-4">
                 © 2021 Copyright:
-                <a className="text-white" href="#">FilmStock</a>
+                <a className="text-white" href="https://www.google.com">FilmStock</a>
             </div>
         </footer>
     )
