@@ -47,9 +47,9 @@ namespace FilmStock
             app.UseRouting();
             app.UseAuthorization();
 
-            app.MapControllerRoute(
+            /*app.MapControllerRoute(
                 name: "default",
-                pattern: "/api/{controller=Home}/{action=Index}");
+                pattern: "/api/{controller=Movie}/{action=TopMovies}");*/
 
             GetMoviesData(app);
             app.Run();
