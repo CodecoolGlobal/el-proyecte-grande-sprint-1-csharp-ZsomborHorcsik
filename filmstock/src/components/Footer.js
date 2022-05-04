@@ -1,21 +1,22 @@
 const Footer = () =>{
-    return (
-        <footer className="text-center text-white">
-            <div className="container p-6">
-                <div>
-                <p className="flex justify-center items-center">
-                    <span className="mr-4">Register</span>
-                    <button className="inline-block px-6 py-2 border-2 border-white text-white font-medium text-xs leading-tight uppercase rounded-full hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out">
-                    Sign up!
-                    </button>
-                </p>
-                </div>
-            </div>
-
-            <div className="text-center p-4">
-                © 2021 Copyright:
-                <a className="text-white" href="https://www.google.com">FilmStock</a>
-            </div>
+    return ( 
+        <footer class="md:flex md:items-center md:justify-between sm:px-12 px-4 bg-white py-7 text-black">
+            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2022 <a href="#test" class="hover:underline">FilmStock™</a>. All Rights Reserved.
+            </span>
+            <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 dark:text-gray-400 sm:mt-0">
+                <li>
+                    <a href="#test" class="mr-4 hover:underline md:mr-6 ">About</a>
+                </li>
+                <li>
+                    <a href="#test" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+                </li>
+                <li>
+                    <a href="#test" class="mr-4 hover:underline md:mr-6">Licensing</a>
+                </li>
+                <li>
+                    <a href="#test" class="hover:underline">Contact</a>
+                </li>
+            </ul>
         </footer>
     )
 }

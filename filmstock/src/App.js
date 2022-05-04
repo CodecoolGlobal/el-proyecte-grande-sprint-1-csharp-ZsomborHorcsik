@@ -1,9 +1,10 @@
 import './App.css';
-import Header from './components/Header';
-import FilmCard from './components/FilmCard';
 import "@material-tailwind/react/tailwind.css";
 import axios from 'axios';
 import {useState, useEffect} from "react";
+import Header from './components/Header';
+import FilmCard from './components/FilmCard';
+import Footer from './components/Footer'
 
 function App() {
     const [data, setData] = useState(null);
@@ -31,6 +32,7 @@ function App() {
         <FilmCard/>
       </div>
     </div>
+    
   );
 }
 
