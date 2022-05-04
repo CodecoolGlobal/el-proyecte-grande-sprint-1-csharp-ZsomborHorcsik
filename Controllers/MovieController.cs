@@ -52,5 +52,11 @@ namespace FilmStock.Controllers
             _movieService.Remove(Id);
             return Ok("Movie removed!");
         }
+
+        [HttpGet("/SearchPerson/{person}")]
+        public IEnumerable<MovieModel> TopMovies(string person)
+        {
+            return _movieService.GetMoviesWith(person);
+        }
     }
 }
