@@ -15,7 +15,7 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <div className='md:container md:mx-auto flex card-box'>
+      <div className='grid grid-cols-6 gap-4 md:container md:mx-auto mt-6 '>
         {data?.map(movieData =>(<FilmCard movie={movieData} key={movieData.title}/>))}
       </div>
     </div>

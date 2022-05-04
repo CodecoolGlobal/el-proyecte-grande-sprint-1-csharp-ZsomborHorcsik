@@ -3,8 +3,8 @@ import Modal from "./Modal";
 
 const FilmCard = ({movie}) => {
     return (
-        <div className="mx-2">
-            <div className="bg-white shadow-md rounded-lg flex-column p-5">
+        <div className="mx-2 m-2 box-border">
+            <div className="bg-white shadow-md rounded-lg flex-column md:content-center md:justify-center p-5">
                 <img alt="" className="rounded-lg -mt-9" src={movie.image}></img>
 
                 <div class="p-1">
