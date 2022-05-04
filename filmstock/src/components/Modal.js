@@ -1,27 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
+import { useState } from "react";
 import Modal from "@material-tailwind/react/Modal";
 import ModalHeader from "@material-tailwind/react/ModalHeader";
 import ModalBody from "@material-tailwind/react/ModalBody";
 import ModalFooter from "@material-tailwind/react/ModalFooter";
 import Button from "@material-tailwind/react/Button";
 
-export default function Modal() {
-    const [showModal, setShowModal] = React.useState(false);
+const MovieModal = ()=> {
+    const [showModal, setShowModal] = useState(false);
 
     return (
         <>
             <Button
-                color="lightBlue"
+                color="blueGray"
                 type="button"
-                onClick={(e) => setShowModalCode(true)}
+                onClick={(e) => setShowModal(true)}
                 ripple="light"
             >
-                Open large Modal
+                Go to discussion
             </Button>
 
             <Modal size="lg" active={showModal} toggler={() => setShowModal(false)}>
                 <ModalHeader toggler={() => setShowModal(false)}>
-                    Modal Title
+                    Movie title
                 </ModalHeader>
                 <ModalBody>
                     <p className="text-base leading-relaxed text-gray-600 font-normal">
@@ -36,7 +37,7 @@ export default function Modal() {
                     <Button 
                         color="red"
                         buttonType="link"
-                        onClick={(e) => setShowModalCode(false)}
+                        onClick={(e) => setShowModal(false)}
                         ripple="dark"
                     >
                         Close
@@ -44,13 +45,15 @@ export default function Modal() {
 
                     <Button
                         color="green"
-                        onClick={(e) => setShowModalCode(false)}
+                        onClick={(e) => setShowModal(false)}
                         ripple="light"
                     >
-                        Save Changes
+                        Jump to page
                     </Button>
                 </ModalFooter>
             </Modal>
         </>
     );
 }
+
+export default MovieModal;
