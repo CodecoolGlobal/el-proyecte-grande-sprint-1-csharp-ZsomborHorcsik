@@ -15,12 +15,10 @@ const FilmCard = () => {
                     src="https://image.tmdb.org/t/p/original/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg"
                     alt="Card Image"
                 />
-
                 <CardBody>
                     <H6 color="gray">Inception (2018)</H6>
                     <Paragraph>8.7</Paragraph>
                 </CardBody>
-
                 <CardFooter>
                     <Button color="blueGray" size="lg" ripple="light">
                         Read More
