@@ -30,7 +30,6 @@ function App() {
         <FilmCard/>
         <FilmCard/>
       </div>
-      
     </div>
   );
 }
