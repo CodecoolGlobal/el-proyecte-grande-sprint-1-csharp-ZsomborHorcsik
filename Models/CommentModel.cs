@@ -9,5 +9,10 @@
         public Guid UserId;
 
         public string Comment;
+
+        public DateTime Date;
+
+        public DateTime? EditDate;
+
     }
 }
