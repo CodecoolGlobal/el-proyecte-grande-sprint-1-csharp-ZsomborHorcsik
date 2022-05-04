@@ -6,7 +6,7 @@ import ModalBody from "@material-tailwind/react/ModalBody";
 import ModalFooter from "@material-tailwind/react/ModalFooter";
 import Button from "@material-tailwind/react/Button";
 
-const MovieModal = ()=> {
+const MovieModal = ({movie})=> {
     const [showModal, setShowModal] = useState(false);
 
     return (
@@ -22,7 +22,7 @@ const MovieModal = ()=> {
 
             <Modal size="lg" active={showModal} toggler={() => setShowModal(false)}>
                 <ModalHeader toggler={() => setShowModal(false)}>
-                    Movie title
+                    {movie.fullTitle}
                 </ModalHeader>
                 <ModalBody>
                     <p className="text-base leading-relaxed text-gray-600 font-normal">
