@@ -9,5 +9,6 @@ namespace FilmStock.Daos
         MovieModel GetMovie(string id);
         IEnumerable<MovieModel> GetAll();
         IEnumerable<MovieModel> GetTop(int count);
+        IEnumerable<MovieModel> GetMoviesWith(string person);
     }
 }

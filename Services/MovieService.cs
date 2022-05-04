@@ -35,5 +35,10 @@ namespace FilmStock.Services
         {
             return _filmDao.GetMovie(id);
         }
+
+        public IEnumerable<MovieModel> GetMoviesWith(string person)
+        {
+            return _filmDao.GetMoviesWith(person);
+        }
     }
 }

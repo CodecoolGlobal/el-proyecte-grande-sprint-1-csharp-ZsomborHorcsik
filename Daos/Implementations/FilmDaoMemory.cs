@@ -34,6 +34,11 @@ namespace FilmStock.Daos.Implementations
         {
             return _data.OrderBy(movie => movie.Rank).Take(count);
         }
+
+        public IEnumerable<MovieModel> GetMoviesWith(string person)
+        {
+            return _data.Where(movie => movie.Crew.Contains(person));
+        }
     }
 }
  
