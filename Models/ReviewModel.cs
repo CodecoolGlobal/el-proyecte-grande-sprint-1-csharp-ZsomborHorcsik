@@ -11,5 +11,9 @@
         public string? Review;
 
         public string MovieId;
+
+        public DateTime Date;
+
+        public DateTime EditDate;
     }
 }

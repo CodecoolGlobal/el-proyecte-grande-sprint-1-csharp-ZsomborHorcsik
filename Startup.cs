@@ -49,7 +49,7 @@ namespace FilmStock
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}");
+                pattern: "/api/{controller=Home}/{action=Index}");
 
             GetMoviesData(app);
             app.Run();

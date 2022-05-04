@@ -15,8 +15,7 @@ namespace FilmStock.Controllers
             _commentService = commentService;
         }
 
-        // POST: ReviewController/Create
-        [HttpPost]
+        [HttpPost("/AddComment")]
         public IActionResult AddComment(Guid reviewId, Guid userId, [FromBody] string comment)
         {
             CommentModel newComment = new();
@@ -24,19 +23,20 @@ namespace FilmStock.Controllers
             newComment.UserId = userId;
             newComment.CommentId = Guid.NewGuid();
             newComment.Comment = comment;
+            newComment.Date = DateTime.Now;
             return Ok("Review sent");
         }
 
-        // GET: CommentController/Edit/5
-        public IActionResult Edit(Guid Id, [FromBody]string? commentContent)
+        [HttpPut("/EditComment/{Id}")]
+        public IActionResult EditComment(Guid Id, [FromBody]string? commentContent)
         {
             CommentModel comment = _commentService.GetCommentById(Id);
             comment.Comment = commentContent;
+            comment.EditDate = DateTime.Now;
             return Ok();
         }
 
-        [HttpDelete]
-        //tt0111161
+        [HttpDelete("/DeleteComment/{Id}")]
         public IActionResult DeleteReview(Guid Id)
         {
             _commentService.Delete(Id);

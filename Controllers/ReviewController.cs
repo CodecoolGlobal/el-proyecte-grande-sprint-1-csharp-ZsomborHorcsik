@@ -15,10 +15,7 @@ namespace FilmStock.Controllers
             _reviewService = reviewService;
         }
 
-
-        // POST: ReviewController/Create
-        [HttpPost]
-
+        [HttpPost("/AddReview")]
         public IActionResult AddReview(string MovieId, Guid userId, [FromBody]int? starReview, string? review)
         {
             ReviewModel newReview = new();
@@ -27,19 +24,21 @@ namespace FilmStock.Controllers
             newReview.MovieId = MovieId;
             newReview.StarRating = starReview;
             newReview.Review = review;
+            newReview.Date = DateTime.Now;
             return Ok("Review sent");
         }
 
-        // GET: ReviewController/Edit/5
-        public IActionResult Edit(Guid Id, [FromBody]int? starReview, string? reviewcontent)
+        [HttpPut("/EditReview/{Id}")]
+        public IActionResult EditReview(Guid Id, [FromBody]int? starReview, string? reviewcontent)
         {
             ReviewModel review = _reviewService.GetReviewById(Id);
             review.StarRating = starReview;
             review.Review = reviewcontent;
+            review.EditDate = DateTime.Now;
             return View();
         }
 
-        [HttpDelete]
+        [HttpDelete("/DeleteReview/{Id}")]
         //tt0111161
         public IActionResult DeleteReview(Guid Id)
         {

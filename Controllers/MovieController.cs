@@ -14,19 +14,19 @@ namespace FilmStock.Controllers
             _movieService = movieService;
         }
 
-        [HttpGet]
+        [HttpGet("/GetAll")]
         public IEnumerable<MovieModel> GetAll()
         {
             return _movieService.GetAll();
         }
 
-        [HttpGet]
+        [HttpGet("/TopMovies")]
         public IEnumerable<MovieModel> TopMovies()
         {
             return _movieService.GetTop100();
         }
 
-        [HttpPost]
+        [HttpPost("/AddMovie")]
         public IActionResult AddMovie([FromBody] string id, string title, string rating, string rank, string year)
         {
             MovieModel newMovie = new();
@@ -37,16 +37,16 @@ namespace FilmStock.Controllers
             newMovie.Year = year;
             return Ok($"Movie added with name {newMovie.Title}");
         }
-        [HttpPut]
-        public IActionResult EditMovie(string id, [FromBody] MovieModel movieData)
+
+        [HttpPut("/EditMovie/{Id}")]
+        public IActionResult EditMovie(string Id, [FromBody] MovieModel movieData)
         {
-            var requestedMovie = _movieService.GetMovie(id);
+            var requestedMovie = _movieService.GetMovie(Id);
             requestedMovie.Title = movieData.Title;
             return Ok($"Movie has been renamed to {movieData.Title}");
         }
 
-        [HttpDelete]
-        //tt0111161
+        [HttpDelete("/DeleteMovie/{Id}")]
         public IActionResult DeleteMovie(string Id)
         {
             _movieService.Remove(Id);
