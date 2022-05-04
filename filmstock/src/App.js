@@ -7,7 +7,7 @@ import {useState, useEffect} from "react";
 
 function App() {
     const [data, setData] = useState(null);
-    const url = "https://localhost:44398/Movie/GetAll"
+    const url = "https://localhost:44398/GetAll"
 
     useEffect(()=>{
         axios
@@ -20,11 +20,11 @@ function App() {
         })
     }, []);
     console.log(data);
+
   return (
     <div className="App">
       <Header/>
-      <div className='container mx-auto flex card-box'>
-        <FilmCard/>
+      <div className='md:container md:mx-auto flex card-box'>
         <FilmCard/>
         <FilmCard/>
         <FilmCard/>

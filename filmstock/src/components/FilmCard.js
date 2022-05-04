@@ -1,32 +1,23 @@
 import React from "react";
-import Card from "@material-tailwind/react/Card";
-import CardImage from "@material-tailwind/react/CardImage";
-import CardBody from "@material-tailwind/react/CardBody";
-import CardFooter from "@material-tailwind/react/CardFooter";
-import H6 from "@material-tailwind/react/Heading6";
-import Paragraph from "@material-tailwind/react/Paragraph";
-import Button from "@material-tailwind/react/Button";
 
 const FilmCard = () => {
     return (
         <div className="mx-2">
-            <Card>
-                <CardImage
-                    src="https://image.tmdb.org/t/p/original/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg"
-                    alt="Card Image"
-                />
-                <CardBody>
-                    <H6 color="gray">Inception (2018)</H6>
-                    <Paragraph>8.7</Paragraph>
-                </CardBody>
-                <CardFooter>
-                    <Button color="blueGray" size="lg" ripple="light">
-                        Read More
-                    </Button>
-                </CardFooter>
-            </Card>
+            <div className="bg-white shadow-md rounded-lg flex-column p-5">
+                <img alt="" class="rounded-lg -mt-9" src="https://image.tmdb.org/t/p/original/edv5CZvWj09upOsy2Y6IwDhK8bt.jpg"></img>
+
+                <div class="p-1">
+                    <h1 class="text-gray-900 text-xl font-serif font-bold leading-normal mt-0 mb-2">Inception (2018)</h1>
+                    <p class="text-blue-gray-700 text-base font-light leading-relaxed mt-0 mb-2">8.7</p>
+                </div>
+
+                <div class="p-1">
+                    <button class="items-center justify-center font-bold outline-none uppercase tracking-wider focus:outline-none focus:shadow-none transition-all duration-300 rounded-lg py-3 px-7 text-sm leading-relaxed text-white bg-blue-gray-500 hover:bg-blue-gray-700 focus:bg-blue-gray-400 active:bg-blue-gray-800 shadow-md-blue-gray hover:shadow-lg-blue-gray">
+                        Go to discussion
+                    </button>
+                </div>
+            </div>
         </div>
-        
     );
 }
 
