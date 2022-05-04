@@ -11,7 +11,7 @@ import NavLink from "@material-tailwind/react/NavLink";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
 import Icon from "@material-tailwind/react/Icon";
 
-export default function Navmenu() {
+const Navmenu= () => {
   const [openNavbar, setOpenNavbar] = useState(false);
 
   return (
@@ -47,3 +47,5 @@ export default function Navmenu() {
     </Navbar>
   );
 }
+
+export default Navmenu;
