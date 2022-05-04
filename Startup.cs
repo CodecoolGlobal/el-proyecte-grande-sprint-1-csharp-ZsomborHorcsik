@@ -20,7 +20,11 @@ namespace FilmStock
         {
             _builder.Services.AddControllersWithViews();
             _builder.Services.AddSingleton<IFilmDao, FilmDaoMemory>();
+            _builder.Services.AddSingleton<IReviewDao, ReviewDaoMemory>();
+            _builder.Services.AddSingleton<ICommentDao, CommentDaoMemory>();
             _builder.Services.AddScoped<MovieService>();
+            _builder.Services.AddScoped<ReviewService>();
+            _builder.Services.AddScoped<CommentService>();
             _builder.Services.AddCors();
 
             var app = _builder.Build();
@@ -69,20 +73,15 @@ namespace FilmStock
             var body = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<MovieListModel>(body);
 
-#pragma warning disable IDE0063 // Use simple 'using' statement
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 var movieService = services.GetRequiredService<MovieService>();
                 PopulateMemory(movieService, data);
-            }
-#pragma warning restore IDE0063 // Use simple 'using' statement
-            
+            } 
         }
 
-#pragma warning disable CA1822 // Mark members as static
         private void PopulateMemory(MovieService movieService, MovieListModel data)
-#pragma warning restore CA1822 // Mark members as static
         {
             foreach(var movie in data.movies)
             {
