@@ -8,7 +8,7 @@ const FilmCard = ({movie}) => {
                 <img alt="" className="rounded-lg -mt-9" src={movie.image}></img>
 
                 <div class="p-1">
-                    <h1 className="text-gray-900 text-md font-serif font-bold mt-0 mb-2">{movie.fullTitle}</h1>
+                    <h1 className="text-gray-900 text-md font-serif font-bold mt-0 mb-2">{movie.title}</h1>
                     <p className="text-blue-gray-700 text-base font-light mt-0 mb-2">{movie.rating}</p>
                 </div>
                 <div className="p-1">
