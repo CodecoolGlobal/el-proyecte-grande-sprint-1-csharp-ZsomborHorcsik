@@ -8,6 +8,6 @@ namespace FilmStock.Daos
         void Remove(string id);
         MovieModel GetMovie(string id);
         IEnumerable<MovieModel> GetAll();
-        IEnumerable<MovieModel> GetTop100(int count);
+        IEnumerable<MovieModel> GetTop(int count);
     }
 }

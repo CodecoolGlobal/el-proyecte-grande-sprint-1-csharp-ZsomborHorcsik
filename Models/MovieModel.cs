@@ -4,19 +4,23 @@ namespace FilmStock.Models
 {
     public class MovieModel
     {
-        [JsonProperty("movieId")]
+        [JsonProperty("id")]
         public string Id { get; set; }
-
         [JsonProperty("rank")]
         public string Rank { get; set; }
-
-        [JsonProperty("Title")]
-        public string Title { get; set; }
-
-        [JsonProperty("Year")]
-        public string Year { get; set; }
-
-        [JsonProperty("Rating")]
+        [JsonProperty("title")]
+        public string Title { set; get; }
+        [JsonProperty("fullTitle")]
+        public string FullTitle { set; get; }
+        [JsonProperty("year")]
+        public string Year { set; get; }
+        [JsonProperty("image")]
+        public string Image { get; set; }
+        [JsonProperty("crew")]
+        public string Crew { get; set; }
+        [JsonProperty("imDbRating")]
         public string Rating { get; set; }
+        [JsonProperty("imDbRatingCount")]
+        public string IMDbRatingCount { get; set; }
     }
 }

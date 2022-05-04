@@ -2,6 +2,6 @@
 {
     public class MovieListModel
     {
-        public List<MovieModel>? movies = new List<MovieModel>();
+        public List<MovieModel>? movies = new();
     }
 }

@@ -2,6 +2,7 @@
 using FilmStock.Daos.Implementations;
 using FilmStock.Models;
 using FilmStock.Services;
+using IMDbApiLib;
 using Newtonsoft.Json;
 
 namespace FilmStock
@@ -47,9 +48,9 @@ namespace FilmStock
             app.UseRouting();
             app.UseAuthorization();
 
-            /*app.MapControllerRoute(
+            app.MapControllerRoute(
                 name: "default",
-                pattern: "/api/{controller=Movie}/{action=TopMovies}");*/
+                pattern: "{controller=Movie}/{action=GetAll}");
 
             GetMoviesData(app);
             app.Run();
@@ -57,36 +58,37 @@ namespace FilmStock
 
         private async void GetMoviesData(IHost host)
         {
-            var client = new HttpClient();
-            var request = new HttpRequestMessage
-            {
-                Method = HttpMethod.Get,
-                RequestUri = new Uri("https://imdb-scraper.p.rapidapi.com/top250"),
-                Headers =
-                {
-                    { "X-RapidAPI-Host", "imdb-scraper.p.rapidapi.com" },
-                    { "X-RapidAPI-Key", "9116f684c8msh66dc01697128539p1485f7jsn12ff8745bba9" },
-                },
-            };
-            var response = await client.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            var body = await response.Content.ReadAsStringAsync();
-            var data = JsonConvert.DeserializeObject<MovieListModel>(body);
-
+            var apiLib = new ApiLib("k_i94oi014");
+            var response = await apiLib.Top250MoviesAsync();
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 var movieService = services.GetRequiredService<MovieService>();
-                PopulateMemory(movieService, data);
+                PopulateMemory(movieService, response);
             } 
         }
 
-        private void PopulateMemory(MovieService movieService, MovieListModel data)
+        private void PopulateMemory(MovieService movieService, IMDbApiLib.Models.Top250Data data)
         {
-            foreach(var movie in data.movies)
+            foreach(var movie in data.Items)
             {
-                movieService.Add(movie);
+                movieService.Add(Convert(movie));
             }
+        }
+
+        private MovieModel Convert(IMDbApiLib.Models.Top250DataDetail movie)
+        {
+            MovieModel newMovie = new();
+            newMovie.Id = movie.Id;
+            newMovie.Rank = movie.Rank;
+            newMovie.Title = movie.Title;
+            newMovie.FullTitle = movie.FullTitle;
+            newMovie.Year = movie.Year;
+            newMovie.Image = movie.Image;
+            newMovie.Crew = movie.Crew;
+            newMovie.Rating = movie.IMDbRating;
+            newMovie.IMDbRatingCount = movie.IMDbRatingCount;
+            return newMovie;
         }
     }
 }

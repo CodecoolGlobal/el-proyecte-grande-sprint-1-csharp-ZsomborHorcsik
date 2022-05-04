@@ -29,7 +29,7 @@ namespace FilmStock.Services
 
         public IEnumerable<MovieModel> GetTop(int count)
         {
-            return _filmDao.GetTop100(count);
+            return _filmDao.GetTop(count);
         }
         public MovieModel GetMovie(string id)
         {
