@@ -11,7 +11,7 @@ import NavLink from "@material-tailwind/react/NavLink";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
 import Icon from "@material-tailwind/react/Icon";
 
-const Navmenu= () => {
+const Navmenu = () => {
   const [openNavbar, setOpenNavbar] = useState(false);
 
   return (
