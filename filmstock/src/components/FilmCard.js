@@ -11,7 +11,7 @@ const FilmCard = ({movieData}) => {
     return (
         <Card>
             <CardImage
-                src="shorturl.at/psBK0"
+                src="https://image.tmdb.org/t/p/original/og6S0aTZU6YUJAbqxeKjCa3kY1E.jpg"
                 alt="Card Image"
             />
             
@@ -24,7 +24,7 @@ const FilmCard = ({movieData}) => {
             </CardBody>
 
             <CardFooter>
-                <Button color="lightGray" size="lg" ripple="light">
+                <Button color="blueGray" size="lg" ripple="light">
                     More...
                 </Button>
             </CardFooter>

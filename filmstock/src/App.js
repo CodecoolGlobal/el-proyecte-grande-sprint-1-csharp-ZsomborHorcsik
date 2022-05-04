@@ -23,7 +23,14 @@ function App() {
   return (
     <div className="App">
       <Header/>
-      <FilmCard movieData={data[0]}/>
+      <div className='md:container md:mx-auto flex card-box'>
+        <FilmCard/>
+        <FilmCard/>
+        <FilmCard/>
+        <FilmCard/>
+        <FilmCard/>
+      </div>
+      
     </div>
   );
 }

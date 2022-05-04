@@ -18,7 +18,7 @@ export default function Navmenu() {
     <Navbar color="blueGray" navbar>
         <NavbarContainer>
             <NavbarWrapper>
-                <NavbarBrand>Navbar</NavbarBrand>
+                <NavbarBrand>FilmStock</NavbarBrand>
                 <NavbarToggler
                     color="white"
                     onClick={() => setOpenNavbar(!openNavbar)}
