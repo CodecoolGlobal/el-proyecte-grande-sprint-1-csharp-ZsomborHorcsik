@@ -30,9 +30,9 @@ namespace FilmStock.Daos.Implementations
             return _data;
         }
 
-        public IEnumerable<MovieModel> GetTop100()
+        public IEnumerable<MovieModel> GetTop(int count)
         {
-            return _data.OrderBy(movie => movie.Rank).Take(100);
+            return _data.OrderBy(movie => movie.Rank).Take(count);
         }
     }
 }

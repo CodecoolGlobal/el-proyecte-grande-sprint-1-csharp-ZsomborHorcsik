@@ -20,10 +20,10 @@ namespace FilmStock.Controllers
             return _movieService.GetAll();
         }
 
-        [HttpGet("/TopMovies")]
-        public IEnumerable<MovieModel> TopMovies()
+        [HttpGet("/TopMovies/{count}")]
+        public IEnumerable<MovieModel> TopMovies(int count)
         {
-            return _movieService.GetTop100();
+            return _movieService.GetTop(count);
         }
 
         [HttpPost("/AddMovie")]
