@@ -34,6 +34,11 @@ namespace FilmStock.Daos.Implementations
         {
             return _data.OrderBy(movie => movie.Rank).Take(count);
         }
+
+        public IEnumerable<MovieModel> GetTop100(int count)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
  

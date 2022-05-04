@@ -11,7 +11,7 @@ import NavLink from "@material-tailwind/react/NavLink";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
 import Icon from "@material-tailwind/react/Icon";
 
-export default function Navmenu() {
+const Navmenu = () => {
   const [openNavbar, setOpenNavbar] = useState(false);
 
   return (
@@ -29,21 +29,36 @@ export default function Navmenu() {
             <NavbarCollapse open={openNavbar}>
                 <Nav leftSide>
                     <NavItem active="light" ripple="light">
-                        <Icon name="language" size="xl" />
+                        <Icon name="collections" size="xl" />
                         Collections
                     </NavItem>
                     <NavLink href="#navbar" ripple="light">
-                        <Icon name="account_circle" size="xl" />
+                        <Icon name="assistant" size="xl" />
                         Discover
                     </NavLink>
                     <NavItem ripple="light">
-                        <Icon name="settings" size="xl" />
+                        <Icon name="live_tv" size="xl" />
                         TV Series
                     </NavItem>
+                    <NavItem>
+                        <NavbarInput type="text" placeholder="Search here" />
+                    </NavItem>
                 </Nav>
-                <NavbarInput type="text" placeholder="Search here" />
+                <Nav rightSide>
+                    <NavItem ripple="light">
+                        <Icon name="login" size="xl"/>
+                        Login
+                    </NavItem>
+                    <NavItem ripple="light">
+                        <Icon name="logout" size="xl"/>
+                        Register
+                    </NavItem>
+                </Nav>
+                
             </NavbarCollapse>
         </NavbarContainer>
     </Navbar>
   );
 }
+
+export default Navmenu;
