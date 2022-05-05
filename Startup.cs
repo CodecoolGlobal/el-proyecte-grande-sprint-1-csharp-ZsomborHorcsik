@@ -3,7 +3,6 @@ using FilmStock.Daos.Implementations;
 using FilmStock.Models;
 using FilmStock.Services;
 using IMDbApiLib;
-using Newtonsoft.Json;
 
 namespace FilmStock
 {
@@ -65,7 +64,14 @@ namespace FilmStock
                 var services = scope.ServiceProvider;
                 var movieService = services.GetRequiredService<MovieService>();
                 PopulateMemory(movieService, response);
-            } 
+            }
+            response = await apiLib.Top250TVsAsync();
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                var movieService = services.GetRequiredService<MovieService>();
+                PopulateMemory(movieService, response);
+            }
         }
 
         private void PopulateMemory(MovieService movieService, IMDbApiLib.Models.Top250Data data)
