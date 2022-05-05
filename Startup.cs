@@ -63,29 +63,30 @@ namespace FilmStock
             {
                 var services = scope.ServiceProvider;
                 var movieService = services.GetRequiredService<MovieService>();
-                PopulateMemory(movieService, response);
+                PopulateMemory(movieService, response, ContentType.movie);
             }
             response = await apiLib.Top250TVsAsync();
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
                 var movieService = services.GetRequiredService<MovieService>();
-                PopulateMemory(movieService, response);
+                PopulateMemory(movieService, response, ContentType.series);
             }
         }
 
-        private void PopulateMemory(MovieService movieService, IMDbApiLib.Models.Top250Data data)
+        private void PopulateMemory(MovieService movieService, IMDbApiLib.Models.Top250Data data, ContentType type)
         {
             foreach(var movie in data.Items)
             {
-                movieService.Add(Convert(movie));
+                movieService.Add(Convert(movie, type));
             }
         }
 
-        private MovieModel Convert(IMDbApiLib.Models.Top250DataDetail movie)
+        private MovieModel Convert(IMDbApiLib.Models.Top250DataDetail movie, ContentType type)
         {
             MovieModel newMovie = new();
             newMovie.Id = Guid.NewGuid();
+            newMovie.Type = type;
             newMovie.Rank = movie.Rank;
             newMovie.Title = movie.Title;
             newMovie.FullTitle = movie.FullTitle;

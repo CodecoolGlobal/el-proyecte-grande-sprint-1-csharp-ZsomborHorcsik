@@ -22,5 +22,12 @@ namespace FilmStock.Models
         public string Rating { get; set; }
         [JsonProperty("imDbRatingCount")]
         public string IMDbRatingCount { get; set; }
+
+        public ContentType Type { get; set; }
+    }
+
+    public enum ContentType { 
+        movie,
+        series
     }
 }
