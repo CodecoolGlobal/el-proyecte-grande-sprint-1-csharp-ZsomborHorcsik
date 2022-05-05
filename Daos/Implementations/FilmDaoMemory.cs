@@ -6,6 +6,8 @@ namespace FilmStock.Daos.Implementations
     {
         private readonly List<MovieModel> _data = new() { };
 
+        private readonly List<MovieModel> _collection = new() { };
+
         public FilmDaoMemory()
         {
         }
@@ -15,12 +17,12 @@ namespace FilmStock.Daos.Implementations
             _data.Add(movie);
         }
 
-        public void Remove(string id)
+        public void Remove(Guid id)
         {
             _data.Remove(this.GetMovie(id));
         }
 
-        public MovieModel GetMovie(string id)
+        public MovieModel GetMovie(Guid id)
         {
             return _data.Single(movie => movie.Id == id);
         }
@@ -39,6 +41,18 @@ namespace FilmStock.Daos.Implementations
         {
             return _data.Where(movie => movie.Crew.Contains(person));
         }
+
+        public void AddMovieToCollection(Guid id)
+        {
+            MovieModel movie = GetMovie(id);
+            _collection.Add(movie);
+        }
+
+        public void RemoveFromCollection(Guid id)
+        {
+            _collection.Remove(this.GetMovie(id));
+        }
+
     }
 }
  

@@ -85,7 +85,7 @@ namespace FilmStock
         private MovieModel Convert(IMDbApiLib.Models.Top250DataDetail movie)
         {
             MovieModel newMovie = new();
-            newMovie.Id = movie.Id;
+            newMovie.Id = Guid.NewGuid();
             newMovie.Rank = movie.Rank;
             newMovie.Title = movie.Title;
             newMovie.FullTitle = movie.FullTitle;

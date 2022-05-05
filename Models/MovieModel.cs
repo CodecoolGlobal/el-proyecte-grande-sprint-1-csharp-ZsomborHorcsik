@@ -5,7 +5,7 @@ namespace FilmStock.Models
     public class MovieModel
     {
         [JsonProperty("id")]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
         [JsonProperty("rank")]
         public string Rank { get; set; }
         [JsonProperty("title")]
