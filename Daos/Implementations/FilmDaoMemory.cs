@@ -53,6 +53,10 @@ namespace FilmStock.Daos.Implementations
             _collection.Remove(this.GetMovie(id));
         }
 
+        public IEnumerable<MovieModel> GetCollection()
+        {
+            return _collection;
+        }
     }
 }
  

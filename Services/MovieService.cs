@@ -17,7 +17,7 @@ namespace FilmStock.Services
             _filmDao.Add(movie);
         }
 
-        public void Remove(string id)
+        public void Remove(Guid id)
         {
             _filmDao.Remove(id);
         }
@@ -31,7 +31,7 @@ namespace FilmStock.Services
         {
             return _filmDao.GetTop(count);
         }
-        public MovieModel GetMovie(string id)
+        public MovieModel GetMovie(Guid id)
         {
             return _filmDao.GetMovie(id);
         }
@@ -39,6 +39,21 @@ namespace FilmStock.Services
         public IEnumerable<MovieModel> GetMoviesWith(string person)
         {
             return _filmDao.GetMoviesWith(person);
+        }
+
+        public void AddToCollection(Guid id)
+        {
+            _filmDao.AddMovieToCollection(id);
+        }
+
+        public void RemoveFromCollection(Guid id)
+        {
+            _filmDao.RemoveFromCollection(id);
+        }
+
+        public IEnumerable<MovieModel> GetCollection()
+        {
+            return _filmDao.GetCollection();
         }
     }
 }

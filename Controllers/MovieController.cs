@@ -27,10 +27,10 @@ namespace FilmStock.Controllers
         }
 
         [HttpPost("/AddMovie")]
-        public IActionResult AddMovie([FromBody] string id, string title, string rating, string rank, string year)
+        public IActionResult AddMovie([FromBody] string title, string rating, string rank, string year)
         {
             MovieModel newMovie = new();
-            newMovie.Id = id;
+            newMovie.Id = Guid.NewGuid();
             newMovie.Title = title;
             newMovie.Rating = rating;
             newMovie.Rank = rank;
@@ -39,7 +39,7 @@ namespace FilmStock.Controllers
         }
 
         [HttpPut("/EditMovie/{Id}")]
-        public IActionResult EditMovie(string Id, [FromBody] MovieModel movieData)
+        public IActionResult EditMovie(Guid Id, [FromBody] MovieModel movieData)
         {
             var requestedMovie = _movieService.GetMovie(Id);
             requestedMovie.Title = movieData.Title;
@@ -47,7 +47,7 @@ namespace FilmStock.Controllers
         }
 
         [HttpDelete("/DeleteMovie/{Id}")]
-        public IActionResult DeleteMovie(string Id)
+        public IActionResult DeleteMovie(Guid Id)
         {
             _movieService.Remove(Id);
             return Ok("Movie removed!");
@@ -57,6 +57,24 @@ namespace FilmStock.Controllers
         public IEnumerable<MovieModel> TopMovies(string person)
         {
             return _movieService.GetMoviesWith(person);
+        }
+
+        [HttpGet("/AddMovieToCollection/{Id}")]
+        public void AddMovieToCollection(Guid Id)
+        {
+            _movieService.AddToCollection(Id);
+        }
+
+        [HttpGet("/RemoveMovieFromCollection/{Id}")]
+        public void RemoveMovieFromCollection(Guid Id)
+        {
+            _movieService.RemoveFromCollection(Id);
+        }
+
+        [HttpGet("/Collection")]
+        public IEnumerable<MovieModel> GetCollection()
+        {
+            return _movieService.GetCollection();
         }
     }
 }
