@@ -29,7 +29,7 @@ namespace FilmStock.Daos.Implementations
 
         public IEnumerable<MovieModel> GetAll()
         {
-            return _data;
+            return _data.OrderByDescending(content => content.Rating);
         }
 
         public IEnumerable<MovieModel> GetTop(int count)
@@ -56,6 +56,16 @@ namespace FilmStock.Daos.Implementations
         public IEnumerable<MovieModel> GetCollection()
         {
             return _collection;
+        }
+
+        public IEnumerable<MovieModel> GetAllMovies()
+        {
+            return _data.Where(movie => movie.Type == ContentType.movie).OrderByDescending(movie => movie.Rating);
+        }
+
+        public IEnumerable<MovieModel> GetAllSeries()
+        {
+            return _data.Where(movie => movie.Type == ContentType.series).OrderByDescending(movie => movie.Rating);
         }
     }
 }

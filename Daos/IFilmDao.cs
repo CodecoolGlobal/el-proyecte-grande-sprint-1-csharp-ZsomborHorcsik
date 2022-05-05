@@ -13,5 +13,8 @@ namespace FilmStock.Daos
         void AddMovieToCollection(Guid id);
         void RemoveFromCollection(Guid id);
         IEnumerable<MovieModel> GetCollection();
+        IEnumerable<MovieModel> GetAllMovies();
+        IEnumerable<MovieModel> GetAllSeries();
+
     }
 }

@@ -51,11 +51,11 @@ namespace FilmStock
                 name: "default",
                 pattern: "{controller=Movie}/{action=GetAll}");
 
-            GetMoviesData(app);
+            GetData(app);
             app.Run();
         }
 
-        private async void GetMoviesData(IHost host)
+        private async void GetData(IHost host)
         {
             var apiLib = new ApiLib("k_i94oi014");
             var response = await apiLib.Top250MoviesAsync();

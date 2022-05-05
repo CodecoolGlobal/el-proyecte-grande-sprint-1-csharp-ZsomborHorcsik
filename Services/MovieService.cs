@@ -27,6 +27,16 @@ namespace FilmStock.Services
             return _filmDao.GetAll();
         }
 
+        public IEnumerable<MovieModel> GetAllMovies()
+        {
+            return _filmDao.GetAllMovies();
+        }
+
+        public IEnumerable<MovieModel> GetAllSeries()
+        {
+            return _filmDao.GetAllSeries();
+        }
+
         public IEnumerable<MovieModel> GetTop(int count)
         {
             return _filmDao.GetTop(count);
