@@ -32,7 +32,7 @@ namespace FilmStock.Daos.Implementations
 
         public IEnumerable<MovieModel> GetTop(int count)
         {
-            return _data.OrderBy(movie => movie.Rank).Take(count);
+            return _data.OrderByDescending(movie => movie.Rating).Take(count);
         }
 
         public IEnumerable<MovieModel> GetMoviesWith(string person)
