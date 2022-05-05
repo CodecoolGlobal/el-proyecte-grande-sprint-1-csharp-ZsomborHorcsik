@@ -1,10 +1,10 @@
 import React from 'react'
 import Navmenu from './Navmenu'
 
-const Header = () => {
+const Header = ({setFilter}) => {
   return (
     <div>
-      <Navmenu/>
+      <Navmenu filter={setFilter}/>
     </div>
   )
 }

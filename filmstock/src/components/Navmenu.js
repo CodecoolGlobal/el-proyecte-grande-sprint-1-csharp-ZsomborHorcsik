@@ -7,12 +7,19 @@ import NavbarToggler from "@material-tailwind/react/NavbarToggler";
 import NavbarCollapse from "@material-tailwind/react/NavbarCollapse";
 import Nav from "@material-tailwind/react/Nav";
 import NavItem from "@material-tailwind/react/NavItem";
-import NavLink from "@material-tailwind/react/NavLink";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
 import Icon from "@material-tailwind/react/Icon";
 
-const Navmenu = () => {
-  const [openNavbar, setOpenNavbar] = useState(false);
+const Navmenu = ({filter}) => {
+    const [openNavbar, setOpenNavbar] = useState(false);
+
+    const setAllFilter = event => {
+        filter("GetAll");
+    };
+
+    const setSeriesFilter = event => {
+        filter("GetAllSeries")
+    };
 
   return (
     <Navbar color="blueGray" navbar>
@@ -32,11 +39,11 @@ const Navmenu = () => {
                         <Icon name="collections" size="xl" />
                         Collections
                     </NavItem>
-                    <NavLink href="#navbar" active="light" ripple="light">
+                    <NavItem onClick={setAllFilter} ripple="light">
                         <Icon name="assistant" size="xl" />
                         Discover
-                    </NavLink>
-                    <NavItem ripple="light">
+                    </NavItem>
+                    <NavItem onClick={setSeriesFilter} ripple="light" >
                         <Icon name="live_tv" size="xl" />
                         TV Series
                     </NavItem>

@@ -4,20 +4,20 @@ import Header from './components/Header';
 import FilmCard from './components/FilmCard';
 import useFetch from './Hooks/useFetch';
 import Footer from './components/Footer'
+import {useState} from "react"
 
 function App() {
-  const {data, error, loading} = useFetch(
-    "https://localhost:7299/GetAll"
-    );
+  const [filterInfo, setFilter] = useState("GetAll");
+
+  const {data, error, loading} = useFetch(filterInfo);
 
   if(error) console.log(error);
-  if(loading) return <h1>Retrieving data...</h1>
 
   return (
     <div className="App">
-      <Header/>
-      <div className='grid grid-cols-6 gap-4 md:container md:mx-auto mt-6 '>
-        {data?.map(movieData =>(<FilmCard movie={movieData} key={movieData.title}/>))}
+      <Header setFilter={setFilter}/>
+      <div className={`grid grid-cols-6 gap-4 md:container md:mx-auto mt-6 ${loading ? "opacity-50" : ""}`}>
+        {data?.map(movieData =>(<FilmCard movie={movieData} key={movieData.id}/>))}
       </div>
       <Footer/>
     </div>
