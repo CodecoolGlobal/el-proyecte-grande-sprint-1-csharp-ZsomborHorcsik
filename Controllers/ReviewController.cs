@@ -44,5 +44,19 @@ namespace FilmStock.Controllers
             _reviewService.Delete(Id);
             return Ok("Review removed!");
         }
+
+        [HttpGet("/VoteUpReview/{Id}")]
+        public IActionResult VoteUp(Guid id)
+        {
+            _reviewService.VoteUp(id);
+            return Ok("Upvoted!");
+        }
+
+        [HttpGet("/VoteDownReview/{Id}")]
+        public IActionResult VoteDown(Guid id)
+        {
+            _reviewService.VoteDown(id);
+            return Ok("Upvoted!");
+        }
     }
 }

@@ -9,5 +9,7 @@ namespace FilmStock.Daos.Implementations
         IEnumerable<ReviewModel> GetReviewsByUser(Guid id);
         IEnumerable<ReviewModel> GetReviewsByMovie(string id);
         ReviewModel GetReviewById(Guid id);
+        void VoteUp(Guid id);
+        void VoteDown(Guid id);
     }
 }

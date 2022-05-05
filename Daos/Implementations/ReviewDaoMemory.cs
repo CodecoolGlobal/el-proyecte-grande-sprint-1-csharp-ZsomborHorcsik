@@ -37,5 +37,17 @@ namespace FilmStock.Daos.Implementations
             var review = _data.Where(review => review.ReviewId == id).First();
             return review;
         }
+
+        public void VoteUp(Guid id)
+        {
+            ReviewModel review = GetReviewById(id);
+            review.VoteCount++;
+        }
+
+        public void VoteDown(Guid id)
+        {
+            ReviewModel review = GetReviewById(id);
+            review.VoteCount--;
+        }
     }   
 }

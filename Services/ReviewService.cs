@@ -33,5 +33,15 @@ namespace FilmStock.Services
         {
             return _reviewDao.GetReviewById(id);
         }
+
+        public void VoteUp(Guid id)
+        {
+            _reviewDao.VoteUp(id);
+        }
+
+        public void VoteDown(Guid id)
+        {
+            _reviewDao.VoteDown(id);
+        }
     }
 }

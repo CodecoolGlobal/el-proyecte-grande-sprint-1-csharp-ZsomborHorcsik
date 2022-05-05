@@ -15,5 +15,7 @@
         public DateTime Date;
 
         public DateTime EditDate;
+
+        public int VoteCount;
     }
 }
