@@ -17,7 +17,7 @@ namespace FilmStock.Controllers
         [HttpPost("/AddReview")]
         public IActionResult AddReview(string MovieId, Guid userId, [FromBody]int? starReview, string? review)
         {
-            ReviewModel newReview = new();
+            Review newReview = new();
             newReview.UserId = userId;
             newReview.ReviewId = Guid.NewGuid();
             newReview.MovieId = MovieId;
@@ -30,7 +30,7 @@ namespace FilmStock.Controllers
         [HttpPut("/EditReview/{Id}")]
         public IActionResult EditReview(Guid Id, [FromBody]int? starReview, string? reviewcontent)
         {
-            ReviewModel review = _reviewService.GetReviewById(Id);
+            Review review = _reviewService.GetReviewById(Id);
             review.StarRating = starReview;
             review.Review = reviewcontent;
             review.EditDate = DateTime.Now;

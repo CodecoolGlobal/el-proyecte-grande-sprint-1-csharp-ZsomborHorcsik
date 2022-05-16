@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FilmStock.Models
+namespace FilmStock.Models.Entities
 {
-    public class CommentModel
+    public class Comment
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long CommentId;

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FilmStock.Models
+namespace FilmStock.Models.Entities
 {
     public class Review
     {

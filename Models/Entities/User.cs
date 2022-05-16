@@ -1,9 +1,9 @@
 ﻿using FilmStock.Models.Enums;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FilmStock.Models
+namespace FilmStock.Models.Entities
 {
-    public class UserModel
+    public class User
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }

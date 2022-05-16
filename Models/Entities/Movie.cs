@@ -2,9 +2,9 @@
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace FilmStock.Models
+namespace FilmStock.Models.Entities
 {
-    public class MovieModel
+    public class Movie
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [JsonProperty("id")]
