@@ -5,7 +5,8 @@ using FilmStock.Models;
 namespace FilmStock.Controllers
 {
     [ApiController]
-    public class MovieController : Controller
+    [Route("/api")]
+    public class MovieController : ControllerBase
     {
         private readonly MovieService _movieService;
 
@@ -20,7 +21,17 @@ namespace FilmStock.Controllers
             return _movieService.GetAll();
         }
 
+        [HttpGet("/GetAllMovies")]
+        public IEnumerable<MovieModel> GetAllMovies()
+        {
+            return _movieService.GetAllMovies();
+        }
 
+        [HttpGet("/GetAllSeries")] 
+        public IEnumerable<MovieModel> GetAllSeries()
+        {
+            return _movieService.GetAllSeries();
+        }
 
         [HttpGet("/TopMovies/{count}")]
         public IEnumerable<MovieModel> TopMovies(int count)

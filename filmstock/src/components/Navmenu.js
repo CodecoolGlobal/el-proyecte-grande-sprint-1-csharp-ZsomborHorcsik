@@ -14,7 +14,7 @@ const Navmenu = ({filter}) => {
     const [openNavbar, setOpenNavbar] = useState(false);
 
     const setAllFilter = event => {
-        filter("GetAll");
+        filter("GetAllMovies");
     };
 
     const setSeriesFilter = event => {
