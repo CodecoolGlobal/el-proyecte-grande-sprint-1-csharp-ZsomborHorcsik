@@ -7,7 +7,6 @@ namespace FilmStock.Models.Entities
     public class Movie
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [JsonProperty("id")]
         public long Id { get; set; }
         [JsonProperty("rank")]
         public string? Rank { get; set; }

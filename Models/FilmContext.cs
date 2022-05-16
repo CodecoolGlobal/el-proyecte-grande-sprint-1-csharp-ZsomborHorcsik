@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using FilmStock.Models.Entities;
+﻿using FilmStock.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace FilmStock.Models
