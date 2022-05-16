@@ -38,6 +38,7 @@ namespace FilmStock
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
             app.UseCors(op =>
             {
                 op.WithOrigins("http://localhost:3000")

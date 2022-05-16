@@ -1,93 +1,59 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FilmStock.Services;
 using FilmStock.Models;
+using FilmStock.Models.Interfaces;
+using FilmStock.Models.Entities;
 
 namespace FilmStock.Controllers
 {
     [ApiController]
-    [Route("/api")]
+    [Route("/api/[controller]")]
     public class MovieController : ControllerBase
     {
-        private readonly MovieService _movieService;
+        private readonly IFilmRepository _filmRepository;
 
-        public MovieController(MovieService movieService)
+        public MovieController(IFilmRepository FilmRepository)
         {
-            _movieService = movieService;
+            _filmRepository = FilmRepository;
         }
 
-        [HttpGet("/GetAll")]
-        public IEnumerable<MovieModel> GetAll()
+        [HttpGet("Movies")]
+        public async Task<List<Movie>> GetAllMovies()
         {
-            return _movieService.GetAll();
+            return await _filmRepository.GetAllMovies();
         }
 
-        [HttpGet("/GetAllMovies")]
-        public IEnumerable<MovieModel> GetAllMovies()
+        [HttpGet("Series")] 
+        public async Task<List<Movie>> GetAllSeries()
         {
-            return _movieService.GetAllMovies();
+            return await _filmRepository.GetAllSeries();
         }
 
-        [HttpGet("/GetAllSeries")] 
-        public IEnumerable<MovieModel> GetAllSeries()
+        [HttpGet("top/{int:count}")]
+        public async Task<List<Movie>> TopMovies(int count)
         {
-            return _movieService.GetAllSeries();
+            return await _filmRepository.GetTopMovies(count);
         }
 
-        [HttpGet("/TopMovies/{count}")]
-        public IEnumerable<MovieModel> TopMovies(int count)
+        [HttpPost("new")]
+        public async Task<IActionResult> AddMovie([FromBody] Movie movie)
         {
-            return _movieService.GetTop(count);
+            await _filmRepository.Add(movie);
+            return CreatedAtAction("Movie created", new { movie.Id }, movie);
+
         }
 
-        [HttpPost("/AddMovie")]
-        public IActionResult AddMovie([FromBody] string title, string rating, string rank, string year)
+        [HttpPut("edit/{Id}")]
+        public void EditMovie(long Id, [FromBody] Movie movie)
         {
-            MovieModel newMovie = new();
-            newMovie.Id = Guid.NewGuid();
-            newMovie.Title = title;
-            newMovie.Rating = rating;
-            newMovie.Rank = rank;
-            newMovie.Year = year;
-            return Ok($"Movie added with name {newMovie.Title}");
+            movie.Id = Id;
+            _filmRepository.Update(movie);
         }
 
-        [HttpPut("/EditMovie/{Id}")]
-        public IActionResult EditMovie(Guid Id, [FromBody] MovieModel movieData)
+        [HttpDelete("delete/{Id}")]
+        public async Task DeleteMovie(long Id)
         {
-            var requestedMovie = _movieService.GetMovie(Id);
-            requestedMovie.Title = movieData.Title;
-            return Ok($"Movie has been renamed to {movieData.Title}");
-        }
-
-        [HttpDelete("/DeleteMovie/{Id}")]
-        public IActionResult DeleteMovie(Guid Id)
-        {
-            _movieService.Remove(Id);
-            return Ok("Movie removed!");
-        }
-
-        [HttpGet("/SearchPerson/{person}")]
-        public IEnumerable<MovieModel> TopMovies(string person)
-        {
-            return _movieService.GetMoviesWith(person);
-        }
-
-        [HttpGet("/AddMovieToCollection/{Id}")]
-        public void AddMovieToCollection(Guid Id)
-        {
-            _movieService.AddToCollection(Id);
-        }
-
-        [HttpGet("/RemoveMovieFromCollection/{Id}")]
-        public void RemoveMovieFromCollection(Guid Id)
-        {
-            _movieService.RemoveFromCollection(Id);
-        }
-
-        [HttpGet("/Collection")]
-        public IEnumerable<MovieModel> GetCollection()
-        {
-            return _movieService.GetCollection();
+            await _filmRepository.Remove(Id);
         }
     }
 }

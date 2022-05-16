@@ -10,21 +10,21 @@ namespace FilmStock.Models.Entities
         [JsonProperty("id")]
         public long Id { get; set; }
         [JsonProperty("rank")]
-        public string Rank { get; set; }
+        public string? Rank { get; set; }
         [JsonProperty("title")]
-        public string Title { set; get; }
+        public string? Title { set; get; }
         [JsonProperty("fullTitle")]
-        public string FullTitle { set; get; }
+        public string? FullTitle { set; get; }
         [JsonProperty("year")]
-        public string Year { set; get; }
+        public string? Year { set; get; }
         [JsonProperty("image")]
-        public string Image { get; set; }
+        public string? Image { get; set; }
         [JsonProperty("crew")]
-        public string Crew { get; set; }
+        public string? Crew { get; set; }
         [JsonProperty("imDbRating")]
-        public string Rating { get; set; }
+        public string? Rating { get; set; }
         [JsonProperty("imDbRatingCount")]
-        public string IMDbRatingCount { get; set; }
+        public string? IMDbRatingCount { get; set; }
         public ContentType Type { get; set; }
     }
 }

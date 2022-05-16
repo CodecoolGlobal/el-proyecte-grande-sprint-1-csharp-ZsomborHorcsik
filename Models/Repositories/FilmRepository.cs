@@ -1,5 +1,7 @@
 ﻿using FilmStock.Models.Entities;
+using FilmStock.Models.Enums;
 using FilmStock.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace FilmStock.Models.Repositories
 {
@@ -11,37 +13,46 @@ namespace FilmStock.Models.Repositories
         {
             _db = Context;
         }
-        public Task Add(Movie movie)
+        public async Task Add(Movie movie)
         {
-            throw new NotImplementedException();
+            _db.Movies.Add(movie);
+            await _db.SaveChangesAsync();
         }
-        public Task Remove(long id)
+        public async Task Remove(long id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task Update(Movie movie)
-        {
-            throw new NotImplementedException();
-        }
-        public Task<Movie> GetMovie(long id)
-        {
-            throw new NotImplementedException();
+            _db.Movies.Remove(_db.Movies.Where(movie => movie.Id == id).First());
+            await _db.SaveChangesAsync();
         }
 
-        public Task<List<Movie>> GetAllMovies()
+        public async Task Update(Movie movie)
         {
-            throw new NotImplementedException();
+            _db.Movies.Update(movie);
+            await _db.SaveChangesAsync();
+        }
+        public Task<Movie?> GetMovie(long id)
+        {
+            return Task.Run(() => _db.Movies.FirstOrDefaultAsync(movie => movie.Id == id));
         }
 
-        public Task<IEnumerable<Movie>> GetAllSeries()
+        public async Task<List<Movie>> GetAllMovies()
         {
-            throw new NotImplementedException();
+            return await _db.Movies
+                            .Where(movie => movie.Type == ContentType.movie)
+                            .OrderByDescending(movie => movie.Rating).ToListAsync();
+        }
+        public Task<List<Movie>> GetAllSeries()
+        {
+            return Task.Run(() => _db.Movies
+                                    .Include(movie => movie.Type == ContentType.series)
+                                    .ToListAsync());
         }
 
-        public IEnumerable<Movie> GetTopMovies(int count)
+        public Task<List<Movie>> GetTopMovies(int count)
         {
-            throw new NotImplementedException();
+            return Task.Run(() => _db.Movies
+                                    .OrderByDescending(movie => movie.Rating)
+                                    .Take(count)
+                                    .ToListAsync());
         }
     }
 }

@@ -8,9 +8,9 @@ namespace FilmStock.Models
 {
     public class FilmContext : DbContext
     {
-        public FilmContext(DbContextOptions<FilmContext> options): base(options)
+        public DbSet<Movie>? Movies{ get; set;}
+        public FilmContext(DbContextOptions<FilmContext> options) : base(options)
         {
-
         }
     }
 }
