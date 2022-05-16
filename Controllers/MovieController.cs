@@ -1,6 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using FilmStock.Services;
-using FilmStock.Models;
 using FilmStock.Models.Interfaces;
 using FilmStock.Models.Entities;
 
