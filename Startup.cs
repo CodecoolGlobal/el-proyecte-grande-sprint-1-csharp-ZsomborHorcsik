@@ -1,40 +1,43 @@
-﻿using FilmStock.Daos;
-using FilmStock.Daos.Implementations;
-using FilmStock.Models;
-using FilmStock.Services;
+﻿using FilmStock.Models;
+using FilmStock.Models.Entities;
+using FilmStock.Models.Enums;
+using FilmStock.Models.Interfaces;
+using FilmStock.Models.Repositories;
 using IMDbApiLib;
+using Microsoft.EntityFrameworkCore;
 
 namespace FilmStock
 {
     public class Startup
     {
-        private readonly WebApplicationBuilder _builder;
-
-        public Startup(WebApplicationBuilder builder)
+        public IConfiguration Configuration { get; }
+        public Startup(IConfiguration configuration)
         {
-            _builder = builder;
-            ConfigureStartup();
+            Configuration = configuration;
         }
 
-        private void ConfigureStartup()
+        public void ConfigureServices(IServiceCollection services)
         {
-            _builder.Services.AddControllersWithViews();
-            _builder.Services.AddSingleton<IFilmDao, FilmDaoMemory>();
-            _builder.Services.AddSingleton<IReviewDao, ReviewDaoMemory>();
-            _builder.Services.AddSingleton<ICommentDao, CommentDaoMemory>();
-            _builder.Services.AddScoped<MovieService>();
-            _builder.Services.AddScoped<ReviewService>();
-            _builder.Services.AddScoped<CommentService>();
-            _builder.Services.AddCors();
+            services.AddDbContext<FilmContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            var app = _builder.Build();
-
-            if (!app.Environment.IsDevelopment())
+            services.AddScoped<IFilmRepository, FilmRepository>();
+            services.AddControllersWithViews();
+            services.AddCors();
+        }
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+            else
             {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseCors(op =>
             {
                 op.WithOrigins("http://localhost:3000")
@@ -43,16 +46,16 @@ namespace FilmStock
                 .AllowAnyMethod();
             });
 
-            app.UseHttpsRedirection();
             app.UseRouting();
+
             app.UseAuthorization();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Movie}/{action=GetAll}");
-
-            GetData(app);
-            app.Run();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
 
         private async void GetData(IHost host)
@@ -62,30 +65,29 @@ namespace FilmStock
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var movieService = services.GetRequiredService<MovieService>();
+                var movieService = services.GetRequiredService<FilmRepository>();
                 PopulateMemory(movieService, response, ContentType.movie);
             }
             response = await apiLib.Top250TVsAsync();
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                var movieService = services.GetRequiredService<MovieService>();
+                var movieService = services.GetRequiredService<FilmRepository>();
                 PopulateMemory(movieService, response, ContentType.series);
             }
         }
 
-        private void PopulateMemory(MovieService movieService, IMDbApiLib.Models.Top250Data data, ContentType type)
+        private void PopulateMemory(IFilmRepository FilmRepository, IMDbApiLib.Models.Top250Data data, ContentType type)
         {
             foreach(var movie in data.Items)
             {
-                movieService.Add(Convert(movie, type));
+                FilmRepository.Add(Convert(movie, type));
             }
         }
 
-        private MovieModel Convert(IMDbApiLib.Models.Top250DataDetail movie, ContentType type)
+        private Movie Convert(IMDbApiLib.Models.Top250DataDetail movie, ContentType type)
         {
-            MovieModel newMovie = new();
-            newMovie.Id = Guid.NewGuid();
+            Movie newMovie = new();
             newMovie.Type = type;
             newMovie.Rank = movie.Rank;
             newMovie.Title = movie.Title;

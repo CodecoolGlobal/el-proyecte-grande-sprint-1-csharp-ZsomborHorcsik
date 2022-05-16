@@ -2,10 +2,16 @@ namespace FilmStock
 {
     public static class Program
     {
-        public static void Main()
+        public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder();
-            Startup startup = new(builder);
+            CreateHostBuilder(args).Build().Run();
         }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }
