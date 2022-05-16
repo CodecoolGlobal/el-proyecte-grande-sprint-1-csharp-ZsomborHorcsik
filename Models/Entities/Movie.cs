@@ -1,11 +1,14 @@
-﻿using Newtonsoft.Json;
+﻿using FilmStock.Models.Enums;
+using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FilmStock.Models
 {
     public class MovieModel
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [JsonProperty("id")]
-        public Guid Id { get; set; }
+        public long Id { get; set; }
         [JsonProperty("rank")]
         public string Rank { get; set; }
         [JsonProperty("title")]
@@ -22,12 +25,6 @@ namespace FilmStock.Models
         public string Rating { get; set; }
         [JsonProperty("imDbRatingCount")]
         public string IMDbRatingCount { get; set; }
-
         public ContentType Type { get; set; }
-    }
-
-    public enum ContentType { 
-        movie,
-        series
     }
 }
