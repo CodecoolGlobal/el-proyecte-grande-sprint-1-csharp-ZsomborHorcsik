@@ -1,16 +1,19 @@
-﻿namespace FilmStock.Models
-{
-    public class ReviewModel
-    {
-        public Guid ReviewId;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
-        public Guid UserId;
+namespace FilmStock.Models
+{
+    public class Review
+    {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long ReviewId;
+
+        public long UserId;
 
         public double? StarRating;
 
-        public string? Review;
+        public string Content;
 
-        public string MovieId;
+        public long MovieId;
 
         public DateTime Date;
 
