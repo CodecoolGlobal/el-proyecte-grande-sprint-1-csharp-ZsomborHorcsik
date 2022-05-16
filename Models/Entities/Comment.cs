@@ -11,7 +11,7 @@ namespace FilmStock.Models.Entities
 
         public long UserId;
 
-        public string Comment;
+        public string Content;
 
         public DateTime Date;
 
