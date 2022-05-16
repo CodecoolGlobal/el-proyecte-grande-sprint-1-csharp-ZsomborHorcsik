@@ -1,12 +1,15 @@
-﻿namespace FilmStock.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace FilmStock.Models
 {
     public class CommentModel
     {
-        public Guid CommentId;
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long CommentId;
 
-        public Guid ReviewId;
+        public long ReviewId;
 
-        public Guid UserId;
+        public long UserId;
 
         public string Comment;
 
