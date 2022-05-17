@@ -15,11 +15,15 @@ function App() {
 
   return (
     <div className="App">
+
       <Header setFilter={setFilter}/>
+
       <div className={`grid grid-cols-6 gap-4 md:container md:mx-auto mt-6 ${loading ? "opacity-50" : ""}`}>
         {data?.map(movieData =>(<FilmCard movie={movieData} key={movieData.id}/>))}
       </div>
+
       <Footer/>
+      
     </div>
   );
 }

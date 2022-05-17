@@ -1,7 +1,4 @@
 using FilmStock.Data;
-using FilmStock.Models;
-using FilmStock.Models.Interfaces;
-using FilmStock.Models.Repositories;
 
 namespace FilmStock
 {

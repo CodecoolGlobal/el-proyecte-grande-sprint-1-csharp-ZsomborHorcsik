@@ -13,7 +13,7 @@ import Icon from "@material-tailwind/react/Icon";
 const Navmenu = ({filter}) => {
     const [openNavbar, setOpenNavbar] = useState(false);
 
-    const setAllFilter = event => {
+    const setMovieFilter = event => {
         filter("api/Movie/Movies");
     };
 
@@ -39,7 +39,7 @@ const Navmenu = ({filter}) => {
                         <Icon name="collections" size="xl" />
                         Collections
                     </NavItem>
-                    <NavItem onClick={setAllFilter} ripple="light">
+                    <NavItem onClick={setMovieFilter} ripple="light">
                         <Icon name="assistant" size="xl" />
                         Discover
                     </NavItem>

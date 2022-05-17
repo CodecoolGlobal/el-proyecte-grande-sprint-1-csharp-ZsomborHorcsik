@@ -25,6 +25,11 @@ namespace FilmStock.Controllers
         {
             return await _filmRepository.GetAllSeries();
         }
+        [HttpGet("{id:long}")]
+        public async Task<Movie> GetMovieById(long id)
+        {
+            return await _filmRepository.GetMovie(id);
+        }
 
         [HttpGet("top/{count:int}")]
         public async Task<List<Movie>> TopMovies(int count)
