@@ -43,7 +43,7 @@ namespace FilmStock.Models.Repositories
         public Task<List<Movie>> GetAllSeries()
         {
             return Task.Run(() => _db.Movies
-                                    .Include(movie => movie.Type == ContentType.series)
+                                    .Where(movie => movie.Type == ContentType.series)
                                     .ToListAsync());
         }
 
