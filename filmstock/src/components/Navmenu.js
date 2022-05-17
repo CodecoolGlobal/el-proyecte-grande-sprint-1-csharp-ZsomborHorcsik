@@ -14,11 +14,11 @@ const Navmenu = ({filter}) => {
     const [openNavbar, setOpenNavbar] = useState(false);
 
     const setAllFilter = event => {
-        filter("GetAllMovies");
+        filter("api/Movie/Movies");
     };
 
     const setSeriesFilter = event => {
-        filter("GetAllSeries")
+        filter("api/Movie/Series")
     };
 
   return (

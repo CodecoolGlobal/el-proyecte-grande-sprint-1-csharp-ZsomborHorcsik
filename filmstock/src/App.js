@@ -7,7 +7,7 @@ import Footer from './components/Footer'
 import {useState} from "react"
 
 function App() {
-  const [filterInfo, setFilter] = useState("GetAll");
+  const [filterInfo, setFilter] = useState("/api/Movie/Movies");
 
   const {data, error, loading} = useFetch(filterInfo);
 
