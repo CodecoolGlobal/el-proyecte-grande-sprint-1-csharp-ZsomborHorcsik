@@ -10,16 +10,8 @@ import NavItem from "@material-tailwind/react/NavItem";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
 import Icon from "@material-tailwind/react/Icon";
 
-const Navmenu = ({filter}) => {
+const Navmenu = () => {
     const [openNavbar, setOpenNavbar] = useState(false);
-
-    const setMovieFilter = event => {
-        filter("api/Movie/Movies");
-    };
-
-    const setSeriesFilter = event => {
-        filter("api/Movie/Series")
-    };
 
   return (
     <Navbar color="blueGray" navbar>
@@ -39,11 +31,11 @@ const Navmenu = ({filter}) => {
                         <Icon name="collections" size="xl" />
                         Collections
                     </NavItem>
-                    <NavItem onClick={setMovieFilter} ripple="light">
+                    <NavItem ripple="light">
                         <Icon name="assistant" size="xl" />
                         Discover
                     </NavItem>
-                    <NavItem onClick={setSeriesFilter} ripple="light" >
+                    <NavItem ripple="light" >
                         <Icon name="live_tv" size="xl" />
                         TV Series
                     </NavItem>
