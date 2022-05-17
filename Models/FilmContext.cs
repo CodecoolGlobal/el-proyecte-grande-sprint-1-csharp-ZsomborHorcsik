@@ -9,5 +9,9 @@ namespace FilmStock.Models
         public FilmContext(DbContextOptions<FilmContext> options) : base(options)
         {
         }
+        public async Task AddToDatabase(Movie movie)
+        {
+            await Movies.AddAsync(movie);
+        }
     }
 }

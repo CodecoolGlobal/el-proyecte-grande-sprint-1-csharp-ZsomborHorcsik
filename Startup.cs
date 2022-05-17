@@ -1,9 +1,7 @@
-﻿using FilmStock.Models;
-using FilmStock.Models.Entities;
-using FilmStock.Models.Enums;
+﻿using FilmStock.Data;
+using FilmStock.Models;
 using FilmStock.Models.Interfaces;
 using FilmStock.Models.Repositories;
-using IMDbApiLib;
 using Microsoft.EntityFrameworkCore;
 
 namespace FilmStock
@@ -22,6 +20,7 @@ namespace FilmStock
             services.AddDbContext<FilmContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddTransient<DbInitializer>();
             services.AddScoped<IFilmRepository, FilmRepository>();
             services.AddCors();
         }

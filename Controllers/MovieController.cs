@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FilmStock.Models.Interfaces;
-using FilmStock.Utilities;
 using FilmStock.Models.Entities;
 
 namespace FilmStock.Controllers
@@ -10,18 +9,9 @@ namespace FilmStock.Controllers
     public class MovieController : ControllerBase
     {
         private readonly IFilmRepository _filmRepository;
-        private readonly Helper _helper;
         public MovieController(IFilmRepository FilmRepository)
         {
             _filmRepository = FilmRepository;
-            _helper = new Helper();
-        }
-
-        [HttpGet("testroute")]
-        public IActionResult GetAllData()
-        {
-            _helper.GetData(_filmRepository);
-            return Ok();
         }
 
         [HttpGet("Movies")]

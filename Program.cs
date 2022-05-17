@@ -1,10 +1,17 @@
+using FilmStock.Data;
+using FilmStock.Models;
+using FilmStock.Models.Interfaces;
+using FilmStock.Models.Repositories;
+
 namespace FilmStock
 {
     public static class Program
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+            //CreateDbIfNotExists(host);
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -13,5 +20,22 @@ namespace FilmStock
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+
+        private static async Task CreateDbIfNotExists(IHost host)
+        {
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var initializer = services.GetRequiredService<DbInitializer>();
+                    await initializer.Initialize();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+        }
     }
 }

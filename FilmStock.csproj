@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Utilities\NewFile.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="IMDbApiLib" Version="1.8.1" />
     <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.8" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.8" />

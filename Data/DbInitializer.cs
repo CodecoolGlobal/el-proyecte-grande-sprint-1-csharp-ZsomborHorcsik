@@ -1,27 +1,37 @@
 ﻿using FilmStock.Models.Entities;
 using FilmStock.Models.Enums;
-using FilmStock.Models.Interfaces;
+using FilmStock.Models;
 using IMDbApiLib;
 
-
-namespace FilmStock.Utilities
-{ 
-    public class Helper
-    { 
-        public async void GetData(IFilmRepository filmRepository)
+namespace FilmStock.Data
+{
+    public class DbInitializer
+    {
+        private FilmContext _db;
+        public DbInitializer(FilmContext context)
+        {
+            _db = context;
+        }
+        public async Task Initialize()
+        {
+            _db.Database.EnsureCreated();
+            await GetData();
+            await _db.SaveChangesAsync();
+        }
+        public async Task GetData()
         {
             var apiLib = new ApiLib("k_i94oi014");
             var response = await apiLib.Top250MoviesAsync();
-            PopulateMemory(filmRepository, response, ContentType.movie);
+            PopulateMemory(response, ContentType.movie);
             response = await apiLib.Top250TVsAsync();
-            PopulateMemory(filmRepository, response, ContentType.series);
+            PopulateMemory(response, ContentType.series);
         }
 
-        private void PopulateMemory(IFilmRepository FilmRepository, IMDbApiLib.Models.Top250Data data, ContentType type)
+        private void PopulateMemory(IMDbApiLib.Models.Top250Data data, ContentType type)
         {
             foreach (var movie in data.Items)
             {
-                FilmRepository.Add(Convert(movie, type));
+                _db.AddToDatabase(Convert(movie, type));
             }
         }
 
