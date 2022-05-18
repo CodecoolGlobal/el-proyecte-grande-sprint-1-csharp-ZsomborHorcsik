@@ -22,6 +22,7 @@ namespace FilmStock
 
             services.AddTransient<DbInitializer>();
             services.AddScoped<IFilmRepository, FilmRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddCors();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
