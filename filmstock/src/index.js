@@ -18,6 +18,7 @@ ReactDOM.render(
         <Route exact path="/Series" element={<SeriesDisplay />} />
         <Route exact path="/Login" element={<LoginDisplay />} />
         <Route exact path="/Register" element={<RegisterDisplay />} />
+        <Route exact path="/Movies/:id" element={<ShowMovie />}/> 
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
