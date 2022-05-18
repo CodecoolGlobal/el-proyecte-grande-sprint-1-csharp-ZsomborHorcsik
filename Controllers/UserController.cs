@@ -15,13 +15,33 @@ namespace FilmStock.Controllers
             _iuserRepository = iuserRepository;
         }
 
-        [HttpPost("new")]
-        public async Task<IActionResult> AddUser([FromBody] User user)
+        //how to retirieve data from FromForm
+        [HttpPost("register")]
+        public async Task<IActionResult> AddUser([FromForm]User user)
         {
+            user.Level = Models.Enums.UserLevel.user;
             await _iuserRepository.Add(user);
             return CreatedAtAction("User created", new { user.Id }, user);
-
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromForm] LoginModel user)
+        {
+            User? userByName = await _iuserRepository.GetUserByUsername(user.UserName);
+            if (userByName == null)
+            {
+                return NotFound();
+            }
+            if (user.Password == userByName.Password)
+            {
+                return Ok(userByName);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
+
 
         [HttpPut("edit/{Id}")]
         public void EditUser(long Id, [FromBody] User user)
@@ -39,7 +59,7 @@ namespace FilmStock.Controllers
         [HttpGet("{id:long}")]
         public async Task<User?> GetUserById(long id)
         {
-            return await _iuserRepository.GetUser(id);
+            return await _iuserRepository.GetUserById(id);
         }
     }
 }
