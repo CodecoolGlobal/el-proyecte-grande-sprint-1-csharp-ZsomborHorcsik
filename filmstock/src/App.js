@@ -5,6 +5,7 @@ import FilmCard from './components/FilmCard';
 import useFetch from './Hooks/useFetch';
 import Footer from './components/Footer';
 import {useState} from "react";
+import Layout from './components/Layout';
 
 function App() {
   const {data, error, loading} = useFetch(filterInfo);
@@ -13,6 +14,9 @@ function App() {
 
   return (
     <div className="App">
+      <Layout>
+        
+      </Layout>
     </div>
   );
 }
