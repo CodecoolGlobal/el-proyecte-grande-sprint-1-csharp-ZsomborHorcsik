@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import MovieDisplay from './components/MovieDisplay'
+import MovieDisplay from './components/MovieDisplay';
+import SeriesDisplay from './components/SeriesDisplay';
+import LoginDisplay from './components/LoginDisplay';
+import RegisterDisplay from './components/RegisterDisplay';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 

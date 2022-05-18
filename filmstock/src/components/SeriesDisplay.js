@@ -1,7 +1,7 @@
-import './App.css';
+import '../App.css';
 import "@material-tailwind/react/tailwind.css";
-import FilmCard from './components/FilmCard';
-import useFetch from './Hooks/useFetch';
+import FilmCard from '../components/FilmCard';
+import useFetch from '../Hooks/useFetch';
 import Layout from './Layout';
 
 function SeriesDisplay() {

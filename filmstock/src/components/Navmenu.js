@@ -33,11 +33,11 @@ const Navmenu = () => {
                     </NavItem>
                     <NavItem ripple="light">
                         <Icon name="assistant" size="xl" />
-                        Discover
+                        <a href="http://localhost:3000/Movies">Discover</a>
                     </NavItem>
                     <NavItem ripple="light" >
                         <Icon name="live_tv" size="xl" />
-                        TV Series
+                        <a href="http://localhost:3000/Series">TV Series</a>
                     </NavItem>
                     <NavItem>
                         <NavbarInput type="text" placeholder="Search here" />
@@ -46,11 +46,11 @@ const Navmenu = () => {
                 <Nav rightSide>
                     <NavItem ripple="light">
                         <Icon name="login" size="xl"/>
-                        Login
+                        <a href="http://localhost:3000/login">Login</a>
                     </NavItem>
                     <NavItem ripple="light">
                         <Icon name="logout" size="xl"/>
-                        Register
+                        <a href="http://localhost:3000/register">Register</a>
                     </NavItem>
                 </Nav>
                 
