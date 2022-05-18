@@ -16,8 +16,8 @@ ReactDOM.render(
         <Route exact path="/" element={<App/>} />
         <Route exact path="/Movies" element={<MovieDisplay/>} />
         <Route exact path="/Series" element={<SeriesDisplay />} />
-        <Route exact path="/login" element={<LoginDisplay />} />
-        <Route exact path="/register" element={<RegisterDisplay />} />
+        <Route exact path="/Login" element={<LoginDisplay />} />
+        <Route exact path="/Register" element={<RegisterDisplay />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
