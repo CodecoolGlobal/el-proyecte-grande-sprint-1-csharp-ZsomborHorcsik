@@ -1,20 +1,17 @@
 body, html{
   height: 100%;
+  background-image: url(/src/components/imgs/background.jpg);
+  height: fit-content;
+  background-color: black;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .App {
   text-align: center;
   display: flex;
   flex-direction: column;
-}
-
-#root{
-  height: fit-content;
-  background-image: url(/src/components/imgs/background.jpg);
-  background-color: black;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .card-box{
@@ -25,4 +22,10 @@ body, html{
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+#footer{
+  position:fixed;
+  bottom: 0;
+  width: 100%;  
 }
