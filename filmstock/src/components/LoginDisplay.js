@@ -6,7 +6,7 @@ const LoginDisplay = () => {
   return (
     <div className='App'>
         <Layout>
-            <div className='single-content-box'>
+            <div className='single-content-box' method='POST'>
                 <form action="">
                     <div className="bg-gray-500 shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
                         <div className="mb-4">
