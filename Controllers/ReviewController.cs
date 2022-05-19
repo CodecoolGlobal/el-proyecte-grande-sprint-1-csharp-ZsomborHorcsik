@@ -18,12 +18,45 @@ namespace FilmStock.Controllers
         }
 
         [HttpPost("new/{movie-id}")]
-        public async Task<IActionResult> AddMovie([FromBody] Review review, long movieId)
+        public async Task<IActionResult> AddReview([FromBody] Review review, long movieId)
         {
             string username = _session.GetString("User");
 
             await _reviewRepository.Add(review, username, movieId);
-            return CreatedAtAction("Movie created", new { review.ReviewId }, review);
+            return CreatedAtAction("Review created", new { review.ReviewId }, review);
+        }
+
+        [HttpPut("update")]
+        public async Task<IActionResult> UpdateReview([FromBody] Review review)
+        {
+            string username = _session.GetString("User");
+
+            await _reviewRepository.Update(review);
+            return CreatedAtAction("Reveiw updated", new { review.ReviewId }, review);
+        }
+
+        [HttpDelete("delete/{id}")]
+        public async Task Delete([FromBody] Review review)
+        {
+            await _reviewRepository.Remove(review.ReviewId);
+        }
+
+        [HttpGet("getbyid/{id}")]
+        public async Task<Review?> GetById(long id)
+        {
+            return await _reviewRepository.GetReview(id);
+        }
+
+        [HttpGet("getbyuser/{username}")]
+        public async Task<List<Review>> GetByUser(string username)
+        {
+            return await _reviewRepository.GetReviewsByUser(username);
+        }
+
+        [HttpGet("getbymovie/{id}")]
+        public async Task<List<Review>> GetBymovie(long id)
+        {
+            return await _reviewRepository.GetReviewsByMovie(id);
         }
     }
 }

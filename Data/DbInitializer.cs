@@ -31,7 +31,7 @@ namespace FilmStock.Data
         {
             foreach (var movie in data.Items)
             {
-                _db.AddToDatabase(Convert(movie, type));
+                //_db.Movies.Add(Convert(movie, type));
             }
         }
 
