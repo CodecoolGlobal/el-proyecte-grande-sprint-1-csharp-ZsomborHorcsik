@@ -25,7 +25,7 @@ const ShowMovie = (props) => {
                   <div>
                     <p>{data?.rating}</p>{Array.from({ length: starRating }, (_, i) => <i key={i} class="fa-solid fa-star"></i>)}
                     <p>Global rank : {data?.rank}</p>
-                    <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-1 rounded'><a>Add to collection</a></button>
+                    <button className='font-bold outline-none uppercase focus:outline-none focus:shadow-none transition-all duration-300 rounded-md py-3 px-4 text-sm leading-relaxed text-white bg-teal-500 hover:bg-teal-700 focus:bg-teal-400 active:bg-teal-800 shadow-md-blue-gray hover:shadow-lg-blue-gray'><a>Add to collection</a></button>
                   </div>
                 </div>
             </div>

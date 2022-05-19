@@ -1,0 +1,17 @@
+#single-content-box{
+    display:flex;
+    justify-content: center;
+    border-radius: 5%;
+}
+
+#login-panel{
+    background-color: #607D8B;
+    border: 5px outset #1C6EA4;
+    border-radius: 10px 10px 40px 10px;
+}
+
+#register-panel{
+    background-color: #607D8B;
+    border: 5px outset #1C6EA4;
+    border-radius: 10px 10px 40px 10px;
+}
