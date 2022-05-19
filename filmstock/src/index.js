@@ -8,6 +8,7 @@ import LoginDisplay from './components/LoginDisplay';
 import RegisterDisplay from './components/RegisterDisplay';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import ShowMovie from './components/ShowMovie';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,7 +19,7 @@ ReactDOM.render(
         <Route exact path="/Series" element={<SeriesDisplay />} />
         <Route exact path="/Login" element={<LoginDisplay />} />
         <Route exact path="/Register" element={<RegisterDisplay />} />
-        <Route exact path="/Movies/:id" element={<ShowMovie />}/> 
+        <Route exact path="/Movies/:id" element={<ShowMovie/>}/> 
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

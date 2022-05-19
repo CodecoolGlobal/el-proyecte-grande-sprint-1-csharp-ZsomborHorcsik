@@ -5,14 +5,14 @@ import useFetch from '../Hooks/useFetch';
 import Layout from './Layout';
 
 function SeriesDisplay() {
-  const {data, error, loading} = useFetch("api/Movie/Series");
+  const {data, error} = useFetch("api/Movie/Series");
 
   if(error) console.log(error);
 
   return (
     <div className="SeriesDisplay">
         <Layout>
-            <div className={`grid grid-cols-6 gap-4 md:container md:mx-auto mt-6 ${loading ? "opacity-50" : ""}`}>
+            <div className={`grid grid-cols-6 gap-4 md:container md:mx-auto mt-6`}>
                 {data?.map(movieData =>(<FilmCard movie={movieData} key={movieData.id}/>))}
             </div>
         </Layout>

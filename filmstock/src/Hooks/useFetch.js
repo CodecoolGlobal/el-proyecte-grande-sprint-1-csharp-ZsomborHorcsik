@@ -3,12 +3,10 @@ import {useState, useEffect} from "react";
 
 function useFetch(filterInfo){
     const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const url = "https://localhost:7299/";
 
     useEffect(()=>{
-        setLoading(true);
         axios
         .get(url+filterInfo)
         .then((response) =>{
@@ -17,12 +15,9 @@ function useFetch(filterInfo){
         .catch((err)=>{
             setError(err);
         })
-        .finally(()=>{
-            setLoading(false);
-        });
     }, [filterInfo]);
 
-    return {data, error, loading};
+    return {data, error};
 }
 
 export default useFetch;

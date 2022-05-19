@@ -1,5 +1,6 @@
 import '../App.css';
 import React from "react";
+import {Link} from "react-router-dom";
 
 const FilmCard = ({movie}) => {
     return (
@@ -13,7 +14,7 @@ const FilmCard = ({movie}) => {
                 </div>
                 
                 <button className="font-bold outline-none uppercase focus:outline-none focus:shadow-none transition-all duration-300 rounded-md py-3 px-4 text-sm leading-relaxed text-white bg-teal-500 hover:bg-teal-700 focus:bg-teal-400 active:bg-teal-800 shadow-md-blue-gray hover:shadow-lg-blue-gray">
-                    Go to discussion
+                    <Link to={`/Movies/${movie.id}`}>Go To Discussion</Link>
                 </button>
             </div>
         </div>
