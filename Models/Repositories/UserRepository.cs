@@ -36,8 +36,6 @@ namespace FilmStock.Models.Repositories
             await _db.SaveChangesAsync();
         }
 
-
-
         public async Task<User?> GetUserById(long id)
         {
             return await _db.Users.FirstOrDefaultAsync(user => user.Id == id);
