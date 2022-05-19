@@ -1,0 +1,99 @@
+.movie-content-box{
+    display:flex;
+    align-items: center;
+    background-color: #CAD7D9;
+    border: 3px solid black;
+    -webkit-border-radius: 10px 10px 40px 10px;
+    -moz-border-radius: 10px 10px 40px 10px;
+    border-radius: 10px 10px 40px 10px;
+    padding: 5px;
+}
+
+.movie-image{
+    margin-right: 10px;
+    border-right: 1px solid black;
+}
+
+.movie-details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.details-item{
+    padding: 5px;
+}
+
+.review-content-box{
+    display: flex;
+    width: 90%;
+    margin: 5px;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+.review-box{
+    background-image: linear-gradient(to bottom, #cad7d9, #afbdc2, #96a4ac, #7f8b96, #6b7280);
+    -webkit-border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    border-radius: 20px 20px 20px 20px;
+    padding: 10px;
+    margin: 0 10px 0 10px;
+    border: 7px inset #000000;
+    width: 100%;
+}
+
+.review-author{
+    font-family: Tahoma, Geneva, sans-serif;    font-size: 30px;
+    letter-spacing: -2px;
+    word-spacing: 2.4px;
+    color: #000000;
+    font-weight: 400;
+    text-decoration: underline solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
+}
+
+.comment-box{
+    background-image: linear-gradient(to bottom, #cad7d9, #afbdc2, #96a4ac, #7f8b96, #6b7280);
+    -webkit-border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    border-radius: 20px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.comment{
+    background-image: white;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    border-radius: 20px 20px 20px 20px;
+    border: 2px solid black;
+    padding: 10px;
+    margin: 5px;
+
+}
+
+.comment-author{
+    font-family: Tahoma, Geneva, sans-serif;    font-size: 30px;
+    letter-spacing: -2px;
+    word-spacing: 2.4px;
+    color: #000000;
+    font-weight: 400;
+    text-decoration: underline solid rgb(68, 68, 68);
+    font-style: normal;
+    font-variant: small-caps;
+    text-transform: none;
+}
+
+.comment-rating{
+    margin-top: 10px;
+}
+
+.comment-rating i{
+    font-size: 30px;
+    padding: 0 5px 0 5px;
+}
