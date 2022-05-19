@@ -31,30 +31,30 @@ const ShowMovie = (props) => {
             </div>
 
             <div className='review-content-box'>
-                  <div className='review-box'>
-                    <h1 className='review-author'>Vagány Jóskagyerek</h1>
-                    <p className='review'>Gya de jau film vót he</p>
+              <div className='review-box'>
+                <h1 className='review-author'>Vagány Jóskagyerek</h1>
+                <p className='review'>Gya de jau film vót he</p>
+              </div>
+              <div className='comment-box'>
+                <div className='comment'>
+                  <h2 className='comment-author'>Véleményosztó</h2>
+                  <p className='comment'>this is ich bin das ist comment</p>
+                  <div className='comment-rating'>
+                      <i class="fa-solid fa-face-smile item-rate"></i>
+                      <i class="fa-solid fa-face-frown item-rate"></i>
+                      <i class="fa-solid fa-face-rolling-eyes item-rate"></i>
                   </div>
-                  <div className='comment-box'>
-                    <div className='comment'>
-                      <h2 className='comment-author'>Véleményosztó</h2>
-                      <p className='comment'>this is ich bin das ist comment</p>
-                      <div className='comment-rating'>
-                          <i class="fa-solid fa-face-smile item-rate"></i>
-                          <i class="fa-solid fa-face-frown item-rate"></i>
-                          <i class="fa-solid fa-face-rolling-eyes item-rate"></i>
-                      </div>
-                    </div>
-                    <div className='comment'>
-                      <h2 className='comment-author'>Másik Véleményosztó</h2>
-                      <p className='comment'>msőovnfmsőgápjksmdőgpjk dúpoojkg spdútojgk ődspáojg úpsdojgf údséoflgkdsúáűőp kgsáőpdofk gjúsdpg</p>
-                      <div className='comment-rating'>
-                          <i class="fa-solid fa-face-smile item-rate"></i>
-                          <i class="fa-solid fa-face-frown item-rate"></i>
-                          <i class="fa-solid fa-face-rolling-eyes item-rate"></i>
-                      </div>
-                    </div>
+                </div>
+                <div className='comment'>
+                  <h2 className='comment-author'>Másik Véleményosztó</h2>
+                  <p className='comment'>msőovnfmsőgápjksmdőgpjk dúpoojkg spdútojgk ődspáojg úpsdojgf údséoflgkdsúáűőp kgsáőpdofk gjúsdpg</p>
+                  <div className='comment-rating'>
+                      <i class="fa-solid fa-face-smile item-rate"></i>
+                      <i class="fa-solid fa-face-frown item-rate"></i>
+                      <i class="fa-solid fa-face-rolling-eyes item-rate"></i>
                   </div>
+                </div>
+              </div>
             </div>
         </Layout>
     </div>

@@ -10,12 +10,12 @@ namespace FilmStock.Controllers
     [Route("/api/[controller]")]
     public class UserController : ControllerBase
     {
-        private readonly IUserRepository _iuserRepository;
+        private readonly IUserRepository _userRepository;
         private readonly ISession _session;
 
         public UserController(IUserRepository iuserRepository, IHttpContextAccessor httpContextAccessor)
         {
-            _iuserRepository = iuserRepository;
+            _userRepository = iuserRepository;
             _session = httpContextAccessor.HttpContext.Session;
         }
 
@@ -25,7 +25,7 @@ namespace FilmStock.Controllers
         {
             user.Level = Models.Enums.UserLevel.user;
             user.Collection = new();
-            await _iuserRepository.Add(user);
+            await _userRepository.Add(user);
             return Redirect("http://localhost:3000/");
         }
 
@@ -33,7 +33,7 @@ namespace FilmStock.Controllers
         [Route("LoginUser")]
         public async Task<IActionResult> LoginUser([FromForm] LoginModel user)
         {
-            if (await _iuserRepository.ValidateUser(user))
+            if (await _userRepository.ValidateUser(user))
             {
                 this._session.SetString("User", user.UserName);
                 Console.WriteLine(user.UserName);
@@ -47,31 +47,31 @@ namespace FilmStock.Controllers
         public void EditUser(long Id, [FromBody] User user)
         {
             user.Id = Id;
-            _iuserRepository.Update(user);
+            _userRepository.Update(user);
         }
 
         [HttpDelete("delete/{Id}")]
         public async Task DeleteUser(long Id)
         {
-            await _iuserRepository.Remove(Id);
+            await _userRepository.Remove(Id);
         }
 
         [HttpGet("{id:long}")]
         public async Task<User?> GetUserById(long id)
         {
-            return await _iuserRepository.GetUserById(id);
+            return await _userRepository.GetUserById(id);
         }
 
         [HttpGet("collection/{id}")]
         public async Task<List<Movie>> GetUserCollection(long id)
         {
-            return await _iuserRepository.GetCollection(id);
+            return await _userRepository.GetCollection(id);
         }
 
         [HttpGet("collection/{id}")]
         public async Task AddToUserCollection(long id, long movieId)
         {
-            await _iuserRepository.AddToCollection(id, movieId);
+            await _userRepository.AddToCollection(id, movieId);
         }
     }
 }
