@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FilmStock.Models.Interfaces;
 using FilmStock.Models.Entities;
+using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 namespace FilmStock.Controllers
 {
@@ -9,19 +11,36 @@ namespace FilmStock.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _iuserRepository;
+        private readonly ISession _session;
 
-        public UserController(IUserRepository iuserRepository)
+        public UserController(IUserRepository iuserRepository, IHttpContextAccessor httpContextAccessor)
         {
             _iuserRepository = iuserRepository;
+            _session = httpContextAccessor.HttpContext.Session;
         }
 
-        [HttpPost("new")]
-        public async Task<IActionResult> AddUser([FromBody] User user)
+        //how to retirieve data from FromForm
+        [HttpPost("register")]
+        public async Task<IActionResult> AddUser([FromForm]User user)
         {
+            user.Level = Models.Enums.UserLevel.user;
             await _iuserRepository.Add(user);
-            return CreatedAtAction("User created", new { user.Id }, user);
-
+            return Redirect("http://localhost:3000/");
         }
+
+        [HttpPost]
+        [Route("LoginUser")]
+        public async Task<IActionResult> LoginUser([FromForm] LoginModel user)
+        {
+            if (await _iuserRepository.ValidateUser(user))
+            {
+                this._session.SetString("User", user.UserName);
+                Console.WriteLine(user.UserName);
+                return Redirect("http://localhost:3000/");
+            }
+            return Redirect("http://localhost:3000/login");
+        }
+
 
         [HttpPut("edit/{Id}")]
         public void EditUser(long Id, [FromBody] User user)
@@ -39,7 +58,7 @@ namespace FilmStock.Controllers
         [HttpGet("{id:long}")]
         public async Task<User?> GetUserById(long id)
         {
-            return await _iuserRepository.GetUser(id);
+            return await _iuserRepository.GetUserById(id);
         }
     }
 }

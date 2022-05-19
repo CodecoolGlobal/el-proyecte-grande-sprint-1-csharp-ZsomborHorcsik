@@ -6,9 +6,12 @@ import '../App.css';
 const Layout = ({children}) => {
   return (
     <>
+    <div className="wrapper">
       <Header/>
       <main className='main-box'>{children}</main>
+      </div>
       <Footer/>
+    
     </>
   )
 }

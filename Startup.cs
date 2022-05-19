@@ -19,9 +19,16 @@ namespace FilmStock
             services.AddControllersWithViews();
             services.AddDbContext<FilmContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = false;
+            });
+            services.AddHttpContextAccessor();
             services.AddTransient<DbInitializer>();
             services.AddScoped<IFilmRepository, FilmRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             services.AddCors();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,6 +44,7 @@ namespace FilmStock
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseCors(op =>
             {

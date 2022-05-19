@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Newtonsoft.Json;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FilmStock.Models.Entities
 {
@@ -7,18 +8,18 @@ namespace FilmStock.Models.Entities
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long ReviewId;
 
-        public long UserId;
+        public string userName;
 
+        public long? MovieId;
+        [JsonProperty("starRating")]
         public double? StarRating;
-
+        [JsonProperty("content")]
         public string Content;
-
-        public long MovieId;
 
         public DateTime Date;
 
-        public DateTime EditDate;
+        public DateTime? EditDate;
 
-        public int VoteCount;
+        public int? VoteCount;
     }
 }

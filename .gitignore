@@ -5,3 +5,4 @@ bin/
 /FilmStock.csproj.user
 /.vscode
 /appsettings.json
+/node_modules

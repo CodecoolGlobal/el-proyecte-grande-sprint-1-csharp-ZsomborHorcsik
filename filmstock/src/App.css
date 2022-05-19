@@ -1,4 +1,4 @@
-body, html{
+html, body {
   height: 100%;
   background-image: url(/src/components/imgs/background.jpg);
   height: fit-content;
@@ -6,6 +6,14 @@ body, html{
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+header{
+  max-height: 3vh;
+}
+
+footer{
+  max-height: 3vh;
 }
 
 .App {
@@ -20,6 +28,8 @@ body, html{
 
 .main-box{
   display: flex;
+  min-height: 72vh;
+
   flex-direction: column;
   align-items: center;
 }
