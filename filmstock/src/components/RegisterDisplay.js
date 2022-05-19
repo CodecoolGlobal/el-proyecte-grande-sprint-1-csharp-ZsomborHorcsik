@@ -13,19 +13,19 @@ const RegisterDisplay = () => {
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="firstName">
                                 First name
                             </label>
-                              <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white" id="firstName" name="firstName" type="text" placeholder="First name" required/>
+                              <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black" id="firstName" name="firstName" type="text" placeholder="First name" required/>
                         </div>
                         <div className="mb-4">
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="lastName">
                                 Last name
                             </label>
-                              <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white" id="lastName" name="lastName" type="text" placeholder="Last name" required/>
+                              <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black" id="lastName" name="lastName" type="text" placeholder="Last name" required/>
                         </div>
                         <div className="mb-4">
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="email">
                                 E-mail
                             </label>
-                            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-white" id="email" name="email" type="text" placeholder="Email" required/>
+                            <input className="shadow appearance-none border rounded w-full py-2 px-3 text-black" id="email" name="email" type="text" placeholder="Email" required/>
                         </div>
                         <div className="mb-4">
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="userName">

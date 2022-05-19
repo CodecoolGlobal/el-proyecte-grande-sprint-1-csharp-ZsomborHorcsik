@@ -17,7 +17,7 @@ const Navmenu = () => {
     <Navbar color="blueGray" navbar>
         <NavbarContainer>
             <NavbarWrapper>
-                <NavbarBrand>FilmStock</NavbarBrand>
+                <NavbarBrand><a href="http://localhost:3000/">FilmStock</a></NavbarBrand>
                 <NavbarToggler
                     color="white"
                     onClick={() => setOpenNavbar(!openNavbar)}

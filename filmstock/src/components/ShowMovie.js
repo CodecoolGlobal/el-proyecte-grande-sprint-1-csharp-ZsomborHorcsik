@@ -32,13 +32,13 @@ const ShowMovie = (props) => {
 
             <div className='review-content-box'>
               <div className='review-box'>
-                <h1 className='review-author'>Vagány Jóskagyerek</h1>
-                <p className='review'>Gya de jau film vót he</p>
+                <h1 className='review-author'>Reviewer name</h1>
+                <p className='review'>Aliqua tempor exercitation reprehenderit laboris occaecat. Proident exercitation velit labore adipisicing consequat reprehenderit sit qui ex. Cupidatat veniam deserunt enim elit ad esse voluptate.</p>
               </div>
               <div className='comment-box'>
                 <div className='comment'>
-                  <h2 className='comment-author'>Véleményosztó</h2>
-                  <p className='comment'>this is ich bin das ist comment</p>
+                  <h2 className='comment-author'>Smart commentee</h2>
+                  <p className='comment'>Culpa minim esse irure fugiat deserunt cupidatat. Dolor eu aliquip labore proident magna et sint excepteur consectetur dolore. Eu dolore exercitation labore Lorem Lorem commodo nostrud.</p>
                   <div className='comment-rating'>
                       <i class="fa-solid fa-face-smile item-rate"></i>
                       <i class="fa-solid fa-face-frown item-rate"></i>
@@ -46,8 +46,8 @@ const ShowMovie = (props) => {
                   </div>
                 </div>
                 <div className='comment'>
-                  <h2 className='comment-author'>Másik Véleményosztó</h2>
-                  <p className='comment'>msőovnfmsőgápjksmdőgpjk dúpoojkg spdútojgk ődspáojg úpsdojgf údséoflgkdsúáűőp kgsáőpdofk gjúsdpg</p>
+                  <h2 className='comment-author'>The other smart one</h2>
+                  <p className='comment'>Veniam consectetur ex consequat mollit esse enim dolore. Pariatur magna sunt sunt eu veniam aute ullamco elit voluptate sint tempor eiusmod voluptate. Irure dolor aliquip minim amet aliquip sit dolor labore ex ut tempor dolor duis. Cillum voluptate non sunt enim magna et deserunt eu. Quis nulla ullamco eu cillum eu velit quis. Ea laborum mollit consectetur ut non labore reprehenderit. Minim quis anim nostrud enim eiusmod nulla culpa aute dolor aute.</p>
                   <div className='comment-rating'>
                       <i class="fa-solid fa-face-smile item-rate"></i>
                       <i class="fa-solid fa-face-frown item-rate"></i>

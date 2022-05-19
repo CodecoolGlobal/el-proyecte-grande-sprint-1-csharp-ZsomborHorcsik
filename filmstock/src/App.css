@@ -41,3 +41,35 @@ footer{
   background-color: #607D8B;
 }
 
+
+.landing-hero{
+  background-color: #607D8B;
+  color: white;
+  padding: 50px;
+  width: 80%;
+  border-radius: 42% 58% 37% 63% / 65% 36% 64% 35% ;
+  animation: borderRadiusAnim 8s infinite;
+}
+
+.landing-hero>h1{
+  font-family: Impact, Charcoal, sans-serif;
+  font-size: 80px;
+  letter-spacing: 10px;
+  word-spacing: 10px;
+  font-weight: 700;
+  text-decoration: underline solid white;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: capitalize;
+  animation: textclip 2s linear infinite;
+}
+
+@keyframes borderRadiusAnim{
+    50% {border-radius:78% 22% 79% 21% / 7% 85% 15% 93% ;}
+}
+
+@keyframes textclip {
+  to {
+    background-position: 200% center;
+  }
+}
