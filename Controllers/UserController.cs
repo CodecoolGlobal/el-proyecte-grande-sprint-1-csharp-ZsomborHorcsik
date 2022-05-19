@@ -2,6 +2,7 @@
 using FilmStock.Models.Interfaces;
 using FilmStock.Models.Entities;
 using Microsoft.AspNetCore.Http;
+using System.Linq;
 
 namespace FilmStock.Controllers
 {
@@ -10,12 +11,12 @@ namespace FilmStock.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _iuserRepository;
-        private string? SessionId;
+        private readonly ISession _session;
 
-        public UserController(IUserRepository iuserRepository)
+        public UserController(IUserRepository iuserRepository, IHttpContextAccessor httpContextAccessor)
         {
             _iuserRepository = iuserRepository;
-            SessionId = null;
+            _session = httpContextAccessor.HttpContext.Session;
         }
 
         //how to retirieve data from FromForm
@@ -24,26 +25,20 @@ namespace FilmStock.Controllers
         {
             user.Level = Models.Enums.UserLevel.user;
             await _iuserRepository.Add(user);
-            return CreatedAtAction("User created", new { user.Id }, user);
+            return Redirect("http://localhost:3000/");
         }
 
-        [HttpPost("login")]
-        public async Task<IActionResult> Login([FromForm] LoginModel user)
+        [HttpPost]
+        [Route("LoginUser")]
+        public async Task<IActionResult> LoginUser([FromForm] LoginModel user)
         {
-            User? userByName = await _iuserRepository.GetUserByUsername(user.UserName);
-            if (userByName == null)
+            if (await _iuserRepository.ValidateUser(user))
             {
-                return NotFound();
+                this._session.SetString("User", user.UserName);
+                Console.WriteLine(user.UserName);
+                return Redirect("http://localhost:3000/");
             }
-            if (user.Password == userByName.Password)
-            {
-                HttpContext.Session.SetString(SessionId, userByName.Id.ToString());
-                return Redirect("https://localhost:3000/");
-            }
-            else
-            {
-                return NotFound();
-            }
+            return Redirect("http://localhost:3000/login");
         }
 
 

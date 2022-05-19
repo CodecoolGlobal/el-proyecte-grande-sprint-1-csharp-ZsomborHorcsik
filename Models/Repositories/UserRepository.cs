@@ -41,5 +41,15 @@ namespace FilmStock.Models.Repositories
             _db.Users.Update(user);
             await _db.SaveChangesAsync();
         }
+
+        public async Task<bool> ValidateUser(LoginModel data)
+        {
+            var allUsers = _db.Users;
+            if (allUsers.Where(user => user.UserName == data.UserName && user.Password == data.Password) != null)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
