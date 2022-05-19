@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FilmStock.Models.Interfaces;
 using FilmStock.Models.Entities;
+using Microsoft.AspNetCore.Http;
 
 namespace FilmStock.Controllers
 {
@@ -9,10 +10,12 @@ namespace FilmStock.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _iuserRepository;
+        private string? SessionId;
 
         public UserController(IUserRepository iuserRepository)
         {
             _iuserRepository = iuserRepository;
+            SessionId = null;
         }
 
         //how to retirieve data from FromForm
@@ -34,7 +37,8 @@ namespace FilmStock.Controllers
             }
             if (user.Password == userByName.Password)
             {
-                return Ok(userByName);
+                HttpContext.Session.SetString(SessionId, userByName.Id.ToString());
+                return Redirect("https://localhost:3000/");
             }
             else
             {
