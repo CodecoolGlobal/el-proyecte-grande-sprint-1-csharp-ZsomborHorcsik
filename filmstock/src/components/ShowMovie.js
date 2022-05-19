@@ -38,14 +38,19 @@ const ShowMovie = (props) => {
                     <div className='comment'>
                       <h2 className='comment-author'>Véleményosztó</h2>
                       <p className='comment'>this is ich bin das ist comment</p>
+                      <div className='comment-rating'>
+                          <i class="fa-solid fa-face-smile item-rate"></i>
+                          <i class="fa-solid fa-face-frown item-rate"></i>
+                          <i class="fa-solid fa-face-rolling-eyes item-rate"></i>
+                      </div>
                     </div>
                     <div className='comment'>
                       <h2 className='comment-author'>Másik Véleményosztó</h2>
                       <p className='comment'>msőovnfmsőgápjksmdőgpjk dúpoojkg spdútojgk ődspáojg úpsdojgf údséoflgkdsúáűőp kgsáőpdofk gjúsdpg</p>
                       <div className='comment-rating'>
-                          <i class="fa-solid fa-face-smile"></i>
-                          <i class="fa-solid fa-face-frown"></i>
-                          <i class="fa-solid fa-face-rolling-eyes"></i>
+                          <i class="fa-solid fa-face-smile item-rate"></i>
+                          <i class="fa-solid fa-face-frown item-rate"></i>
+                          <i class="fa-solid fa-face-rolling-eyes item-rate"></i>
                       </div>
                     </div>
                   </div>

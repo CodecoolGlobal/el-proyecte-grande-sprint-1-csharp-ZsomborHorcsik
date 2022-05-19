@@ -88,3 +88,12 @@
     font-variant: small-caps;
     text-transform: none;
 }
+
+.comment-rating{
+    margin-top: 10px;
+}
+
+.comment-rating i{
+    font-size: 30px;
+    padding: 0 5px 0 5px;
+}
