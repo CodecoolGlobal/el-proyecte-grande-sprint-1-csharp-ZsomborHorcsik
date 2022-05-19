@@ -33,6 +33,7 @@ namespace FilmStock.Models.Repositories
             User user = await GetUserById(id);
             Movie movie = await _filmRepository.GetMovie(movieId);
             user.Collection.Add(movie);
+            await _db.SaveChangesAsync();
         }
 
 

@@ -11,5 +11,6 @@ namespace FilmStock.Models.Interfaces
         public Task<User?> GetUserByUsername(string name);
         public Task<bool> ValidateUser(LoginModel data);
         Task<List<Movie>> GetCollection(long id);
+        public Task AddToCollection(long id, long movieId);
     }
 }

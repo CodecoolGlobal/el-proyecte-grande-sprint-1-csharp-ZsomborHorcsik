@@ -67,5 +67,11 @@ namespace FilmStock.Controllers
         {
             return await _iuserRepository.GetCollection(id);
         }
+
+        [HttpGet("collection/{id}")]
+        public async Task AddToUserCollection(long id, long movieId)
+        {
+            await _iuserRepository.AddToCollection(id, movieId);
+        }
     }
 }
