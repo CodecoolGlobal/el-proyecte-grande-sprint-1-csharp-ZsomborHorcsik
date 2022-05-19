@@ -26,6 +26,7 @@ const ShowMovie = (props) => {
                   <div>
                     <p>{data?.rating}</p>{Array.from({ length: starRating }, (_, i) => <i key={i} class="fa-solid fa-star"></i>)}
                     <p>Global rank : {data?.rank}</p>
+                    <button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-1 rounded'><a>Add to collection</a></button>
                   </div>
                 </div>
             </div>
