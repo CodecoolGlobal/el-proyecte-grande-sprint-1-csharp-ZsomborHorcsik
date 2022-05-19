@@ -24,6 +24,7 @@ namespace FilmStock.Controllers
         public async Task<IActionResult> AddUser([FromForm]User user)
         {
             user.Level = Models.Enums.UserLevel.user;
+            user.Collection = new();
             await _iuserRepository.Add(user);
             return Redirect("http://localhost:3000/");
         }
@@ -59,6 +60,12 @@ namespace FilmStock.Controllers
         public async Task<User?> GetUserById(long id)
         {
             return await _iuserRepository.GetUserById(id);
+        }
+
+        [HttpGet("collection/{id}")]
+        public async Task<List<Movie>> GetUserCollection(long id)
+        {
+            return await _iuserRepository.GetCollection(id);
         }
     }
 }

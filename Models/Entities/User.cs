@@ -19,6 +19,7 @@ namespace FilmStock.Models.Entities
         [JsonProperty("password")]
         public string Password { get; set; }
         public UserLevel Level { get; set; }
+        public List<Movie> Collection { get; set; }
     }
 
 }

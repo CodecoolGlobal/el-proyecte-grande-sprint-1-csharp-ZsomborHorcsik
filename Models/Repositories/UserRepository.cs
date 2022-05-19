@@ -8,10 +8,12 @@ namespace FilmStock.Models.Repositories
     public class UserRepository : IUserRepository
     {
         private FilmContext _db;
+        private IFilmRepository _filmRepository;
 
-        public UserRepository(FilmContext db)
+        public UserRepository(FilmContext db, IFilmRepository filmRepository)
         {
             _db = db;
+            _filmRepository = filmRepository;
         }
 
         public async Task Add(User user)
@@ -19,6 +21,21 @@ namespace FilmStock.Models.Repositories
             _db.Users.Add(user);
             await _db.SaveChangesAsync();
         }
+
+        public async Task<List<Movie>> GetCollection(long id)
+        {
+            User user = await GetUserById(id);
+            return user.Collection;
+        }
+
+        public async Task AddToCollection(long id, long movieId)
+        {
+            User user = await GetUserById(id);
+            Movie movie = await _filmRepository.GetMovie(movieId);
+            user.Collection.Add(movie);
+        }
+
+
 
         public async Task<User?> GetUserById(long id)
         {
