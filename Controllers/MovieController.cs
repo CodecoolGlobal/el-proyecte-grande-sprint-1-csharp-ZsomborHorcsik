@@ -42,7 +42,6 @@ namespace FilmStock.Controllers
         {
             await _filmRepository.Add(movie);
             return CreatedAtAction("Movie created", new { movie.Id }, movie);
-
         }
 
         [HttpPut("edit/{Id}")]

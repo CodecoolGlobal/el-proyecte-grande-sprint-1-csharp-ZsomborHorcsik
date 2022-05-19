@@ -14,8 +14,11 @@ namespace FilmStock.Models.Repositories
             _db = Context;
         }
 
-        public async Task Add(Review review)
+        public async Task Add(Review review, string user, long movieId)
         {
+            review.Date = DateTime.Now;
+            review.userName = user;
+            review.MovieId = movieId;
             _db.Reviews.Add(review);
             await _db.SaveChangesAsync();
         }
@@ -30,9 +33,9 @@ namespace FilmStock.Models.Repositories
             return await _db.Reviews.Where(review => review.MovieId == id).ToListAsync();
         }
 
-        public async Task<List<Review>> GetReviewsByUser(long id)
+        public async Task<List<Review>> GetReviewsByUser(string user)
         {
-            return await _db.Reviews.Where(review => review.UserId == id).ToListAsync();
+            return await _db.Reviews.Where(review => review.userName == user).ToListAsync();
         }
 
         public async Task Remove(long id)
