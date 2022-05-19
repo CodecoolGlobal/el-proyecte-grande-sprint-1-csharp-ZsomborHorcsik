@@ -5,7 +5,7 @@ namespace FilmStock.Models.Entities
     public class Comment
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long CommentId;
+        public long Id;
 
         public long ReviewId;
 

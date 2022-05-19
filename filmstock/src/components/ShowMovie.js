@@ -8,12 +8,11 @@ const ShowMovie = (props) => {
     const { id } = useParams();
     const {data, error} = useFetch(`api/Movie/${id}`);
     const starRating = data?.rating;
-    const maxRating = 10;
     if(error) console.log(error);
-    console.log(data)
   return (
     <div>
         <Layout>
+          
             <div className='movie-content-box'>
                 <div className='movie-image'>
                     <img src={data?.image} alt=""></img>
@@ -30,6 +29,7 @@ const ShowMovie = (props) => {
                   </div>
                 </div>
             </div>
+
             <div className='review-content-box'>
                   <div className='review-box'>
                     <h1 className='review-author'>Vagány Jóskagyerek</h1>
@@ -61,4 +61,4 @@ const ShowMovie = (props) => {
   )
 }
 
-export default ShowMovie
+export default ShowMovie;
