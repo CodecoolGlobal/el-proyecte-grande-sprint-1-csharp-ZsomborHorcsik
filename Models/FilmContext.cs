@@ -7,14 +7,11 @@ namespace FilmStock.Models
     {
         public DbSet<Movie>? Movies { get; set; }
         public DbSet<User>? Users { get; set; }
+        public DbSet<Review>? Reviews { get; set; }
+
 
         public FilmContext(DbContextOptions<FilmContext> options) : base(options)
         {
-        }
-
-        public async Task AddToDatabase(Movie movie)
-        {
-            await Movies.AddAsync(movie);
         }
     }
 }
