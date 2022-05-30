@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FilmStock.Models.Interfaces;
 using FilmStock.Models.Entities;
-using Microsoft.AspNetCore.Http;
-using System.Linq;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Security.Claims;
@@ -36,7 +34,7 @@ namespace FilmStock.Controllers
 
         [HttpPost]
         [Route("LoginUser")]
-        public async Task<IActionResult> LoginUser([FromBody] LoginModel user)
+        public async Task<IActionResult> LoginUser([FromForm] LoginModel user)
         {
             var currentUser = await Authenticate(user);
             if (currentUser == null)
@@ -64,7 +62,7 @@ namespace FilmStock.Controllers
             var token = new JwtSecurityToken(_config["Jwt:Issuer"],
                 _config["Jwt:Audience"],
                 claims,
-                expires: DateTime.Now.AddMinutes(15),
+                expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
