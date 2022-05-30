@@ -2,7 +2,10 @@
 using FilmStock.Models;
 using FilmStock.Models.Interfaces;
 using FilmStock.Models.Repositories;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace FilmStock
 {
@@ -25,6 +28,19 @@ namespace FilmStock
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = false;
             });
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["Jwt:Issuer"],
+                        ValidAudience = Configuration["Jwt:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
+                });
             services.AddHttpContextAccessor();
             services.AddTransient<DbInitializer>();
             services.AddScoped<IFilmRepository, FilmRepository>();
@@ -55,7 +71,7 @@ namespace FilmStock
             });
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
