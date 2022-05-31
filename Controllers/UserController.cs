@@ -5,6 +5,9 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
+using System.Web;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace FilmStock.Controllers
 {
@@ -41,10 +44,45 @@ namespace FilmStock.Controllers
             {
                 return NotFound("User not found");
             }
-            var token = Generate(currentUser);
-            return Ok(token);
+            var claims = new[]
+            {
+                new Claim(ClaimTypes.NameIdentifier, currentUser.UserName),
+                new Claim(ClaimTypes.Email, currentUser.Email),
+                new Claim(ClaimTypes.Surname, currentUser.LastName),
+                new Claim(ClaimTypes.GivenName, currentUser.FirstName)
+            };
 
+            var claimsIdentity = new ClaimsIdentity(
+            claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var authProperties = new AuthenticationProperties
+            {
+                AllowRefresh = true,
+                IsPersistent = true,
+                IssuedUtc = DateTime.Now,
+                RedirectUri = "http://localhost:3000/"
+            };
+
+            await HttpContext.SignInAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme,
+            new ClaimsPrincipal(claimsIdentity),
+            authProperties);
+            //var token = Generate(currentUser);
+            return Redirect("http://localhost:3000/");
         }
+
+
+        [HttpPost]
+        [Route("LogoutUser")]
+        public async Task<IActionResult> OnGetAsync()
+        {
+            // Clear the existing external cookie
+            await HttpContext.SignOutAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme);
+
+            return Redirect("http://localhost:3000/");
+        }
+
 
         private string Generate(User currentUser)
         {
