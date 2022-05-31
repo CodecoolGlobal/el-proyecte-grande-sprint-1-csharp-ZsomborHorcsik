@@ -1,13 +1,15 @@
 import React from 'react';
 import Layout from './Layout';
 import './stylesheets/loginSystem.css'
+import {useState} from 'react';
 
 const LoginDisplay = () => {
+    const [userToken, setToken] = useState(null); 
   return (
     <div className='App'>
         <Layout>
             <div className='single-content-box'>
-                <form action="https://localhost:7299/api/user/LoginUser" method='POST'>
+                <form action="https://localhost:7299/api/User/login" method='POST'>
                     <div className="shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col" id="login-panel">
                         <div className="mb-4">
                             <label className="block text-white text-sm font-bold mb-2" htmlFor="userName">
