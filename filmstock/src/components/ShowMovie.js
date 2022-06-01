@@ -12,10 +12,9 @@ const ShowMovie = (props) => {
   return (
     <div>
         <Layout>
-          
             <div className='movie-content-box'>
                 <div className='movie-image'>
-                    <img src={data?.image} alt=""></img>
+                    <img src={data?.image} alt="The poster of the movie" className='movie-image'></img>
                 </div>
                 <div className='movie-details'>
                   <div className='detail-item'>
@@ -29,30 +28,30 @@ const ShowMovie = (props) => {
                   </div>
                 </div>
             </div>
-
             <div className='review-content-box'>
-              <div className='review-box'>
-                <h1 className='review-author'>Reviewer name</h1>
-                <p className='review'>Aliqua tempor exercitation reprehenderit laboris occaecat. Proident exercitation velit labore adipisicing consequat reprehenderit sit qui ex. Cupidatat veniam deserunt enim elit ad esse voluptate.</p>
-              </div>
-              <div className='comment-box'>
-                <div className='comment'>
-                  <h2 className='comment-author'>Smart commentee</h2>
-                  <p className='comment'>Culpa minim esse irure fugiat deserunt cupidatat. Dolor eu aliquip labore proident magna et sint excepteur consectetur dolore. Eu dolore exercitation labore Lorem Lorem commodo nostrud.</p>
-                  <div className='comment-rating'>
-                      <i class="fa-solid fa-face-smile item-rate"></i>
-                      <i class="fa-solid fa-face-frown item-rate"></i>
-                      <i class="fa-solid fa-face-rolling-eyes item-rate"></i>
+              <div class="comment">
+                <div class="comment-heading">
+                  <div class="comment-voting">
+                    <button type="button">
+                        <span aria-hidden="true">&#9650;</span>
+                        <span class="sr-only">Vote up</span>
+                    </button>
+                    <button type="button">
+                        <span aria-hidden="true">&#9660;</span>
+                        <span class="sr-only">Vote down</span>
+                    </button>
+                  </div>
+                  <div class="comment-info">
+                      <a href="#" class="comment-author">TestUser</a>
+                      <p class="m-0">
+                        4 days ago
+                      </p>
                   </div>
                 </div>
-                <div className='comment'>
-                  <h2 className='comment-author'>The other smart one</h2>
-                  <p className='comment'>Veniam consectetur ex consequat mollit esse enim dolore. Pariatur magna sunt sunt eu veniam aute ullamco elit voluptate sint tempor eiusmod voluptate. Irure dolor aliquip minim amet aliquip sit dolor labore ex ut tempor dolor duis. Cillum voluptate non sunt enim magna et deserunt eu. Quis nulla ullamco eu cillum eu velit quis. Ea laborum mollit consectetur ut non labore reprehenderit. Minim quis anim nostrud enim eiusmod nulla culpa aute dolor aute.</p>
-                  <div className='comment-rating'>
-                      <i class="fa-solid fa-face-smile item-rate"></i>
-                      <i class="fa-solid fa-face-frown item-rate"></i>
-                      <i class="fa-solid fa-face-rolling-eyes item-rate"></i>
-                  </div>
+                <div class="comment-body">
+                  <p>
+                    A tough, complex story [told] with clarity, compassion and considerable dramatic force.
+                  </p>
                 </div>
               </div>
             </div>
