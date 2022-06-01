@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from './Layout';
 import './stylesheets/loginSystem.css';
 import { useState } from 'react';
+import apiPost from '../Hooks/postFetch';
 import postFetch from '../Hooks/postFetch';
     
 const LoginDisplay = () => {
@@ -16,11 +17,12 @@ const LoginDisplay = () => {
         setUsername(event.target.value);
     }
 
-    const handleSubmit = async (event) =>{
+    const handleSubmit = async event =>{
         event.preventDefault();
-        let response = await postFetch('api/User/LoginUser', {username, password})
-        console.log(response)
+        let payload = {"UserName": username, "Password": password};
+        postFetch("api/User/login", payload)
     }
+
   return (
     <div className='App'>
         <Layout>
@@ -28,7 +30,7 @@ const LoginDisplay = () => {
                 <form onSubmit={handleSubmit} method='POST'>
                     <div className="shadow-md rounded px-8 pt-6 pb-8 mb-4 flex flex-col" id="login-panel">
                         <div className="mb-4">
-                            <label className="block text-white text-sm font-bold mb-2" htmlFor="userName">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="UserName">
                                 Username
                             </label>
                             <input className="shadow appearance-none border rounded w-full py-2 px-3 text-grey-darker" 
@@ -40,7 +42,7 @@ const LoginDisplay = () => {
                             required/>
                         </div>
                         <div className="mb-6">
-                            <label className="block text-white text-sm font-bold mb-2" htmlFor="password">
+                            <label className="block text-white text-sm font-bold mb-2" htmlFor="Password">
                                 Password
                             </label>
                             <input className="shadow appearance-none border border-red rounded w-full py-2 px-3 text-grey-darker mb-3" 
