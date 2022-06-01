@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from './Layout';
+import Layout from './layout/Layout';
 import './stylesheets/loginSystem.css';
 import { useState } from 'react';
 import authService from '../_services/auth.service';

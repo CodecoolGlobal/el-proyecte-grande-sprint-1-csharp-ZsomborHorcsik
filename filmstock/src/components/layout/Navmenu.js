@@ -9,7 +9,7 @@ import Nav from "@material-tailwind/react/Nav";
 import NavItem from "@material-tailwind/react/NavItem";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
 import Icon from "@material-tailwind/react/Icon";
-import authService from "../_services/auth.service";
+import authService from "../../_services/auth.service";
 
 const Navmenu = () => {
     const [openNavbar, setOpenNavbar] = useState(false);

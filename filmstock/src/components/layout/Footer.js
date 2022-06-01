@@ -1,4 +1,5 @@
-import '../App.css';
+import '../../App.css'
+
 const Footer = () =>{
     return ( 
         <footer id="footer" className="flex items-center justify-between px-12 px-4 py-7 text-white fix-footer">
