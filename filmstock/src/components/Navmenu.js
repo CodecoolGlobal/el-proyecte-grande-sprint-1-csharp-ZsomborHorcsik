@@ -9,10 +9,12 @@ import Nav from "@material-tailwind/react/Nav";
 import NavItem from "@material-tailwind/react/NavItem";
 import NavbarInput from "@material-tailwind/react/NavbarInput";
 import Icon from "@material-tailwind/react/Icon";
+import authService from "../_services/auth.service";
 
 const Navmenu = () => {
     const [openNavbar, setOpenNavbar] = useState(false);
-    if(!localStorage.getItem('user')){
+
+    if(!localStorage.getItem("user")){
         return (
             <Navbar color="blueGray" navbar>
                 <NavbarContainer>
@@ -91,8 +93,10 @@ const Navmenu = () => {
                         </Nav>
                         <Nav rightSide>
                             <NavItem ripple="light">
-                                <Icon name="loginout" size="xl"/>
-                                <a href="http://localhost:3000/logout">Logout</a>
+                                <Icon name="logout" size="xl"/>
+                                <button type="button" onClick={authService.logout} className="font-bold outline-none uppercase focus:outline-none focus:shadow-none transition-all duration-300 rounded-md py-3 px-4 text-sm leading-relaxed text-white bg-teal-500 hover:bg-teal-700 focus:bg-teal-400 active:bg-teal-800 shadow-md-blue-gray hover:shadow-lg-blue-gray">
+                                    Logout
+                                </button>
                             </NavItem>
                         </Nav>
                     </NavbarCollapse>

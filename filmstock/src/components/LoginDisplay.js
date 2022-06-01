@@ -2,9 +2,11 @@ import React from 'react';
 import Layout from './Layout';
 import './stylesheets/loginSystem.css';
 import { useState } from 'react';
-import postFetch from '../_services/auth.service';
+import authService from '../_services/auth.service';
+import { useNavigate } from 'react-router-dom';
     
 const LoginDisplay = () => {
+    const navigate = useNavigate();
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
 
@@ -19,7 +21,16 @@ const LoginDisplay = () => {
     const handleSubmit = async event =>{
         event.preventDefault();
         let payload = {"UserName": username, "Password": password};
-        postFetch("api/User/login", payload)
+
+        try{
+            await authService.postFetch("api/User/login", payload)
+                .then( ()=>{
+                    navigate("/");
+                })
+        }catch(err){
+            console.log(err);
+        }
+        
     }
 
   return (
