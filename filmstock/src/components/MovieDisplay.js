@@ -2,7 +2,7 @@ import '../App.css';
 import "@material-tailwind/react/tailwind.css";
 import FilmCard from '../components/FilmCard';
 import useFetch from '../Hooks/useFetch';
-import Layout from './Layout';
+import Layout from './layout/Layout';
 
 function MovieDisplay() {
   const {data, error} = useFetch("api/Movie/Movies");

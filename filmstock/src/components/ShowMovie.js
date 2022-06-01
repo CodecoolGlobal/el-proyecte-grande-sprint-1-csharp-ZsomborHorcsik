@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from './Layout';
+import Layout from './layout/Layout';
 import { useParams } from 'react-router-dom';
 import useFetch from '../Hooks/useFetch';
 import './stylesheets/showMovie.css'
