@@ -135,6 +135,12 @@ namespace FilmStock.Controllers
             return await _userRepository.GetUserById(id);
         }
 
+        [HttpGet("{username:string}")]
+        public async Task<User?> GetUserByUsername(string username)
+        {
+            return await _userRepository.GetUserByUsername(username);
+        }
+
         [HttpGet("collection/{id}")]
         public async Task<List<Movie>> GetUserCollection(long id)
         {
