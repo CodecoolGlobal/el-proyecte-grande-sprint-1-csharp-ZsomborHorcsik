@@ -12,52 +12,94 @@ import Icon from "@material-tailwind/react/Icon";
 
 const Navmenu = () => {
     const [openNavbar, setOpenNavbar] = useState(false);
-
-  return (
-    <Navbar color="blueGray" navbar>
-        <NavbarContainer>
-            <NavbarWrapper>
-                <NavbarBrand><a href="http://localhost:3000/">FilmStock</a></NavbarBrand>
-                <NavbarToggler
-                    color="white"
-                    onClick={() => setOpenNavbar(!openNavbar)}
-                    ripple="light"
-                />
-            </NavbarWrapper>
-
-            <NavbarCollapse open={openNavbar}>
-                <Nav leftSide>
-                    <NavItem ripple="light">
-                        <Icon name="collections" size="xl" />
-                        Collections
-                    </NavItem>
-                    <NavItem ripple="light">
-                        <Icon name="assistant" size="xl" />
-                        <a href="http://localhost:3000/Movies">Discover</a>
-                    </NavItem>
-                    <NavItem ripple="light" >
-                        <Icon name="live_tv" size="xl" />
-                        <a href="http://localhost:3000/Series">TV Series</a>
-                    </NavItem>
-                    <NavItem>
-                        <NavbarInput type="text" placeholder="Search here" />
-                    </NavItem>
-                </Nav>
-                <Nav rightSide>
-                    <NavItem ripple="light">
-                        <Icon name="login" size="xl"/>
-                        <a href="http://localhost:3000/login">Login</a>
-                    </NavItem>
-                    <NavItem ripple="light">
-                        <Icon name="logout" size="xl"/>
-                        <a href="http://localhost:3000/register">Register</a>
-                    </NavItem>
-                </Nav>
-                
-            </NavbarCollapse>
-        </NavbarContainer>
-    </Navbar>
-  );
+    if(!localStorage.getItem('user')){
+        return (
+            <Navbar color="blueGray" navbar>
+                <NavbarContainer>
+                    <NavbarWrapper>
+                        <NavbarBrand><a href="http://localhost:3000/">FilmStock</a></NavbarBrand>
+                        <NavbarToggler
+                            color="white"
+                            onClick={() => setOpenNavbar(!openNavbar)}
+                            ripple="light"
+                        />
+                    </NavbarWrapper>
+        
+                    <NavbarCollapse open={openNavbar}>
+                        <Nav leftSide>
+                            <NavItem ripple="light">
+                                <Icon name="collections" size="xl" />
+                                Collections
+                            </NavItem>
+                            <NavItem ripple="light">
+                                <Icon name="assistant" size="xl" />
+                                <a href="http://localhost:3000/Movies">Discover</a>
+                            </NavItem>
+                            <NavItem ripple="light" >
+                                <Icon name="live_tv" size="xl" />
+                                <a href="http://localhost:3000/Series">TV Series</a>
+                            </NavItem>
+                            <NavItem>
+                                <NavbarInput type="text" placeholder="Search here" />
+                            </NavItem>
+                        </Nav>
+                        <Nav rightSide>
+                            <NavItem ripple="light">
+                                <Icon name="login" size="xl"/>
+                                <a href="http://localhost:3000/login">Login</a>
+                            </NavItem>
+                            <NavItem ripple="light">
+                                <Icon name="logout" size="xl"/>
+                                <a href="http://localhost:3000/register">Register</a>
+                            </NavItem>
+                        </Nav>
+                    </NavbarCollapse>
+                </NavbarContainer>
+            </Navbar>
+        )
+    }
+    else {
+        return (
+            <Navbar color="blueGray" navbar>
+                <NavbarContainer>
+                    <NavbarWrapper>
+                        <NavbarBrand><a href="http://localhost:3000/">FilmStock</a></NavbarBrand>
+                        <NavbarToggler
+                            color="white"
+                            onClick={() => setOpenNavbar(!openNavbar)}
+                            ripple="light"
+                        />
+                    </NavbarWrapper>
+        
+                    <NavbarCollapse open={openNavbar}>
+                        <Nav leftSide>
+                            <NavItem ripple="light">
+                                <Icon name="collections" size="xl" />
+                                Collections
+                            </NavItem>
+                            <NavItem ripple="light">
+                                <Icon name="assistant" size="xl" />
+                                <a href="http://localhost:3000/Movies">Discover</a>
+                            </NavItem>
+                            <NavItem ripple="light" >
+                                <Icon name="live_tv" size="xl" />
+                                <a href="http://localhost:3000/Series">TV Series</a>
+                            </NavItem>
+                            <NavItem>
+                                <NavbarInput type="text" placeholder="Search here" />
+                            </NavItem>
+                        </Nav>
+                        <Nav rightSide>
+                            <NavItem ripple="light">
+                                <Icon name="loginout" size="xl"/>
+                                <a href="http://localhost:3000/logout">Logout</a>
+                            </NavItem>
+                        </Nav>
+                    </NavbarCollapse>
+                </NavbarContainer>
+            </Navbar>
+        )
+    }
 }
 
 export default Navmenu;
