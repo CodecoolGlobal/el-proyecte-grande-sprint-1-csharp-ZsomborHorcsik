@@ -2,8 +2,7 @@ import React from 'react';
 import Layout from './Layout';
 import './stylesheets/loginSystem.css';
 import { useState } from 'react';
-import apiPost from '../Hooks/postFetch';
-import postFetch from '../Hooks/postFetch';
+import postFetch from '../_services/auth.service';
     
 const LoginDisplay = () => {
     const [password, setPassword] = useState("");
