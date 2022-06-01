@@ -16,73 +16,40 @@ namespace FilmStock.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        private readonly ISession _session;
         private readonly IConfiguration _config;
 
-        public UserController(IUserRepository iuserRepository, IHttpContextAccessor httpContextAccessor, IConfiguration config)
+        public UserController(IUserRepository iuserRepository, IConfiguration config)
         {
             _userRepository = iuserRepository;
-            _session = httpContextAccessor.HttpContext.Session;
             _config = config;
         }
 
         [HttpPost("register")]
-        public async Task<IActionResult> AddUser([FromForm]User user)
+        public async Task<IActionResult> RegisterUser([FromForm]User user)
         {
-            user.Level = Models.Enums.UserLevel.user;
-            user.Collection = new();
+            var dbUserInfo = await _userRepository.GetUserByUsername(user.UserName);
+            if (dbUserInfo == null)
+            {
+                user.Level = Models.Enums.UserLevel.user;
+                user.Collection = new();
+                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+            }
             await _userRepository.Add(user);
             return Redirect("http://localhost:3000/");
         }
 
         [HttpPost]
-        [Route("LoginUser")]
-        public async Task<IActionResult> LoginUser([FromForm] LoginModel user)
+        [Route("login")]
+        public async Task<IActionResult> LoginUser([FromBody] LoginModel user)
         {
             var currentUser = await Authenticate(user);
             if (currentUser == null)
             {
                 return NotFound("User not found");
             }
-            var claims = new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, currentUser.UserName),
-                new Claim(ClaimTypes.Email, currentUser.Email),
-                new Claim(ClaimTypes.Surname, currentUser.LastName),
-                new Claim(ClaimTypes.GivenName, currentUser.FirstName)
-            };
-
-            var claimsIdentity = new ClaimsIdentity(
-            claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-            var authProperties = new AuthenticationProperties
-            {
-                AllowRefresh = true,
-                IsPersistent = true,
-                IssuedUtc = DateTime.Now,
-                RedirectUri = "http://localhost:3000/"
-            };
-
-            await HttpContext.SignInAsync(
-            CookieAuthenticationDefaults.AuthenticationScheme,
-            new ClaimsPrincipal(claimsIdentity),
-            authProperties);
-            //var token = Generate(currentUser);
-            return Redirect("http://localhost:3000/");
+            var token = Generate(currentUser);
+            return Ok(token);
         }
-
-
-        [HttpPost]
-        [Route("LogoutUser")]
-        public async Task<IActionResult> OnGetAsync()
-        {
-            // Clear the existing external cookie
-            await HttpContext.SignOutAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme);
-
-            return Redirect("http://localhost:3000/");
-        }
-
 
         private string Generate(User currentUser)
         {
@@ -108,9 +75,11 @@ namespace FilmStock.Controllers
 
         private async Task<User> Authenticate(LoginModel user)
         {
-            if(await _userRepository.ValidateUser(user))
+            var dbUserInfo = await _userRepository.GetUserByUsername(user.UserName);
+            var isPwMatch = BCrypt.Net.BCrypt.Verify(user.Password, dbUserInfo.Password);
+            if (dbUserInfo != null && isPwMatch)
             {
-                return await _userRepository.GetUserByUsername(user.UserName);
+                return dbUserInfo;
             }
             return null;
 
