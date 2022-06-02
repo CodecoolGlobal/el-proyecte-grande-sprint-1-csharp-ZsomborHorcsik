@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmStock.Migrations
 {
     [DbContext(typeof(FilmContext))]
-    [Migration("20220602120501_init")]
-    partial class init
+    [Migration("20220602125034_new-entities")]
+    partial class newentities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -99,13 +99,13 @@ namespace FilmStock.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Level")
+                    b.Property<int?>("Level")
                         .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("UserCollectionId")
+                    b.Property<long?>("UserCollectionId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("UserName")
@@ -129,9 +129,7 @@ namespace FilmStock.Migrations
                 {
                     b.HasOne("FilmStock.Models.Entities.Collection", "UserCollection")
                         .WithMany()
-                        .HasForeignKey("UserCollectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserCollectionId");
 
                     b.Navigation("UserCollection");
                 });

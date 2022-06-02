@@ -97,13 +97,13 @@ namespace FilmStock.Migrations
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Level")
+                    b.Property<int?>("Level")
                         .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long>("UserCollectionId")
+                    b.Property<long?>("UserCollectionId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("UserName")
@@ -127,9 +127,7 @@ namespace FilmStock.Migrations
                 {
                     b.HasOne("FilmStock.Models.Entities.Collection", "UserCollection")
                         .WithMany()
-                        .HasForeignKey("UserCollectionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserCollectionId");
 
                     b.Navigation("UserCollection");
                 });

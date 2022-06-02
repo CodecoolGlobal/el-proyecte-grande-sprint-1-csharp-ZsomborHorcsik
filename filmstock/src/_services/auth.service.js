@@ -5,7 +5,7 @@ const baseUrl = "https://localhost:7299/";
 function loginUser(urlFilter, payload){
     return axios.post(baseUrl + urlFilter, payload)
                 .then((response) =>{
-                    localStorage.setItem("user", JSON.stringify(response.data));
+                    localStorage.setItem("user", response.data);
                 })
 }
 

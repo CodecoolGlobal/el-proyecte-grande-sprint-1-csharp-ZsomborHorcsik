@@ -10,6 +10,6 @@ namespace FilmStock.Models.Interfaces
         public Task<User?> GetUserById(long id);
         public Task<User?> GetUserByUsername(string name);
         Task<List<Movie>> GetCollection(long id);
-        public Task AddToCollection(long id, long movieId);
+        public Task AddToCollection(string username, long movieId);
     }
 }

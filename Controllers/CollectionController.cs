@@ -2,6 +2,8 @@
 using FilmStock.Models.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
+
 
 namespace FilmStock.Controllers
 {
@@ -11,12 +13,15 @@ namespace FilmStock.Controllers
     {
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _config;
-        public CollectionController(IUserRepository userRepository, IConfiguration config)
+        private readonly IFilmRepository _filmRepository;
+        public CollectionController(IUserRepository userRepository, IConfiguration config, IFilmRepository filmRepository)
         {
             _userRepository = userRepository;
             _config = config;
+            _filmRepository = filmRepository;
         }
 
+        [Authorize]
         [HttpGet]
         [Route("{id:long}")]
         public async Task<List<Movie>> GetUserCollection(long id)
@@ -24,13 +29,15 @@ namespace FilmStock.Controllers
             return await _userRepository.GetCollection(id);
         }
 
+        [Authorize]
         [HttpPost]
         [Route("add/{Id:long}")]
-        public async Task<IActionResult> AddToUserCollection(long Id)
+        public async Task AddToUserCollection(long Id)
         {
-            var authorizedUser = User.Claims;
-            return Ok();
-            //await _userRepository.AddToCollection(id, movieId);
+            string name = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).ToString();
+            string[] list = name.Split(" ");
+            name = list[1];
+            await _userRepository.AddToCollection(name, Id);
         }
     }
 }

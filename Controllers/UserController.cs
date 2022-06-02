@@ -52,7 +52,7 @@ namespace FilmStock.Controllers
 
         private string Generate(User currentUser)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Authentication:SecretForKey"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
@@ -63,8 +63,8 @@ namespace FilmStock.Controllers
                 new Claim(ClaimTypes.GivenName, currentUser.FirstName)
             };
 
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-                _config["Jwt:Audience"],
+            var token = new JwtSecurityToken(_config["Authentication:Issuer"],
+                _config["Authentication:Audience"],
                 claims,
                 expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: credentials);

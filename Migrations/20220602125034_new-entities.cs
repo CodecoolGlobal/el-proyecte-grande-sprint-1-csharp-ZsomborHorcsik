@@ -4,7 +4,7 @@
 
 namespace FilmStock.Migrations
 {
-    public partial class init : Migration
+    public partial class newentities : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -58,8 +58,8 @@ namespace FilmStock.Migrations
                     UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Level = table.Column<int>(type: "int", nullable: false),
-                    UserCollectionId = table.Column<long>(type: "bigint", nullable: false)
+                    Level = table.Column<int>(type: "int", nullable: true),
+                    UserCollectionId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -68,8 +68,7 @@ namespace FilmStock.Migrations
                         name: "FK_Users_Collection_UserCollectionId",
                         column: x => x.UserCollectionId,
                         principalTable: "Collection",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(

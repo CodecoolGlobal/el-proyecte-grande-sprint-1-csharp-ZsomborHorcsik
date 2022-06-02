@@ -4,10 +4,10 @@ namespace FilmStock.Models.Entities
 {
     public class LoginModel
     {
-        [JsonProperty("userName")]
+        [JsonProperty("UserName")]
         public string? UserName { get; set; }
 
-        [JsonProperty("password")]
+        [JsonProperty("Password")]
         public string? Password { get; set; }
     }
 }
