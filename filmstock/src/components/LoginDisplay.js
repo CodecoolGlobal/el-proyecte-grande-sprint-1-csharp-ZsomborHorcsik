@@ -24,9 +24,9 @@ const LoginDisplay = () => {
 
         try{
             await authService.postFetch("api/User/login", payload)
-                .then( ()=>{
-                    navigate("/");
-                })
+                            .then( ()=>{
+                                navigate("/");
+                            })
         }catch(err){
             console.log(err);
         }
