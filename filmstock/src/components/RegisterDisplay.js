@@ -15,12 +15,12 @@ const RegisterDisplay = () => {
 
     const registerHandler = async event =>{
         event.preventDefault();
-        let payload = {"userName": username, "password": password, "firstName": firstName, "lastName": lastName, "email": email};
+        let payload = {"firstName": firstName, "lastName": lastName,"userName": username, "email": email,  "password": password};
         try{
             await authService.registerUser("api/User/register", payload)
                             .then( ()=>{
-                                navigate("api/User/login");
-        })
+                                navigate("/login");
+                            });
         }
         catch(err){
             console.log(err);

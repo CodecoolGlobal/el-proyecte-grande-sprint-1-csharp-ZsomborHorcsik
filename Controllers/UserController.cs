@@ -5,9 +5,6 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
-using System.Web;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
 
 namespace FilmStock.Controllers
 {
@@ -18,24 +15,26 @@ namespace FilmStock.Controllers
         private readonly IUserRepository _userRepository;
         private readonly IConfiguration _config;
 
-        public UserController(IUserRepository iuserRepository, IConfiguration config)
+        public UserController(IUserRepository userRepository, IConfiguration config)
         {
-            _userRepository = iuserRepository;
+            _userRepository = userRepository;
             _config = config;
         }
 
-        [HttpPost("register")]
-        public async Task<IActionResult> RegisterUser([FromForm]User user)
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> RegisterUser([FromBody]User user)
         {
             var dbUserInfo = await _userRepository.GetUserByUsername(user.UserName);
             if (dbUserInfo == null)
             {
                 user.Level = Models.Enums.UserLevel.user;
-                user.Collection = new();
+                user.UserCollection = new();
                 user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+                await _userRepository.Add(user);
+                return Ok();
             }
-            await _userRepository.Add(user);
-            return Redirect("http://localhost:3000/");
+            return BadRequest();
         }
 
         [HttpPost]
@@ -85,41 +84,22 @@ namespace FilmStock.Controllers
 
         }
 
-        [HttpPut("edit/{Id}")]
-        public void EditUser(long Id, [FromBody] User user)
-        {
-            user.Id = Id;
-            _userRepository.Update(user);
-        }
+        //[HttpGet]
+        //public async Task<User?> GetUserByUsername(string username)
+        //{
+        //    return await _userRepository.GetUserByUsername(username);
+        //}
 
-        [HttpDelete("delete/{Id}")]
-        public async Task DeleteUser(long Id)
-        {
-            await _userRepository.Remove(Id);
-        }
+        //[HttpGet("collections/user/{id:long}")]
+        //public async Task<List<Movie>> GetUserCollection(long id)
+        //{
+        //    return await _userRepository.GetCollection(id);
+        //}
 
-        [HttpGet("{id:long}")]
-        public async Task<User?> GetUserById(long id)
-        {
-            return await _userRepository.GetUserById(id);
-        }
-
-        [HttpGet("{username:string}")]
-        public async Task<User?> GetUserByUsername(string username)
-        {
-            return await _userRepository.GetUserByUsername(username);
-        }
-
-        [HttpGet("collection/{id}")]
-        public async Task<List<Movie>> GetUserCollection(long id)
-        {
-            return await _userRepository.GetCollection(id);
-        }
-
-        [HttpGet("collection/{id}")]
-        public async Task AddToUserCollection(long id, long movieId)
-        {
-            await _userRepository.AddToCollection(id, movieId);
-        }
+        //[HttpGet("collection/user/")]
+        //public async Task AddToUserCollection(long id, long movieId)
+        //{
+        //    await _userRepository.AddToCollection(id, movieId);
+        //}
     }
 }
