@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseUrl = "https://localhost:7299/";
 
-function postFetch(urlFilter, payload){
+function loginUser(urlFilter, payload){
     return axios.post(baseUrl + urlFilter, payload)
                 .then((response) =>{
                     localStorage.setItem("user", JSON.stringify(response.data));
@@ -10,10 +10,7 @@ function postFetch(urlFilter, payload){
 }
 
 function registerUser(urlFilter, payload) {
-    return axios.post(baseUrl + urlFilter, payload)
-                .then((response) => {
-                    console.log(JSON.stringify(response.data));
-                });
+    return axios.post(baseUrl + urlFilter, payload);
   };
 
 const logout = () =>{
@@ -26,7 +23,7 @@ const getCurrentUser = () =>{
 }
 
 const authService = {
-    postFetch,
+    loginUser,
     logout,
     getCurrentUser,
     registerUser

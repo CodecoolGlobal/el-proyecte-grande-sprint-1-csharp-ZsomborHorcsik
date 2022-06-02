@@ -23,7 +23,7 @@ const LoginDisplay = () => {
         let payload = {"UserName": username, "Password": password};
 
         try{
-            await authService.postFetch("api/User/login", payload)
+            await authService.loginUser("api/User/login", payload)
                             .then( ()=>{
                                 navigate("/");
                             })

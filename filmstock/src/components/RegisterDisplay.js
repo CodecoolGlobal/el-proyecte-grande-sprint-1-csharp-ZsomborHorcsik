@@ -18,6 +18,9 @@ const RegisterDisplay = () => {
         let payload = {"userName": username, "password": password, "firstName": firstName, "lastName": lastName, "email": email};
         try{
             await authService.registerUser("api/User/register", payload)
+                            .then( ()=>{
+                                navigate("api/User/login");
+        })
         }
         catch(err){
             console.log(err);
