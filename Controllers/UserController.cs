@@ -83,23 +83,5 @@ namespace FilmStock.Controllers
             return null;
 
         }
-
-        //[HttpGet]
-        //public async Task<User?> GetUserByUsername(string username)
-        //{
-        //    return await _userRepository.GetUserByUsername(username);
-        //}
-
-        //[HttpGet("collections/user/{id:long}")]
-        //public async Task<List<Movie>> GetUserCollection(long id)
-        //{
-        //    return await _userRepository.GetCollection(id);
-        //}
-
-        //[HttpGet("collection/user/")]
-        //public async Task AddToUserCollection(long id, long movieId)
-        //{
-        //    await _userRepository.AddToCollection(id, movieId);
-        //}
     }
 }

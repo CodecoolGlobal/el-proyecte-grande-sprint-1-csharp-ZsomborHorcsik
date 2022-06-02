@@ -22,10 +22,10 @@ namespace FilmStock.Models.Repositories
             await _db.SaveChangesAsync();
         }
 
-        public async Task<Collection> GetCollection(long id)
+        public async Task<List<Movie>> GetCollection(long id)
         {
             User user = await GetUserById(id);
-            return user.UserCollection;
+            return user.UserCollection.Movies;
         }
 
         public async Task AddToCollection(long id, long movieId)
