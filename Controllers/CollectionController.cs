@@ -1,5 +1,6 @@
 ﻿using FilmStock.Models.Entities;
 using FilmStock.Models.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FilmStock.Controllers
@@ -25,9 +26,10 @@ namespace FilmStock.Controllers
 
         [HttpPost]
         [Route("add/{Id:long}")]
-        public async Task AddToUserCollection(long movieId, [FromBody])
+        public async Task<IActionResult> AddToUserCollection(long Id)
         {
-            
+            var authorizedUser = User.Claims;
+            return Ok();
             //await _userRepository.AddToCollection(id, movieId);
         }
     }

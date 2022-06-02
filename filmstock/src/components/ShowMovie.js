@@ -14,7 +14,7 @@ const ShowMovie = (props) => {
     const handleClick = async event =>{
         event.preventDefault();
         try{
-            await collectionService.addToUserCollection(`api/Collection/add/${id}`, authHeader())
+            await collectionService.addToUserCollection(`api/Collection/add/${id}`, {})
                                   .then( (response)=>{
                                       console.log(JSON.stringify(response.data));
                                   })
