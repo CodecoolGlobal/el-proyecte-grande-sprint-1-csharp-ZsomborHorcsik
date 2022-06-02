@@ -9,6 +9,7 @@ import RegisterDisplay from './components/RegisterDisplay';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import ShowMovie from './components/ShowMovie';
+import CollectionDisplay from './components/CollectionDisplay';
 
 ReactDOM.render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Route exact path="/Login" element={<LoginDisplay />} />
         <Route exact path="/Register" element={<RegisterDisplay />} />
         <Route exact path="/Movies/:id" element={<ShowMovie/>}/> 
+        <Route exact path="/Collection" element={<CollectionDisplay/>}/>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

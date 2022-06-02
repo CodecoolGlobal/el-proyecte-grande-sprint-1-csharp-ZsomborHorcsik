@@ -57,7 +57,6 @@ namespace FilmStock
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSession();
 
             app.UseCors(op =>
             {

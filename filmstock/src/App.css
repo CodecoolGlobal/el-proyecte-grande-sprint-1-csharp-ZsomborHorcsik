@@ -64,13 +64,3 @@ footer{
   text-transform: capitalize;
   animation: textclip 2s linear infinite;
 }
-
-@keyframes borderRadiusAnim{
-    50% {border-radius:78% 22% 79% 21% / 7% 85% 15% 93% ;}
-}
-
-@keyframes textclip {
-  to {
-    background-position: 200% center;
-  }
-}

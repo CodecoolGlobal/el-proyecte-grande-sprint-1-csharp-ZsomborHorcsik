@@ -30,12 +30,8 @@ const Navmenu = () => {
                     <NavbarCollapse open={openNavbar}>
                         <Nav leftSide>
                             <NavItem ripple="light">
-                                <Icon name="collections" size="xl" />
-                                Collections
-                            </NavItem>
-                            <NavItem ripple="light">
                                 <Icon name="assistant" size="xl" />
-                                <a href="http://localhost:3000/Movies">Discover</a>
+                                <a href="http://localhost:3000/Movies">Movies</a>
                             </NavItem>
                             <NavItem ripple="light" >
                                 <Icon name="live_tv" size="xl" />
@@ -77,11 +73,11 @@ const Navmenu = () => {
                         <Nav leftSide>
                             <NavItem ripple="light">
                                 <Icon name="collections" size="xl" />
-                                Collections
+                                <a href="http://localhost:3000/Collection">Collection</a>
                             </NavItem>
                             <NavItem ripple="light">
                                 <Icon name="assistant" size="xl" />
-                                <a href="http://localhost:3000/Movies">Discover</a>
+                                <a href="http://localhost:3000/Movies">Movies</a>
                             </NavItem>
                             <NavItem ripple="light" >
                                 <Icon name="live_tv" size="xl" />

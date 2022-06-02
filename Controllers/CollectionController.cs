@@ -23,10 +23,13 @@ namespace FilmStock.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("{id:long}")]
-        public async Task<List<Movie>> GetUserCollection(long id)
+        [Route("MyCollection")]
+        public async Task<List<Movie>> GetUserCollection()
         {
-            return await _userRepository.GetCollection(id);
+            string name = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).ToString();
+            string[] list = name.Split(" ");
+            name = list[1];
+            return await _userRepository.GetCollection(name);
         }
 
         [Authorize]
