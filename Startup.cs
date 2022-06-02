@@ -24,12 +24,6 @@ namespace FilmStock
             services.AddControllersWithViews();
             services.AddDbContext<FilmContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = false;
-            });
             services.AddAuthentication("Bearer")
             .AddJwtBearer(options =>
             {
