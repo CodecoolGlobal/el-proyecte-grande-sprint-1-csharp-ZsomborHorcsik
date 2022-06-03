@@ -25,55 +25,108 @@ const ShowMovie = (props) => {
     }
 
     if(error) console.log(error);
-  return (
-    <div>
-        <Layout>
-            <div className='movie-content-box'>
-                <div className='movie-image'>
-                    <img src={data?.image} alt="The poster of the movie" className='movie-image'></img>
+    if(!localStorage.getItem("user")){
+      return (
+        <div>
+            <Layout>
+                <div className='movie-content-box'>
+                    <div className='movie-image'>
+                        <img src={data?.image} alt="The poster of the movie" className='movie-image'></img>
+                    </div>
+                    <div className='movie-details'>
+                      <div className='detail-item'>
+                        <p>{data?.fullTitle}</p>
+                        <p>Crew: {data?.crew}</p>
+                      </div>
+                      <div>
+                        <p>{data?.rating}</p>{Array.from({ length: starRating }, (_, i) => <i key={i} className="fa-solid fa-star"></i>)}
+                        <p>Global rank : {data?.rank}</p>
+                      </div>
+                    </div>
                 </div>
-                <div className='movie-details'>
-                  <div className='detail-item'>
-                    <p>{data?.fullTitle}</p>
-                    <p>Crew: {data?.crew}</p>
-                  </div>
-                  <div>
-                    <p>{data?.rating}</p>{Array.from({ length: starRating }, (_, i) => <i key={i} className="fa-solid fa-star"></i>)}
-                    <p>Global rank : {data?.rank}</p>
-                    <button onClick={handleClick} className='font-bold outline-none uppercase focus:outline-none focus:shadow-none transition-all duration-300 rounded-md py-3 px-4 text-sm leading-relaxed text-white bg-teal-500 hover:bg-teal-700 focus:bg-teal-400 active:bg-teal-800 shadow-md-blue-gray hover:shadow-lg-blue-gray'>Add to collection</button>
-                  </div>
-                </div>
-            </div>
-            <div className='review-content-box'>
-              <div className="comment">
-                <div className="comment-heading">
-                  <div className="comment-voting">
-                    <button type="button">
-                        <span aria-hidden="true">&#9650;</span>
-                        <span className="sr-only">Vote up</span>
-                    </button>
-                    <button type="button">
-                        <span aria-hidden="true">&#9660;</span>
-                        <span className="sr-only">Vote down</span>
-                    </button>
-                  </div>
-                  <div className="comment-info">
-                      <a href="#" className="comment-author">TestUser</a>
-                      <p className="m-0">
-                        4 days ago
+                <div className='review-content-box'>
+                  <div className="comment">
+                    <div className="comment-heading">
+                      <div className="comment-voting">
+                        <button type="button">
+                            <span aria-hidden="true">&#9650;</span>
+                            <span className="sr-only">Vote up</span>
+                        </button>
+                        <button type="button">
+                            <span aria-hidden="true">&#9660;</span>
+                            <span className="sr-only">Vote down</span>
+                        </button>
+                      </div>
+                      <div className="comment-info">
+                          <a href="#" className="comment-author">TestUser</a>
+                          <p className="m-0">
+                            4 days ago
+                          </p>
+                      </div>
+                    </div>
+                    <div className="comment-body">
+                      <p>
+                        A tough, complex story [told] with clarity, compassion and considerable dramatic force.
                       </p>
+                    </div>
                   </div>
                 </div>
-                <div className="comment-body">
-                  <p>
-                    A tough, complex story [told] with clarity, compassion and considerable dramatic force.
-                  </p>
+            </Layout>
+        </div>
+      )
+    
+  }
+  else {
+    return (
+      <div>
+          <Layout>
+              <div className='movie-content-box'>
+                  <div className='movie-image'>
+                      <img src={data?.image} alt="The poster of the movie" className='movie-image'></img>
+                  </div>
+                  <div className='movie-details'>
+                    <div className='detail-item'>
+                      <p>{data?.fullTitle}</p>
+                      <p>Crew: {data?.crew}</p>
+                    </div>
+                    <div>
+                      <p>{data?.rating}</p>{Array.from({ length: starRating }, (_, i) => <i key={i} className="fa-solid fa-star"></i>)}
+                      <p>Global rank : {data?.rank}</p>
+                      <button onClick={handleClick} className='font-bold outline-none uppercase focus:outline-none focus:shadow-none transition-all duration-300 rounded-md py-3 px-4 text-sm leading-relaxed text-white bg-teal-500 hover:bg-teal-700 focus:bg-teal-400 active:bg-teal-800 shadow-md-blue-gray hover:shadow-lg-blue-gray'>Add to collection</button>
+                    </div>
+                  </div>
+              </div>
+              <div className='review-content-box'>
+                <div className="comment">
+                  <div className="comment-heading">
+                    <div className="comment-voting">
+                      <button type="button">
+                          <span aria-hidden="true">&#9650;</span>
+                          <span className="sr-only">Vote up</span>
+                      </button>
+                      <button type="button">
+                          <span aria-hidden="true">&#9660;</span>
+                          <span className="sr-only">Vote down</span>
+                      </button>
+                    </div>
+                    <div className="comment-info">
+                        <a href="#" className="comment-author">TestUser</a>
+                        <p className="m-0">
+                          4 days ago
+                        </p>
+                    </div>
+                  </div>
+                  <div className="comment-body">
+                    <p>
+                      A tough, complex story [told] with clarity, compassion and considerable dramatic force.
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-        </Layout>
-    </div>
-  )
+          </Layout>
+      </div>
+    )
+  }
 }
 
 export default ShowMovie;

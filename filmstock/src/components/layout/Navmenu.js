@@ -37,9 +37,6 @@ const Navmenu = () => {
                                 <Icon name="live_tv" size="xl" />
                                 <a href="http://localhost:3000/Series">TV Series</a>
                             </NavItem>
-                            <NavItem>
-                                <NavbarInput type="text" placeholder="Search here" />
-                            </NavItem>
                         </Nav>
                         <Nav rightSide>
                             <NavItem ripple="light">
@@ -82,9 +79,6 @@ const Navmenu = () => {
                             <NavItem ripple="light" >
                                 <Icon name="live_tv" size="xl" />
                                 <a href="http://localhost:3000/Series">TV Series</a>
-                            </NavItem>
-                            <NavItem>
-                                <NavbarInput type="text" placeholder="Search here" />
                             </NavItem>
                         </Nav>
                         <Nav rightSide>
