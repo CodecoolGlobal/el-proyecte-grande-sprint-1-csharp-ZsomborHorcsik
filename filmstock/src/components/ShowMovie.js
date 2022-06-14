@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 import useFetch from '../Hooks/useFetch';
 import './stylesheets/showMovie.css';
 import collectionService from '../_services/collection.service';
-import authHeader from '../_services/auth.header';
 
 const ShowMovie = (props) => {
     const { id } = useParams();
@@ -15,9 +14,9 @@ const ShowMovie = (props) => {
         event.preventDefault();
         try{
             await collectionService.addToUserCollection(`api/Collection/add/${id}`, {})
-                                  .then( (response)=>{
-                                      console.log(JSON.stringify(response.data));
-                                  })
+              .then( (response)=>{
+                  console.log(response.data);
+              })
         }
         catch(err){
           console.log(err);
@@ -58,7 +57,7 @@ const ShowMovie = (props) => {
                     </button>
                   </div>
                   <div className="comment-info">
-                      <a href="#" className="comment-author">TestUser</a>
+                      <h3 className="comment-author">TestUser</h3>
                       <p className="m-0">
                         4 days ago
                       </p>

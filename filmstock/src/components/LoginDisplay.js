@@ -10,14 +10,6 @@ const LoginDisplay = () => {
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
 
-    const handlePassword = (event) =>{
-        setPassword(event.target.value);
-    }
-
-    const handleUsername = (event) =>{
-        setUsername(event.target.value);
-    }
-
     const handleSubmit = async event =>{
         event.preventDefault();
         let payload = {"UserName": username, "Password": password};
@@ -48,7 +40,7 @@ const LoginDisplay = () => {
                             name="userName" 
                             type="text" 
                             placeholder="Username"
-                            onChange={handleUsername}
+                            onChange={(e) =>{setUsername(e.target.value)}}
                             required/>
                         </div>
                         <div className="mb-6">
@@ -59,7 +51,7 @@ const LoginDisplay = () => {
                             id="password" 
                             name="password"
                             type="password" 
-                            onChange={handlePassword}
+                            onChange={(e) =>{setPassword(e.target.value)}}
                             placeholder="******************" 
                             required/>
                         </div>
