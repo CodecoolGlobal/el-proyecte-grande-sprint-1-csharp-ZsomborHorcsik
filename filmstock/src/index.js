@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -12,9 +12,12 @@ import ShowMovie from './components/ShowMovie';
 import CollectionDisplay from './components/CollectionDisplay';
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import userLoginSlice from './_slices/userLoginSlice';
 
 const store = configureStore({
-  reducer:{}
+  reducer:{
+    user: useReducer
+  }
 })
 
 ReactDOM.render(

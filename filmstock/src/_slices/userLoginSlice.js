@@ -1,10 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const defaultState = {username: "", password: ""}
+function checkUser(){
+    const currentUser = localStorage.getItem('user');
+    if(currentUser){
+        return currentUser;
+    }
+    return null;
+}
+
 
 export const userSlice = createSlice({
     name:"user",
-    defaultState,
+    initialState:{
+        user: checkUser()
+    },
     reducers:{
             login: (state, action) =>{
                 state.user = action.payload;

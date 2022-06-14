@@ -6,6 +6,7 @@ function loginUser(urlFilter, payload){
     return axios.post(baseUrl + urlFilter, payload)
                 .then((response) =>{
                     localStorage.setItem("user", response.data);
+                    
                 })
 }
 
