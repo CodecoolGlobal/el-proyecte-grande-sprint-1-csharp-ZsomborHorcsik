@@ -2,10 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 
 function checkUser(){
     const currentUser = localStorage.getItem('user');
-    if(currentUser){
-        return currentUser;
+    
+    if(currentUser == null){
+        return null;
     }
-    return null;
+    return currentUser;
 }
 
 
@@ -24,6 +25,6 @@ export const userSlice = createSlice({
         }
 });
 
+export default userSlice.reducer;
 export  const {login, logout} = userSlice.actions;
 export const selectUser = (state) => state.user.user;
-export default userSlice.reducer;

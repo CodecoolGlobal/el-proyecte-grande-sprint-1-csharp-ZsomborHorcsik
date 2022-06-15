@@ -1,15 +1,16 @@
 import axios from "axios";
+import {login} from '../_slices/userLoginSlice';
+import {useDispatch} from 'react-redux';
 
 const baseUrl = "https://localhost:7299/";
 
 function loginUser(urlFilter, payload){
     return axios.post(baseUrl + urlFilter, payload)
                 .then((response) =>{
-                    if(response.ok){
                         localStorage.setItem("user", response.data);
-                    }
-                })
-}
+                        useDispatch(login(response.data));
+                    })
+                }               
 
 function registerUser(urlFilter, payload) {
     return axios.post(baseUrl + urlFilter, payload);

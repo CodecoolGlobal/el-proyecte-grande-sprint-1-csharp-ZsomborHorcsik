@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmStock.Migrations
 {
     [DbContext(typeof(FilmContext))]
-    [Migration("20220602125034_new-entities")]
-    partial class newentities
+    [Migration("20220615083449_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
@@ -10,15 +10,9 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import ShowMovie from './components/ShowMovie';
 import CollectionDisplay from './components/CollectionDisplay';
-import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import userLoginSlice from './_slices/userLoginSlice';
+import { store } from './_helpers/store';
 
-const store = configureStore({
-  reducer:{
-    user: useReducer
-  }
-})
 
 ReactDOM.render(
   <React.StrictMode>

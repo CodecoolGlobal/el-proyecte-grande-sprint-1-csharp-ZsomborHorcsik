@@ -7,9 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="BCrypt.Net-Core" Version="1.6.0" />
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="IMDbApiLib" Version="1.8.1" />
+    <PackageReference Include="JWT" Version="9.0.3" />
+    <PackageReference Include="JWTCookieAuthentication" Version="2.4.2" />
     <PackageReference Include="Microsoft.AspNet.Providers.Core" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNet.WebApi" Version="5.2.8" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.8" />
