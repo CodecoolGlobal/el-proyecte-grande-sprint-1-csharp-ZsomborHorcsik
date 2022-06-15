@@ -1,8 +1,12 @@
 import '../App.css';
 import "@material-tailwind/react/tailwind.css";
+import FilmCard from '../components/FilmCard';
+import useFetch from '../Hooks/useFetch';
 import Layout from './layout/Layout';
 
-const CollectionDisplay = (props) => {
+const CollectionDisplay = () => {
+  const {data, error} = useFetch("api/Collection/MyCollection");
+  if(error) console.log(error);
 
   return (
     <div className="CollectionDisplay">

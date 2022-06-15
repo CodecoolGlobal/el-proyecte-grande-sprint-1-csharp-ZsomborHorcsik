@@ -22,11 +22,10 @@ This project is a web based movie database with capabilities of users writing co
 
 ## How to run
 
-To test or use the site, first you need to install Visual Studio and .net 6.0. The project solution will include all the dependencies for the idea. The backend logic functions as a REST Api, you can start up the server from visual studio. The front end can be run by opening up visual studio code, or any choosen idea, you need to have node 16 or above installed to be able to run the site and install all npm dependencies. Open up a terminal in your chosen idea, and type npm install, to install all dependencies automatically, they are included with the project. after that a npm start should run your server for the frontend. RUN THE SITE ONLY IN CHROME. Mozilla has a strict policy on how it looks up localhost server proxys, and the front end wont load the data properly.
+To test or use the site, first you need to install Visual Studio and .net 6.0. The project solution will include all the dependencies for the idea. The backend logic functions as a REST Api, you can start up the server from visual studio. The front end can be run by opening up visual studio code, or any choosen idea, you need to have node 16 or above installed to be able to run the server and install all npm dependencies. Open up a terminal in your chosen idea, and type npm install, to install all dependencies automatically, they are included with the project. after that a npm start should run your server for the frontend. RUN THE SITE ONLY IN CHROME. Mozilla has a strict policy on how it looks up localhost server proxys, and the front end wont load the data properly.
 
-## Roadmap(Sprint 3 Currently)
+## Roadmap(Sprint 4 Currently)
 
-- user login and registration with authentication (Sprint 4)
 - user levels such as admin, premium, normal membership with different actions (Sprint 4)
 - Create personal collection of movies & share to others (Sprint 4)
 - Create personaliezed recommendations based on user activity (Sprint 5)
