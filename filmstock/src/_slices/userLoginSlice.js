@@ -13,7 +13,7 @@ function checkUser(){
 export const userSlice = createSlice({
     name:"user",
     initialState:{
-        user: checkUser()
+        user: {value:checkUser()}
     },
     reducers:{
             login: (state, action) =>{

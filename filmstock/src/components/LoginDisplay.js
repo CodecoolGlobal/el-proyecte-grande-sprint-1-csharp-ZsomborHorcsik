@@ -4,9 +4,12 @@ import './stylesheets/loginSystem.css';
 import { useState } from 'react';
 import authService from '../_services/auth.service';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../_slices/userLoginSlice';
     
 const LoginDisplay = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
 
@@ -16,6 +19,8 @@ const LoginDisplay = () => {
         try{
             await authService.loginUser("api/User/login", payload)
                             .then( () => {
+                                const user = localStorage.getItem("user");
+                                dispatch(login(user));
                                 navigate('/');
                             })
         }catch(err){
