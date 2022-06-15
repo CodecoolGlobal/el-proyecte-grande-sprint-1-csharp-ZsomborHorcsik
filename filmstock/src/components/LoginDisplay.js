@@ -4,11 +4,14 @@ import './stylesheets/loginSystem.css';
 import { useState } from 'react';
 import authService from '../_services/auth.service';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { login } from '../_slices/userLoginSlice';
     
 const LoginDisplay = () => {
     const navigate = useNavigate();
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
+    const dispatch = useDispatch();
 
     const handleSubmit = async event =>{
         event.preventDefault();
@@ -16,7 +19,12 @@ const LoginDisplay = () => {
 
         try{
             await authService.loginUser("api/User/login", payload)
-                            .then( ()=>{
+                            .then( (response)=>{
+                                dispatch(
+                                    login({
+                                        token: response.data
+                                    })
+                                )
                                 navigate("/");
                             })
         }catch(err){

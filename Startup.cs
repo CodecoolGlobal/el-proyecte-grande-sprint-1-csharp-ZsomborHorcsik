@@ -2,11 +2,8 @@
 using FilmStock.Models;
 using FilmStock.Models.Interfaces;
 using FilmStock.Models.Repositories;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Net.Http.Headers;
 using System.Text;
 
 namespace FilmStock
@@ -25,19 +22,19 @@ namespace FilmStock
             services.AddDbContext<FilmContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddAuthentication("Bearer")
-            .AddJwtBearer(options =>
-            {
-                options.TokenValidationParameters = new()
-                {
-                    ValidateIssuer = true,
-                    ValidateAudience = true,
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = Configuration["Authentication:Issuer"],
-                    ValidAudience = Configuration["Authentication:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(
-                    Encoding.ASCII.GetBytes(Configuration["Authentication:SecretForKey"]))
-                };
-            }
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = new()
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateIssuerSigningKey = true,
+                            ValidIssuer = Configuration["Authentication:Issuer"],
+                            ValidAudience = Configuration["Authentication:Audience"],
+                            IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.ASCII.GetBytes(Configuration["Authentication:SecretForKey"]))
+                        };
+                    }
             );
             services.AddHttpContextAccessor();
             services.AddTransient<DbInitializer>();
@@ -57,7 +54,6 @@ namespace FilmStock
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSession();
 
             app.UseCors(op =>
             {

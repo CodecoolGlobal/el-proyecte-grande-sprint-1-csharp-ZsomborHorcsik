@@ -12,13 +12,10 @@ namespace FilmStock.Controllers
     public class CollectionController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
-        private readonly IConfiguration _config;
-        private readonly IFilmRepository _filmRepository;
-        public CollectionController(IUserRepository userRepository, IConfiguration config, IFilmRepository filmRepository)
+
+        public CollectionController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
-            _config = config;
-            _filmRepository = filmRepository;
         }
 
         [Authorize]
