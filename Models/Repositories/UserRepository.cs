@@ -22,28 +22,34 @@ namespace FilmStock.Models.Repositories
             await _db.SaveChangesAsync();
         }
 
-        public async Task<List<Movie>> GetCollection(long id)
+        public async Task<List<Movie>> GetCollection(string username)
         {
-            User user = await GetUserById(id);
-            return user.Collection;
+            User user = await GetUserByUsername(username);
+            return user.UserCollection.Movies;
         }
 
-        public async Task AddToCollection(long id, long movieId)
+        public async Task AddToCollection(string username, long movieId)
         {
-            User user = await GetUserById(id);
+            User user = await GetUserByUsername(username);
             Movie movie = await _filmRepository.GetMovie(movieId);
-            user.Collection.Add(movie);
+            user.UserCollection.Movies.Add(movie);
             await _db.SaveChangesAsync();
         }
 
         public async Task<User?> GetUserById(long id)
         {
-            return await _db.Users.FirstOrDefaultAsync(user => user.Id == id);
+            return await _db.Users
+                .Include(u => u.UserCollection)
+                .Include(u => u.UserCollection.Movies)
+                .FirstOrDefaultAsync(user => user.Id == id);
         }
 
         public async Task<User?> GetUserByUsername(string name)
         {
-            return await _db.Users.FirstOrDefaultAsync(user => user.UserName == name);
+            return await _db.Users
+                .Include(u => u.UserCollection)
+                .Include(u => u.UserCollection.Movies)
+                .FirstOrDefaultAsync(user => user.UserName == name);
         }
 
         public async Task Remove(long id)
@@ -56,16 +62,6 @@ namespace FilmStock.Models.Repositories
         {
             _db.Users.Update(user);
             await _db.SaveChangesAsync();
-        }
-
-        public async Task<bool> ValidateUser(LoginModel data)
-        {
-            var allUsers = _db.Users;
-            if (allUsers.Where(user => user.UserName == data.UserName && user.Password == data.Password) != null)
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

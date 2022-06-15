@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FilmStock.Migrations
 {
     [DbContext(typeof(FilmContext))]
-    [Migration("20220519135940_init")]
-    partial class init
+    [Migration("20220602125034_new-entities")]
+    partial class newentities
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,6 +24,19 @@ namespace FilmStock.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
+            modelBuilder.Entity("FilmStock.Models.Entities.Collection", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Collection");
+                });
+
             modelBuilder.Entity("FilmStock.Models.Entities.Movie", b =>
                 {
                     b.Property<long>("Id")
@@ -31,6 +44,9 @@ namespace FilmStock.Migrations
                         .HasColumnType("bigint");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
+
+                    b.Property<long?>("CollectionId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Crew")
                         .HasColumnType("nvarchar(max)");
@@ -56,15 +72,12 @@ namespace FilmStock.Migrations
                     b.Property<int>("Type")
                         .HasColumnType("int");
 
-                    b.Property<long?>("UserId")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Year")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("CollectionId");
 
                     b.ToTable("Movies");
                 });
@@ -78,43 +91,52 @@ namespace FilmStock.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Level")
+                    b.Property<int?>("Level")
                         .HasColumnType("int");
 
                     b.Property<string>("Password")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<long?>("UserCollectionId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("UserName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserCollectionId");
 
                     b.ToTable("Users");
                 });
 
             modelBuilder.Entity("FilmStock.Models.Entities.Movie", b =>
                 {
-                    b.HasOne("FilmStock.Models.Entities.User", null)
-                        .WithMany("Collection")
-                        .HasForeignKey("UserId");
+                    b.HasOne("FilmStock.Models.Entities.Collection", null)
+                        .WithMany("Movies")
+                        .HasForeignKey("CollectionId");
                 });
 
             modelBuilder.Entity("FilmStock.Models.Entities.User", b =>
                 {
-                    b.Navigation("Collection");
+                    b.HasOne("FilmStock.Models.Entities.Collection", "UserCollection")
+                        .WithMany()
+                        .HasForeignKey("UserCollectionId");
+
+                    b.Navigation("UserCollection");
+                });
+
+            modelBuilder.Entity("FilmStock.Models.Entities.Collection", b =>
+                {
+                    b.Navigation("Movies");
                 });
 #pragma warning restore 612, 618
         }

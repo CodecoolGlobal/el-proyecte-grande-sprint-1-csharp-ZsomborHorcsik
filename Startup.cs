@@ -3,6 +3,8 @@ using FilmStock.Models;
 using FilmStock.Models.Interfaces;
 using FilmStock.Models.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace FilmStock
 {
@@ -19,17 +21,25 @@ namespace FilmStock
             services.AddControllersWithViews();
             services.AddDbContext<FilmContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = false;
-            });
+            services.AddAuthentication("Bearer")
+                    .AddJwtBearer(options =>
+                    {
+                        options.TokenValidationParameters = new()
+                        {
+                            ValidateIssuer = true,
+                            ValidateAudience = true,
+                            ValidateIssuerSigningKey = true,
+                            ValidIssuer = Configuration["Authentication:Issuer"],
+                            ValidAudience = Configuration["Authentication:Audience"],
+                            IssuerSigningKey = new SymmetricSecurityKey(
+                            Encoding.ASCII.GetBytes(Configuration["Authentication:SecretForKey"]))
+                        };
+                    }
+            );
             services.AddHttpContextAccessor();
             services.AddTransient<DbInitializer>();
             services.AddScoped<IFilmRepository, FilmRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddCors();
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
@@ -44,7 +54,6 @@ namespace FilmStock
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSession();
 
             app.UseCors(op =>
             {
@@ -55,7 +64,7 @@ namespace FilmStock
             });
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

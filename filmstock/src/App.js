@@ -1,6 +1,6 @@
 import './App.css';
 import "@material-tailwind/react/tailwind.css";
-import Layout from './components/Layout';
+import Layout from './components/layout/Layout';
 
 function App() {
   return (

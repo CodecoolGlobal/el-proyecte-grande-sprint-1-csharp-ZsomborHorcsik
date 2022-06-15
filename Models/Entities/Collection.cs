@@ -1,6 +1,4 @@
-﻿using FilmStock.Models.Enums;
-using Newtonsoft.Json;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FilmStock.Models.Entities
 {
@@ -8,9 +6,6 @@ namespace FilmStock.Models.Entities
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
-        public long UserId { get; set; }
-        public string? Name { get; set; }
-        public List<Movie>? Movies { get; set; }
+        public List<Movie> Movies { get; set; }
     }
-
 }

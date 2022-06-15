@@ -8,7 +8,12 @@ function useFetch(filterInfo){
 
     useEffect(()=>{
         axios
-        .get(url+filterInfo)
+        .get(url+filterInfo,
+            {
+                headers: {
+                    'Authorization': `Bearer ${localStorage.getItem("user")}`
+                  }
+            })
         .then((response) =>{
             setData(response.data);
         })

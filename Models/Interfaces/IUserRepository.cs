@@ -9,8 +9,7 @@ namespace FilmStock.Models.Interfaces
         public Task Remove(long id);
         public Task<User?> GetUserById(long id);
         public Task<User?> GetUserByUsername(string name);
-        public Task<bool> ValidateUser(LoginModel data);
-        Task<List<Movie>> GetCollection(long id);
-        public Task AddToCollection(long id, long movieId);
+        Task<List<Movie>> GetCollection(string name);
+        public Task AddToCollection(string username, long movieId);
     }
 }

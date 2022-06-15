@@ -12,6 +12,7 @@
 .movie-image{
     margin-right: 10px;
     border-right: 1px solid black;
+    max-height: 450px;
 }
 
 .movie-details{
@@ -25,11 +26,14 @@
 }
 
 .review-content-box{
-    display: flex;
-    width: 90%;
-    margin: 5px 0 10px 0;
-    padding: 10px;
-    justify-content: space-between;
+    display:flex;
+    align-items: center;
+    background-color: #CAD7D9;
+    border: 3px solid black;
+    -webkit-border-radius: 10px 10px 40px 10px;
+    -moz-border-radius: 10px 10px 40px 10px;
+    border-radius: 10px 10px 40px 10px;
+    padding: 5px;
 }
 
 .review-box{
@@ -43,57 +47,49 @@
     width: 100%;
 }
 
-.review-author{
-    font-family: Tahoma, Geneva, sans-serif;    font-size: 30px;
-    letter-spacing: -2px;
-    word-spacing: 2.4px;
-    color: #000000;
-    font-weight: 400;
-    text-decoration: underline solid rgb(68, 68, 68);
-    font-style: normal;
-    font-variant: small-caps;
-    text-transform: none;
+.sr-only {
+    position: absolute;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
 }
 
-.comment-box{
-    background-image: linear-gradient(to bottom, #cad7d9, #afbdc2, #96a4ac, #7f8b96, #6b7280);
-    -webkit-border-radius: 20px 20px 20px 20px;
-    -moz-border-radius: 20px 20px 20px 20px;
-    border-radius: 20px 20px 20px 20px;
+/* Comment */
+
+.comment {
+    position: relative;
+    margin: 20px auto;
+}
+.comment-heading {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 10px;
+    align-items: center;
+    height: 50px;
+    font-size: 14px;
 }
-
-.comment{
-    background-image: white;
-    -webkit-border-radius: 20px 20px 20px 20px;
-    -moz-border-radius: 20px 20px 20px 20px;
-    border-radius: 20px 20px 20px 20px;
-    border: 2px solid black;
-    padding: 10px;
-    margin: 5px;
-
+.comment-voting {
+    width: 20px;
+    height: 32px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
 }
-
-.comment-author{
-    font-family: Tahoma, Geneva, sans-serif;    font-size: 30px;
-    letter-spacing: -2px;
-    word-spacing: 2.4px;
-    color: #000000;
-    font-weight: 400;
-    text-decoration: underline solid rgb(68, 68, 68);
-    font-style: normal;
-    font-variant: small-caps;
-    text-transform: none;
+.comment-voting button {
+    display: block;
+    width: 100%;
+    height: 50%;
+    padding: 0;
+    border: 0;
+    font-size: 10px;
 }
-
-.comment-rating{
-    margin-top: 10px;
+.comment-info {
+    color: rgba(0, 0, 0, 0.5);
+    margin-left: 10px;
 }
-
-.comment-rating i{
-    font-size: 30px;
-    padding: 0 5px 0 5px;
+.comment-author {
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: bold;
+    text-decoration: none;
+}
+.comment-author:hover {
+    text-decoration: underline;
 }
